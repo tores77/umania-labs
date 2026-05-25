@@ -214,7 +214,10 @@ export default function HeroSequence() {
             style={{
               position: 'absolute',
               bottom: '10%',
-              left: '40px',
+              left: 'clamp(20px, 5vw, 40px)',
+              right: 'clamp(20px, 5vw, 40px)',
+              width: '90vw',
+              overflow: 'hidden',
               zIndex: 10,
               opacity: i === 0 ? 1 : 0,
               pointerEvents: 'none',
@@ -223,27 +226,33 @@ export default function HeroSequence() {
           >
             <p style={{
               fontFamily: 'var(--font-space-mono)',
-              fontSize: '10px',
-              letterSpacing: '0.25em',
+              fontSize: 'clamp(8px, 2vw, 10px)',
+              letterSpacing: 'clamp(0.1em, 0.25em, 0.25em)',
               color: 'rgba(250,250,248,0.55)',
               textTransform: 'uppercase',
               marginBottom: '12px',
             }}>{v.label}</p>
             <p style={{
               fontFamily: 'var(--font-syne)',
-              fontSize: 'clamp(42px, 6vw, 72px)',
+              fontSize: 'clamp(32px, 8vw, 72px)',
               fontWeight: 800,
               lineHeight: 1.0,
               color: '#FAFAF8',
               margin: 0,
+              wordBreak: 'break-word',
+              overflowWrap: 'break-word',
+              whiteSpace: 'normal',
             }}>{v.line1}</p>
             <p style={{
               fontFamily: 'var(--font-syne)',
-              fontSize: 'clamp(42px, 6vw, 72px)',
+              fontSize: 'clamp(32px, 8vw, 72px)',
               fontWeight: 300,
               lineHeight: 1.0,
               color: 'rgba(250,250,248,0.65)',
               margin: 0,
+              wordBreak: 'break-word',
+              overflowWrap: 'break-word',
+              whiteSpace: 'normal',
             }}>{v.line2}</p>
           </div>
         ))}
