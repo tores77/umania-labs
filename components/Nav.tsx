@@ -1,16 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-const links = [
-  { href: "#portfolio", label: "WORK" },
-  { href: "#process", label: "PROCESS" },
-  { href: "#contact", label: "CONTACT" },
-];
+import { useLanguage } from "@/components/LanguageProvider";
+import LangToggle from "@/components/LangToggle";
 
 export default function Nav() {
+  const { t, whatsapp } = useLanguage();
   const [hidden, setHidden] = useState(false);
   const [lastY, setLastY] = useState(0);
+
+  const links = [
+    { href: "#portfolio", label: t.nav.work },
+    { href: "#process", label: t.nav.process },
+    { href: whatsapp.cta, label: t.nav.contact, external: true },
+  ];
 
   useEffect(() => {
     const onScroll = () => {
@@ -65,52 +68,57 @@ export default function Nav() {
         style={{
           display: "flex",
           alignItems: "center",
-          gap: 28,
+          gap: 20,
           pointerEvents: "auto",
         }}
-        className="hidden sm:flex"
       >
-        {links.map((l, i) => (
-          <a
-            key={l.href}
-            href={l.href}
-            data-cursor="GO"
-            style={{
-              fontFamily: "var(--font-space-grotesk)",
-              fontWeight: 300,
-              fontSize: 10,
-              letterSpacing: "0.25em",
-              color: "var(--fg-muted)",
-              textDecoration: "none",
-              transition: "color 0.3s ease-out",
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 28,
-            }}
-            onMouseEnter={(e) =>
-              ((e.currentTarget as HTMLElement).style.color = "var(--fg)")
-            }
-            onMouseLeave={(e) =>
-              ((e.currentTarget as HTMLElement).style.color =
-                "var(--fg-muted)")
-            }
-          >
-            {i > 0 && (
-              <span
-                aria-hidden
-                style={{
-                  width: 4,
-                  height: 4,
-                  borderRadius: 999,
-                  background: "var(--fg-subtle)",
-                  marginRight: 28,
-                  marginLeft: -28,
-                }}
-              />
-            )}
-            {l.label}
-          </a>
-        ))}
+        <div className="hidden sm:flex items-center gap-7">
+          {links.map((l, i) => (
+            <a
+              key={l.label}
+              href={l.href}
+              {...(l.external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+              data-cursor="GO"
+              style={{
+                fontFamily: "var(--font-space-grotesk)",
+                fontWeight: 300,
+                fontSize: 10,
+                letterSpacing: "0.25em",
+                color: "var(--fg-muted)",
+                textDecoration: "none",
+                transition: "color 0.3s ease-out",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 28,
+              }}
+              onMouseEnter={(e) =>
+                ((e.currentTarget as HTMLElement).style.color = "var(--fg)")
+              }
+              onMouseLeave={(e) =>
+                ((e.currentTarget as HTMLElement).style.color =
+                  "var(--fg-muted)")
+              }
+            >
+              {i > 0 && (
+                <span
+                  aria-hidden
+                  style={{
+                    width: 4,
+                    height: 4,
+                    borderRadius: 999,
+                    background: "var(--fg-subtle)",
+                    marginRight: 28,
+                    marginLeft: -28,
+                  }}
+                />
+              )}
+              {l.label}
+            </a>
+          ))}
+        </div>
+        <LangToggle variant="light" />
       </div>
     </nav>
   );

@@ -2,40 +2,17 @@
 
 import { useEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger, registerGsap } from "@/lib/gsap";
+import { useLanguage } from "@/components/LanguageProvider";
 
 const GAP = 32;
 
-const CARDS = [
-  {
-    imageName: "portfolio-realestate.jpg",
-    category: "WEB PREMIUM",
-    niche: "Real Estate",
-  },
-  {
-    imageName: "portfolio-yacht.jpg",
-    category: "WEB PREMIUM",
-    niche: "Yacht Charter",
-  },
-  {
-    imageName: "portfolio-padel.jpg",
-    category: "APP",
-    niche: "Club Deportivo",
-  },
-  {
-    imageName: "portfolio-architecture.jpg",
-    category: "WEB PREMIUM",
-    niche: "Arquitectura",
-  },
-  {
-    imageName: "portfolio-fashion.jpg",
-    category: "E-COMMERCE",
-    niche: "Moda Premium",
-  },
-  {
-    imageName: "portfolio-restaurant.jpg",
-    category: "LANDING",
-    niche: "Restauración",
-  },
+const CARD_IMAGES = [
+  "portfolio-realestate.jpg",
+  "portfolio-yacht.jpg",
+  "portfolio-padel.jpg",
+  "portfolio-architecture.jpg",
+  "portfolio-fashion.jpg",
+  "portfolio-restaurant.jpg",
 ];
 
 function getLayout() {
@@ -47,6 +24,11 @@ function getLayout() {
 }
 
 export default function Portfolio() {
+  const { t } = useLanguage();
+  const cards = t.portfolio.cards.map((card, i) => ({
+    ...card,
+    imageName: CARD_IMAGES[i],
+  }));
   const sectionRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
@@ -66,7 +48,7 @@ export default function Portfolio() {
 
     const buildScroll = () => {
       const { padding, cardWidth } = getLayout();
-      const totalWidth = CARDS.length * (cardWidth + GAP);
+      const totalWidth = cards.length * (cardWidth + GAP);
       const scrollDistance = Math.max(
         0,
         totalWidth - window.innerWidth + padding * 2
@@ -169,7 +151,7 @@ export default function Portfolio() {
               margin: 0,
             }}
           >
-            Nuestro trabajo
+            {t.portfolio.title}
           </h2>
           <p
             style={{
@@ -181,7 +163,7 @@ export default function Portfolio() {
               margin: "6px 0 16px",
             }}
           >
-            habla por nosotros.
+            {t.portfolio.subtitle}
           </p>
           <div
             style={{
@@ -199,7 +181,7 @@ export default function Portfolio() {
                 color: "var(--fg-muted)",
               }}
             >
-              6 PROYECTOS · DISTINTOS SECTORES
+              {t.portfolio.meta}
             </div>
             <div
               className="portfolio-scroll-hint"
@@ -212,7 +194,7 @@ export default function Portfolio() {
                 whiteSpace: "nowrap",
               }}
             >
-              DESLIZA →
+              {t.portfolio.scrollHint}
             </div>
           </div>
         </div>
@@ -238,7 +220,7 @@ export default function Portfolio() {
               overflow: "visible",
             }}
           >
-            {CARDS.map((card, i) => (
+            {cards.map((card, i) => (
               <div
                 key={card.niche}
                 style={{
@@ -325,7 +307,7 @@ export default function Portfolio() {
             role="progressbar"
             aria-valuemin={0}
             aria-valuemax={100}
-            aria-label="Progreso del portfolio"
+            aria-label={t.portfolio.progressAria}
             style={{
               height: 1,
               background: "var(--line)",

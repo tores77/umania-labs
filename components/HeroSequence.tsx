@@ -3,19 +3,22 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useLanguage } from '@/components/LanguageProvider'
+import LangToggle from '@/components/LangToggle'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const VIDEOS = [
-  { src: '/studio-entry.mp4',   label: 'EL PROCESO · DE PRINCIPIO A FIN', line1: 'Nos conocemos.', line2: 'Cuéntanos tu proyecto.' },
-  { src: '/studio-design.mp4',  label: 'FASE 01 · DISEÑO',                 line1: 'Diseñamos tu',   line2: 'identidad visual.' },
-  { src: '/studio-meeting.mp4', label: 'FASE 02 · ITERACIÓN',              line1: 'Lo revisamos juntos.', line2: 'Hasta que sea perfecto.' },
-  { src: '/studio-tech.mp4',    label: 'FASE 03 · ENTREGA',                line1: 'Lo construimos.', line2: 'Lo lanzamos. En semanas.' },
+const VIDEO_SRCS = [
+  '/studio-entry.mp4',
+  '/studio-design.mp4',
+  '/studio-meeting.mp4',
+  '/studio-tech.mp4',
 ]
 
 const FADE = 0.04
 
 export default function HeroSequence() {
+  const { t, whatsapp } = useLanguage()
   const containerRef = useRef<HTMLDivElement>(null)
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([null, null, null, null])
   const overlayRefs = useRef<(HTMLDivElement | null)[]>([null, null, null, null])
@@ -129,6 +132,7 @@ export default function HeroSequence() {
   return (
     <section
       ref={containerRef}
+      id="top"
       style={{ height: '800vh', position: 'relative' }}
     >
       <div style={{
@@ -141,11 +145,11 @@ export default function HeroSequence() {
         willChange: 'transform',
       }}>
 
-        {VIDEOS.map((v, i) => (
+        {VIDEO_SRCS.map((src, i) => (
           <video
-            key={i}
+            key={src}
             ref={el => { videoRefs.current[i] = el }}
-            src={v.src}
+            src={src}
             muted
             playsInline
             preload="auto"
@@ -193,21 +197,32 @@ export default function HeroSequence() {
             letterSpacing: '0.35em',
             color: '#FAFAF8',
           }}>UMANIA LABS</span>
-          <div style={{ display: 'flex', gap: '32px' }}>
-            {['WORK', 'PROCESS', 'CONTACT'].map(item => (
-              <a key={item} href={`#${item.toLowerCase()}`} style={{
+          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+            {[
+              { label: t.nav.work, href: '#portfolio' },
+              { label: t.nav.process, href: '#process' },
+              { label: t.nav.contact, href: whatsapp.cta, external: true },
+            ].map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                {...(item.external
+                  ? { target: '_blank', rel: 'noopener noreferrer' }
+                  : {})}
+                style={{
                 fontFamily: 'var(--font-space-grotesk)',
                 fontSize: '11px',
                 fontWeight: 300,
                 letterSpacing: '0.2em',
                 color: 'rgba(250,250,248,0.55)',
                 textDecoration: 'none',
-              }}>{item}</a>
+              }}>{item.label}</a>
             ))}
+            <LangToggle variant="dark" />
           </div>
         </nav>
 
-        {VIDEOS.map((v, i) => (
+        {t.hero.videos.map((v, i) => (
           <div
             key={i}
             ref={el => { overlayRefs.current[i] = el }}

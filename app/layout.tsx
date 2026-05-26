@@ -3,6 +3,7 @@ import { Syne, Space_Grotesk, Inter, Space_Mono } from "next/font/google";
 import "./globals.css";
 
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
+import LanguageProvider from "@/components/LanguageProvider";
 import Cursor from "@/components/Cursor";
 import Nav from "@/components/Nav";
 import Preloader from "@/components/Preloader";
@@ -89,10 +90,12 @@ export default function RootLayout({
       className={`${syne.variable} ${spaceGrotesk.variable} ${inter.variable} ${spaceMono.variable}`}
     >
       <body>
-        <Preloader />
-        <Cursor />
-        <Nav />
-        <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        <LanguageProvider>
+          <Preloader />
+          <Cursor />
+          <Nav />
+          <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

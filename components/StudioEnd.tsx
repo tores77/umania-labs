@@ -2,8 +2,10 @@
 
 import { useEffect, useRef } from "react";
 import { gsap, registerGsap } from "@/lib/gsap";
+import { useLanguage } from "@/components/LanguageProvider";
 
 export default function StudioEnd() {
+  const { t, whatsapp } = useLanguage();
   const sectionRef = useRef<HTMLDivElement>(null);
   const labelRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLDivElement>(null);
@@ -110,7 +112,7 @@ export default function StudioEnd() {
             marginBottom: 48,
           }}
         >
-          ¿LISTO PARA EMPEZAR?
+          {t.studioEnd.label}
         </div>
 
         <div ref={headlineRef}>
@@ -124,7 +126,7 @@ export default function StudioEnd() {
               margin: 0,
             }}
           >
-            Tu web más importante
+            {t.studioEnd.headline1}
           </h2>
           <p
             style={{
@@ -136,7 +138,7 @@ export default function StudioEnd() {
               margin: "8px 0 0",
             }}
           >
-            aún no existe.
+            {t.studioEnd.headline2}
           </p>
         </div>
 
@@ -151,7 +153,7 @@ export default function StudioEnd() {
             lineHeight: 1.55,
           }}
         >
-          La construimos juntos. En semanas, no en meses.
+          {t.studioEnd.sub}
         </p>
 
         <div
@@ -165,7 +167,9 @@ export default function StudioEnd() {
           }}
         >
           <a
-            href="mailto:hola@umanialabs.com"
+            href={whatsapp.cta}
+            target="_blank"
+            rel="noopener noreferrer"
             data-cursor="LET'S TALK"
             className="studio-cta"
             style={{
@@ -193,7 +197,7 @@ export default function StudioEnd() {
               el.style.color = "var(--bg)";
             }}
           >
-            Agendar llamada →
+            {t.studioEnd.cta}
           </a>
           <span
             style={{
@@ -203,7 +207,7 @@ export default function StudioEnd() {
               color: "var(--fg-muted)",
             }}
           >
-            Respondemos en menos de 24h · Mallorca, España
+            {t.studioEnd.response}
           </span>
         </div>
       </div>
@@ -227,7 +231,25 @@ export default function StudioEnd() {
           textAlign: "center",
         }}
       >
-        © 2026 Umania Labs · Mallorca, España · hola@umanialabs.com
+        © 2026 Umania Labs · {t.studioEnd.footerLocation} ·{" "}
+        <a
+          href={whatsapp.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            color: "inherit",
+            textDecoration: "none",
+            transition: "color 0.3s ease-out",
+          }}
+          onMouseEnter={(e) =>
+            ((e.currentTarget as HTMLElement).style.color = "var(--fg)")
+          }
+          onMouseLeave={(e) =>
+            ((e.currentTarget as HTMLElement).style.color = "var(--fg-muted)")
+          }
+        >
+          {t.studioEnd.footerWhatsApp}
+        </a>
       </footer>
 
       <style jsx global>{`

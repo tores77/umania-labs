@@ -2,35 +2,12 @@
 
 import { useEffect, useRef } from "react";
 import { gsap, registerGsap } from "@/lib/gsap";
+import { useLanguage } from "@/components/LanguageProvider";
 
-const STEPS = [
-  {
-    num: "01",
-    title: "BRIEF",
-    description:
-      "Entendemos tu negocio, tu sector y lo que necesitas que la web haga por ti.",
-  },
-  {
-    num: "02",
-    title: "DISEÑO",
-    description:
-      "Concepto visual, copy y motion. Todo alineado con tu marca antes de escribir código.",
-  },
-  {
-    num: "03",
-    title: "BUILD",
-    description:
-      "Next.js, GSAP, IA y WebGL cuando hace falta. Desarrollo ágil, sin plantillas.",
-  },
-  {
-    num: "04",
-    title: "DEPLOY",
-    description:
-      "Lanzamiento, optimización y entrega. Semanas, no meses. Listo para ganar premios.",
-  },
-];
+const STEP_NUMS = ["01", "02", "03", "04"];
 
 export default function RoomProcess() {
+  const { t } = useLanguage();
   const sectionRef = useRef<HTMLDivElement>(null);
   const stepsRef = useRef<HTMLDivElement>(null);
 
@@ -76,7 +53,7 @@ export default function RoomProcess() {
           marginBottom: 56,
         }}
       >
-        CÓMO TRABAJAMOS
+        {t.process.label}
       </div>
 
       <div
@@ -88,15 +65,15 @@ export default function RoomProcess() {
         }}
         className="process-grid"
       >
-        {STEPS.map((step, i) => (
+        {t.process.steps.map((step, i) => (
           <div
-            key={step.num}
+            key={STEP_NUMS[i]}
             className="process-step"
             style={{
               padding: "0 32px 0 0",
-              borderRight: i < STEPS.length - 1 ? "1px solid var(--line)" : "none",
-              paddingRight: i < STEPS.length - 1 ? 32 : 0,
-              marginRight: i < STEPS.length - 1 ? 32 : 0,
+              borderRight: i < t.process.steps.length - 1 ? "1px solid var(--line)" : "none",
+              paddingRight: i < t.process.steps.length - 1 ? 32 : 0,
+              marginRight: i < t.process.steps.length - 1 ? 32 : 0,
             }}
           >
             <div
@@ -110,7 +87,7 @@ export default function RoomProcess() {
                 marginBottom: 24,
               }}
             >
-              {step.num}
+              {STEP_NUMS[i]}
             </div>
             <h3
               style={{
