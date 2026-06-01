@@ -63,21 +63,22 @@ export default function Services() {
         }
 
         const trackEl = trackRef.current;
-        const wrap = wrapRef.current;
+        const wrapEl = wrapRef.current;
 
         console.log("[Services] track:", trackEl);
         console.log("[Services] track.scrollWidth:", trackEl?.scrollWidth);
-        console.log("[Services] wrap.clientWidth:", wrap?.clientWidth);
+        console.log("[Services] wrap.clientWidth:", wrapEl?.clientWidth);
 
-        if (!trackEl || !wrap) {
+        if (!trackEl || !wrapEl) {
           console.error(
             "[Services] track element not found — aborting GSAP init"
           );
           return;
         }
 
-        const distance = trackEl.scrollWidth - wrap.clientWidth;
+        const distance = trackEl.scrollWidth - wrapEl.clientWidth;
         console.log("[Services] distance:", distance);
+        console.log("[Services] end:", "+=" + distance);
 
         if (distance <= 0) {
           console.error("[Services] distance <= 0 — aborting GSAP init");
@@ -91,12 +92,13 @@ export default function Services() {
             x: -distance,
             ease: "none",
             scrollTrigger: {
-              trigger: wrap,
+              trigger: wrapEl,
               start: "top top",
-              end: `+=${distance}`,
+              end: "+=" + distance,
               scrub: 1,
               pin: true,
               pinSpacing: true,
+              pinType: "transform",
               anticipatePin: 1,
               invalidateOnRefresh: true,
             },
@@ -107,10 +109,9 @@ export default function Services() {
             horizontalTween.scrollTrigger?.end
           );
 
-          const cardEls = gsap.utils.toArray<HTMLElement>(
-            ".service-card",
-            trackEl
-          ) as HTMLElement[];
+          const cardEls = Array.from(
+            trackEl.querySelectorAll<HTMLElement>(".service-card")
+          );
 
           cardEls.forEach((card) => {
             gsap.fromTo(
@@ -130,7 +131,7 @@ export default function Services() {
               }
             );
           });
-        }, section);
+        });
 
         ScrollTrigger.refresh(true);
         clearFallback = animationVisibleFallback(section, ".service-card", 500);
