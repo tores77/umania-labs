@@ -7,12 +7,12 @@ import {
   ScrollTrigger,
   animationVisibleFallback,
 } from "@/lib/scrollTriggerUtils";
+import {
+  setupLenisScrollTriggerProxy,
+  waitForLenis,
+} from "@/lib/scroll";
 
 const NUMBERS = ["01", "02", "03", "04", "05", "06", "07"];
-
-function getHorizontalScrollDistance(track: HTMLElement) {
-  return Math.max(0, track.scrollWidth - window.innerWidth);
-}
 
 async function waitForPaintReady() {
   try {
@@ -28,6 +28,7 @@ export default function Services() {
   const t = useTranslations("services");
   const tc = useTranslations("common");
   const sectionRef = useRef<HTMLElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
   const items = t.raw("items") as Array<{
@@ -56,50 +57,47 @@ export default function Services() {
         await waitForPaintReady();
         if (cancelled) return;
 
-        const trackEl = section.querySelector(
-          ".services-track"
-        ) as HTMLElement | null;
-        const scrollWrap = section.querySelector(
-          ".services-scroll-wrap"
-        ) as HTMLElement | null;
+        await waitForLenis();
+        if (cancelled) return;
 
-        console.log("[Services desktop] track:", trackEl);
-        console.log("[Services desktop] scrollWidth:", trackEl?.scrollWidth);
-        console.log(
-          "[Services desktop] totalWidth:",
-          trackEl ? trackEl.scrollWidth - window.innerWidth : undefined
-        );
+        setupLenisScrollTriggerProxy();
 
-        if (!trackEl || !scrollWrap) {
+        const trackEl = trackRef.current;
+        const wrap = wrapRef.current;
+
+        console.log("[Services] track:", trackEl);
+        console.log("[Services] track.scrollWidth:", trackEl?.scrollWidth);
+        console.log("[Services] wrap.clientWidth:", wrap?.clientWidth);
+
+        if (!trackEl || !wrap) {
           console.error(
             "[Services] track element not found — aborting GSAP init"
           );
           return;
         }
 
-        const scrollWidth = trackEl.scrollWidth;
-        const innerWidth = window.innerWidth;
-        const totalWidth = getHorizontalScrollDistance(trackEl);
+        const distance = trackEl.scrollWidth - wrap.clientWidth;
+        console.log("[Services] distance:", distance);
 
-        console.log("[Services desktop] measurements:", {
-          scrollWidth,
-          innerWidth,
-          totalWidth,
-        });
+        if (distance <= 0) {
+          console.error("[Services] distance <= 0 — aborting GSAP init");
+          return;
+        }
 
         ctx = gsap.context(() => {
           gsap.set(trackEl, { x: 0, clearProps: "transform" });
 
           const horizontalTween = gsap.to(trackEl, {
-            x: () => -getHorizontalScrollDistance(trackEl),
+            x: -distance,
             ease: "none",
             scrollTrigger: {
-              trigger: scrollWrap,
+              trigger: wrap,
               start: "top top",
-              end: () => `+=${getHorizontalScrollDistance(trackEl)}`,
-              pin: scrollWrap,
-              pinSpacing: true,
+              end: `+=${distance}`,
               scrub: 1,
+              pin: true,
+              pinSpacing: true,
+              anticipatePin: 1,
               invalidateOnRefresh: true,
             },
           });
@@ -109,19 +107,25 @@ export default function Services() {
             horizontalTween.scrollTrigger?.end
           );
 
-          gsap.from(cards(), {
-            opacity: 0,
-            x: 40,
-            duration: 0.8,
-            ease: "power3.out",
-            stagger: 0.08,
-            immediateRender: false,
-            scrollTrigger: {
-              trigger: section,
-              start: "top 80%",
-              invalidateOnRefresh: true,
-            },
-          });
+          const cardEls = gsap.utils.toArray<HTMLElement>(
+            ".service-card",
+            trackEl
+          );
+          if (cardEls.length > 0) {
+            gsap.from(cardEls, {
+              opacity: 0,
+              x: 40,
+              duration: 0.8,
+              ease: "power3.out",
+              stagger: 0.08,
+              immediateRender: false,
+              scrollTrigger: {
+                trigger: section,
+                start: "top 80%",
+                invalidateOnRefresh: true,
+              },
+            });
+          }
         }, section);
 
         ScrollTrigger.refresh(true);
@@ -134,7 +138,10 @@ export default function Services() {
         cancelled = true;
         clearFallback?.();
         ctx?.revert();
-        const trackEl = section.querySelector(".services-track") as HTMLElement | null;
+        ScrollTrigger.getAll()
+          .filter((st) => st.trigger === wrapRef.current || st.trigger === section)
+          .forEach((st) => st.kill());
+        const trackEl = trackRef.current;
         if (trackEl) {
           gsap.set(trackEl, { x: 0, clearProps: "transform" });
         }
@@ -182,7 +189,7 @@ export default function Services() {
         <h2 className="section-title">{t("title")}</h2>
       </div>
 
-      <div className="services-scroll-wrap">
+      <div ref={wrapRef} className="services-scroll-wrap">
         <div ref={trackRef} className="services-track">
           {items.map((item, i) => (
             <article key={i} className="service-card">
