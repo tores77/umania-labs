@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import LangToggle from "@/components/LangToggle";
 import { CALENDLY_URL } from "@/lib/constants";
+import { subscribeLenisScroll } from "@/lib/scroll";
 
 const LINKS = [
   { href: "#services", key: "services" as const },
@@ -17,18 +18,25 @@ const LINKS = [
 export default function Nav() {
   const t = useTranslations("nav");
   const [hidden, setHidden] = useState(false);
-  const [lastY, setLastY] = useState(0);
+  const lastYRef = useRef(0);
 
   useEffect(() => {
-    const onScroll = () => {
-      const y = window.scrollY;
-      if (y > 200 && y > lastY) setHidden(true);
+    const update = (y: number) => {
+      if (y > 200 && y > lastYRef.current) setHidden(true);
       else setHidden(false);
-      setLastY(y);
+      lastYRef.current = y;
     };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [lastY]);
+
+    const mobile = window.matchMedia("(max-width: 767px)").matches;
+
+    if (mobile) {
+      const onScroll = () => update(window.scrollY);
+      window.addEventListener("scroll", onScroll, { passive: true });
+      return () => window.removeEventListener("scroll", onScroll);
+    }
+
+    return subscribeLenisScroll(update);
+  }, []);
 
   return (
     <nav

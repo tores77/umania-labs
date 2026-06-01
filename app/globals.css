@@ -74,6 +74,9 @@ html.lenis,
 html.lenis body {
   height: auto;
 }
+html.lenis {
+  will-change: transform;
+}
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
 }

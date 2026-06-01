@@ -2,17 +2,21 @@
 
 import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
-import { gsap, ScrollTrigger, registerGsap } from "@/lib/gsap";
-import { useIsMobile } from "@/hooks/useIsMobile";
+import { gsap, registerGsap } from "@/lib/gsap";
+import {
+  ScrollTrigger,
+  animationVisibleFallback,
+  isMobileViewport,
+} from "@/lib/scrollTriggerUtils";
 
 const NUMBERS = ["01", "02", "03", "04", "05", "06", "07"];
+const MOBILE_BREAKPOINT = 768;
 
 export default function Services() {
   const t = useTranslations("services");
   const tc = useTranslations("common");
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  const isMobile = useIsMobile(900);
 
   const items = t.raw("items") as Array<{
     name: string;
@@ -28,104 +32,104 @@ export default function Services() {
     const track = trackRef.current;
     if (!section || !track) return;
 
-    let st: ScrollTrigger | undefined;
+    let ctx: gsap.Context | null = null;
+    let clearFallback: (() => void) | undefined;
 
     const build = () => {
-      gsap.set(track, { x: 0 });
-      st?.kill();
+      clearFallback?.();
+      gsap.set(track, { x: 0, clearProps: "transform" });
 
-      if (isMobile) {
+      const mobile = isMobileViewport(MOBILE_BREAKPOINT);
+
+      if (mobile) {
         gsap.from(track.querySelectorAll(".service-card"), {
           opacity: 0,
           y: 30,
           duration: 0.8,
+          ease: "power3.out",
           stagger: 0.08,
+          immediateRender: false,
           scrollTrigger: {
             trigger: section,
-            start: "top 80%",
+            start: "top 85%",
+            invalidateOnRefresh: true,
           },
         });
-        return;
+      } else {
+        const totalWidth = track.scrollWidth - window.innerWidth + 128;
+        if (totalWidth > 0) {
+          gsap.to(track, {
+            x: -totalWidth,
+            ease: "none",
+            scrollTrigger: {
+              trigger: section,
+              start: "top top",
+              end: () => `+=${totalWidth}`,
+              pin: true,
+              scrub: 1,
+              invalidateOnRefresh: true,
+            },
+          });
+
+          gsap.from(track.querySelectorAll(".service-card"), {
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            ease: "power3.out",
+            stagger: 0.08,
+            immediateRender: false,
+            scrollTrigger: {
+              trigger: section,
+              start: "top 80%",
+              invalidateOnRefresh: true,
+            },
+          });
+        }
       }
 
-      const totalWidth = track.scrollWidth - window.innerWidth + 128;
-      if (totalWidth <= 0) return;
-
-      st = gsap.to(track, {
-        x: -totalWidth,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: () => `+=${totalWidth}`,
-          pin: true,
-          scrub: 1,
-          invalidateOnRefresh: true,
-        },
-      }).scrollTrigger;
-
-      gsap.from(track.querySelectorAll(".service-card"), {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        stagger: 0.08,
-        scrollTrigger: {
-          trigger: section,
-          start: "top 80%",
-        },
-      });
+      ScrollTrigger.refresh();
+      clearFallback = animationVisibleFallback(section, ".service-card", 500);
     };
 
-    build();
-    window.addEventListener("resize", build);
+    const mount = () => {
+      ctx?.revert();
+      ctx = gsap.context(() => build(), section);
+    };
+
+    mount();
+
+    const onResize = () => {
+      mount();
+    };
+
+    const onLoad = () => ScrollTrigger.refresh();
+
+    window.addEventListener("resize", onResize);
+    window.addEventListener("load", onLoad, { once: true });
+
     return () => {
-      window.removeEventListener("resize", build);
-      st?.kill();
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("load", onLoad);
+      clearFallback?.();
+      ctx?.revert();
     };
-  }, [isMobile]);
+  }, []);
 
   return (
     <section
       ref={sectionRef}
       id="services"
-      className="section"
+      className="section services-section"
       style={{ background: "var(--surface)" }}
     >
       <div style={{ padding: "clamp(80px, 12vw, 120px) clamp(20px, 5vw, 64px) 40px" }}>
         <h2 className="section-title">{t("title")}</h2>
       </div>
 
-      <div
-        style={{
-          overflow: "hidden",
-          paddingBottom: "clamp(80px, 12vw, 120px)",
-        }}
-      >
-        <div
-          ref={trackRef}
-          className="services-track"
-          style={{
-            display: "flex",
-            gap: 24,
-            padding: "0 clamp(20px, 5vw, 64px)",
-            width: isMobile ? "auto" : "max-content",
-            flexDirection: isMobile ? "column" : "row",
-          }}
-        >
+      <div className="services-scroll-wrap">
+        <div ref={trackRef} className="services-track">
           {items.map((item, i) => (
-            <article
-              key={i}
-              className="service-card"
-              style={{
-                flexShrink: 0,
-                width: isMobile ? "100%" : "clamp(300px, 38vw, 420px)",
-                background: "var(--bg)",
-                border: "1px solid var(--line)",
-                padding: "clamp(28px, 4vw, 40px)",
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
+            <article key={i} className="service-card">
               <span
                 className="text-label"
                 style={{ color: "var(--accent)", marginBottom: 24 }}
@@ -170,7 +174,8 @@ export default function Services() {
                         fontSize: 13,
                         color: "var(--fg)",
                         padding: "6px 0",
-                        borderBottom: j < item.includes.length - 1 ? "1px solid var(--line)" : "none",
+                        borderBottom:
+                          j < item.includes.length - 1 ? "1px solid var(--line)" : "none",
                       }}
                     >
                       {inc}
@@ -188,6 +193,41 @@ export default function Services() {
           ))}
         </div>
       </div>
+
+      <style jsx global>{`
+        .services-scroll-wrap {
+          overflow: hidden;
+          padding-bottom: clamp(80px, 12vw, 120px);
+        }
+        .services-track {
+          display: flex;
+          flex-direction: row;
+          gap: 24px;
+          padding: 0 clamp(20px, 5vw, 64px);
+          width: max-content;
+        }
+        .services-section .service-card {
+          flex-shrink: 0;
+          width: clamp(300px, 38vw, 420px);
+          background: var(--bg);
+          border: 1px solid var(--line);
+          padding: clamp(28px, 4vw, 40px);
+          display: flex;
+          flex-direction: column;
+        }
+        @media (max-width: 767px) {
+          .services-scroll-wrap {
+            overflow: visible;
+          }
+          .services-track {
+            flex-direction: column;
+            width: auto;
+          }
+          .services-section .service-card {
+            width: 100%;
+          }
+        }
+      `}</style>
     </section>
   );
 }
