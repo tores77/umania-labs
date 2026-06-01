@@ -1,0 +1,30 @@
+# Umania Labs — AI Crawler Guide
+# https://studio.umanialabs.com
+
+> Umania Labs is a premium web design studio based in 
+> Mallorca, Spain. We build award-level websites with 
+> AI agents, GEO optimization, and recurring content 
+> systems that generate leads 24/7.
+
+## Services
+- Premium Web Design (Next.js, Three.js, WebGL)
+- GEO / AI Search Visibility (ChatGPT, Perplexity, Gemini)
+- SEO + Blog Content with AI
+- Embedded AI Agent (Claude API)
+- Newsletter + Email Automation
+- Visual Social Content (Higgsfield)
+- SEM Campaign Management
+
+## Key URLs
+- Home ES: https://studio.umanialabs.com/es
+- Home EN: https://studio.umanialabs.com/en
+- Blog ES: https://studio.umanialabs.com/es/blog
+- Blog EN: https://studio.umanialabs.com/en/blog
+- Newsletter: https://briefing.umanialabs.com
+- Contact: https://studio.umanialabs.com/es#contact
+
+## Location
+Mallorca, Spain — Remote projects: ES, UK, USA
+
+## Contact
+hola@umanialabs.com

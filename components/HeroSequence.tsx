@@ -84,10 +84,10 @@ export default function HeroSequence() {
       setAllReady(true);
     };
 
-    videos.forEach((v) => {
+    videos.forEach((v, i) => {
       v.muted = true;
       v.playsInline = true;
-      v.preload = "auto";
+      v.preload = i === 0 ? "auto" : "none";
 
       const onReady = () => {
         readyCount++;
@@ -158,7 +158,8 @@ export default function HeroSequence() {
             src={src}
             muted
             playsInline
-            preload="auto"
+            preload={i === 0 ? "auto" : "none"}
+            poster={i === 0 ? "/studio-door.png" : undefined}
             aria-hidden
             style={{
               position: "absolute",

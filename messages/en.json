@@ -11,6 +11,7 @@
     "process": "Process",
     "agent": "AI Agent",
     "contact": "Contact",
+    "blog": "Blog",
     "langSwitch": "ES",
     "langAria": "Switch to Spanish",
     "menuOpen": "Open menu",
@@ -340,6 +341,15 @@
     "metaDescription": "Information about how Umania Labs handles personal data.",
     "title": "Privacy Policy",
     "body": "This page describes how Umania Labs handles personal data collected through this website and The Briefing newsletter. For privacy inquiries, contact tores@umanialabs.com."
+  },
+  "blog": {
+    "label": "BLOG",
+    "title": "Resources & strategy",
+    "metaTitle": "Blog — Umania Labs",
+    "metaDescription": "Articles on GEO, AI visibility, premium web design, and digital strategy for businesses in Mallorca and international markets.",
+    "back": "Back to blog",
+    "related": "Related articles",
+    "empty": "New articles coming soon."
   },
   "common": {
     "includes": "Includes",

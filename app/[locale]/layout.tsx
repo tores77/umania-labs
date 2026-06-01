@@ -64,6 +64,7 @@ export async function generateMetadata({
       languages: {
         es: `${SITE_URL}/es`,
         en: `${SITE_URL}/en`,
+        "x-default": `${SITE_URL}/es`,
       },
     },
     openGraph: {
@@ -74,11 +75,13 @@ export async function generateMetadata({
       description: meta.description,
       siteName: "Umania Labs",
       url: `${SITE_URL}/${locale}`,
+      images: [{ url: "/og-default.jpg", width: 1200, height: 630, alt: "Umania Labs" }],
     },
     twitter: {
       card: "summary_large_image",
       title: meta.title,
       description: meta.description,
+      images: ["/og-default.jpg"],
     },
     robots: { index: true, follow: true },
   };
@@ -98,6 +101,7 @@ function JsonLd({ locale }: { locale: Locale }) {
     "@graph": [
       {
         "@type": "Organization",
+        "@id": `${SITE_URL}/#organization`,
         name: "Umania Labs",
         url: SITE_URL,
         logo: `${SITE_URL}/studio-door.png`,
@@ -112,15 +116,37 @@ function JsonLd({ locale }: { locale: Locale }) {
         sameAs: ["https://calendly.com/umanialabs"],
       },
       {
+        "@type": ["LocalBusiness", "ProfessionalService"],
+        "@id": `${SITE_URL}/#localbusiness`,
+        name: "Umania Labs",
+        url: SITE_URL,
+        telephone: "+34676967465",
+        email: "hola@umanialabs.com",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Palma",
+          addressRegion: "Mallorca",
+          addressCountry: "ES",
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: 39.5696,
+          longitude: 2.6502,
+        },
+        areaServed: ["ES", "GB", "US"],
+        priceRange: "€€€",
+      },
+      {
         "@type": "WebSite",
         name: "Umania Labs",
         url: `${SITE_URL}/${locale}`,
         inLanguage: locale,
+        publisher: { "@id": `${SITE_URL}/#organization` },
       },
       {
         "@type": "Service",
         name: isEs ? "Diseño Web Premium" : "Premium Web Design",
-        provider: { "@type": "Organization", name: "Umania Labs" },
+        provider: { "@id": `${SITE_URL}/#organization` },
         areaServed: ["ES", "GB", "US"],
         description: isEs
           ? "Webs nivel Awwwards con IA, agente Claude, GEO y contenido recurrente"

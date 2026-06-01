@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import LangToggle from "@/components/LangToggle";
 import { CALENDLY_URL } from "@/lib/constants";
 import { subscribeLenisScroll } from "@/lib/scroll";
@@ -138,6 +139,25 @@ export default function Nav() {
                 {t(l.key)}
               </a>
             ))}
+            <Link
+              href="/blog"
+              data-cursor="GO"
+              className="text-label"
+              style={{
+                color: "var(--fg-muted)",
+                textDecoration: "none",
+                fontSize: 9,
+                transition: "color 0.3s",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.color = "var(--fg)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.color = "var(--fg-muted)";
+              }}
+            >
+              {t("blog")}
+            </Link>
           </div>
           <a
             href={CALENDLY_URL}
@@ -269,6 +289,23 @@ export default function Nav() {
             {t(l.key)}
           </a>
         ))}
+        <Link
+          href="/blog"
+          className="text-label"
+          onClick={closeMenu}
+          style={{
+            color: "var(--fg)",
+            textDecoration: "none",
+            fontSize: 14,
+            letterSpacing: "0.25em",
+            padding: "12px 0",
+            minHeight: 44,
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          {t("blog")}
+        </Link>
         <a
           href={CALENDLY_URL}
           target="_blank"
