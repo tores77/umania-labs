@@ -20,9 +20,23 @@ export default function Nav() {
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeHash, setActiveHash] = useState("");
+  const [isDesktop, setIsDesktop] = useState(false);
   const lastYRef = useRef(0);
 
   useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const syncViewport = () => setIsDesktop(mq.matches);
+    syncViewport();
+    mq.addEventListener("change", syncViewport);
+    return () => mq.removeEventListener("change", syncViewport);
+  }, []);
+
+  useEffect(() => {
+    if (!isDesktop) {
+      setHidden(false);
+      return;
+    }
+
     const update = (y: number) => {
       if (menuOpen) return;
       if (y > 200 && y > lastYRef.current) setHidden(true);
@@ -30,16 +44,8 @@ export default function Nav() {
       lastYRef.current = y;
     };
 
-    const mobile = window.matchMedia("(max-width: 767px)").matches;
-
-    if (mobile) {
-      const onScroll = () => update(window.scrollY);
-      window.addEventListener("scroll", onScroll, { passive: true });
-      return () => window.removeEventListener("scroll", onScroll);
-    }
-
     return subscribeLenisScroll(update);
-  }, [menuOpen]);
+  }, [menuOpen, isDesktop]);
 
   useEffect(() => {
     const syncHash = () => setActiveHash(window.location.hash);
@@ -49,13 +55,15 @@ export default function Nav() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
+    if (!menuOpen) return;
+    document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "";
     };
   }, [menuOpen]);
 
   const closeMenu = () => setMenuOpen(false);
+  const navHidden = isDesktop && hidden && !menuOpen;
 
   return (
     <>
@@ -66,13 +74,13 @@ export default function Nav() {
           top: 0,
           left: 0,
           right: 0,
-          zIndex: 100,
+          zIndex: menuOpen ? 10000 : 100,
           padding: "20px clamp(20px, 5vw, 40px)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
           pointerEvents: "none",
-          transform: hidden && !menuOpen ? "translateY(-100%)" : "translateY(0)",
+          transform: navHidden ? "translateY(-100%)" : "translateY(0)",
           transition: "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
           background: "rgba(10, 10, 10, 0.85)",
           backdropFilter: "blur(12px)",
@@ -143,7 +151,7 @@ export default function Nav() {
           </a>
           <button
             type="button"
-            className="nav-menu-toggle md:hidden"
+            className="nav-menu-toggle"
             aria-expanded={menuOpen}
             aria-controls="nav-mobile-menu"
             aria-label={menuOpen ? t("menuClose") : t("menuOpen")}
@@ -199,6 +207,16 @@ export default function Nav() {
         </div>
 
         <style jsx global>{`
+          @media (min-width: 768px) {
+            .nav-menu-toggle {
+              display: none !important;
+            }
+            .nav-mobile-overlay {
+              opacity: 0 !important;
+              visibility: hidden !important;
+              pointer-events: none !important;
+            }
+          }
           @media (min-width: 1100px) {
             #nav-cta-desktop {
               display: inline-flex !important;
@@ -209,19 +227,26 @@ export default function Nav() {
 
       <div
         id="nav-mobile-menu"
-        className="nav-mobile-overlay md:hidden"
+        className="nav-mobile-overlay"
         aria-hidden={!menuOpen}
         style={{
           position: "fixed",
-          inset: 0,
-          zIndex: 99,
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
+          zIndex: 9999,
           background: "var(--bg)",
-          display: menuOpen ? "flex" : "none",
+          display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
           gap: 8,
           padding: "80px 32px 48px",
+          opacity: menuOpen ? 1 : 0,
+          visibility: menuOpen ? "visible" : "hidden",
+          pointerEvents: menuOpen ? "auto" : "none",
+          transition: "opacity 0.3s ease, visibility 0.3s ease",
         }}
       >
         {LINKS.map((l) => (
