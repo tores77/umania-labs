@@ -278,7 +278,48 @@
     "tagline": "Tu web como máquina de ventas",
     "stack": "Next.js · Three.js · GSAP · Claude API · Higgsfield · Vercel",
     "copyright": "© 2026 Umania Labs · Mallorca, España",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "briefingLabel": "EL BRIEFING — Newsletter semanal",
+    "briefingPage": "El Briefing"
+  },
+  "briefing": {
+    "label": "CADA LUNES · 09:00",
+    "title": "EL BRIEFING",
+    "subtitle": "Una vez por semana. Sin humo. Sin teoría.",
+    "description": "Casos reales de cómo empresas usan IA para conseguir clientes. Sin relleno. Sin teoría vacía. Solo lo que funciona.",
+    "namePlaceholder": "Nombre (opcional)",
+    "emailPlaceholder": "Tu email",
+    "submit": "Suscribirme",
+    "consentPrefix": "He leído y acepto la",
+    "privacyLink": "política de privacidad",
+    "consentRequired": "Debes aceptar la política de privacidad",
+    "emailRequired": "Introduce tu email",
+    "emailInvalid": "Introduce un email válido",
+    "success": "Ya eres parte de El Briefing. Cada lunes a las 9:00 en tu bandeja.",
+    "alreadySubscribed": "Ya estás suscrito. Te esperamos el próximo lunes.",
+    "errorGeneric": "No pudimos procesar tu suscripción. Inténtalo de nuevo.",
+    "page": {
+      "metaTitle": "El Briefing — Newsletter semanal sobre IA y ventas",
+      "metaDescription": "Casos reales de cómo empresas usan IA para conseguir clientes. Cada lunes a las 9:00 en tu bandeja.",
+      "thesis": "Vender es un sistema. Los que lo entienden, ganan.",
+      "valueTitle": "Qué recibes cada lunes",
+      "valueDescription": "Un email breve con casos reales, tácticas aplicables y herramientas de IA que empresas usan hoy para generar leads y cerrar ventas — sin humo ni teoría vacía.",
+      "reasons": [
+        {
+          "title": "Casos reales",
+          "description": "Empresas reales, resultados reales. Lo que funciona en el mercado, no en un slide deck."
+        },
+        {
+          "title": "Sin relleno",
+          "description": "Solo lo que puedes aplicar esta semana. Directo, accionable, sin rodeos."
+        },
+        {
+          "title": "Gratis, siempre",
+          "description": "Sin planes de pago, sin upsells. El Briefing es gratuito y lo seguirá siendo."
+        }
+      ],
+      "frequency": "Cada lunes · ~5 min de lectura · tores@umanialabs.com"
+    }
   },
   "common": {
     "includes": "Incluye",

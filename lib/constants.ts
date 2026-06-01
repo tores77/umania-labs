@@ -18,3 +18,11 @@ export function whatsappLink(locale: "es" | "en") {
 export function whatsappDirect() {
   return `https://wa.me/${WHATSAPP_NUMBER}`;
 }
+
+export const BRIEFING_SUBSCRIBE_URL =
+  "https://briefing.umanialabs.com/api/subscribe";
+
+export const BRIEFING_LANDING_URL =
+  "https://briefing.umanialabs.com/suscribirse";
+
+export const BRIEFING_TEAL = "#2DD4BF";

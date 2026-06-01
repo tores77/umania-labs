@@ -278,7 +278,48 @@
     "tagline": "Your website as a sales machine",
     "stack": "Next.js · Three.js · GSAP · Claude API · Higgsfield · Vercel",
     "copyright": "© 2026 Umania Labs · Mallorca, Spain",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "briefingLabel": "THE BRIEFING — Weekly newsletter",
+    "briefingPage": "The Briefing"
+  },
+  "briefing": {
+    "label": "EVERY MONDAY · 09:00",
+    "title": "THE BRIEFING",
+    "subtitle": "Once a week. No fluff. No theory.",
+    "description": "Real cases of how companies use AI to get clients. No filler. No empty theory. Just what works.",
+    "namePlaceholder": "Name (optional)",
+    "emailPlaceholder": "Your email",
+    "submit": "Subscribe",
+    "consentPrefix": "I have read and accept the",
+    "privacyLink": "privacy policy",
+    "consentRequired": "You must accept the privacy policy",
+    "emailRequired": "Enter your email",
+    "emailInvalid": "Enter a valid email",
+    "success": "You're now part of The Briefing. Every Monday at 9:00 in your inbox.",
+    "alreadySubscribed": "You're already subscribed. See you next Monday.",
+    "errorGeneric": "We couldn't process your subscription. Please try again.",
+    "page": {
+      "metaTitle": "The Briefing — Weekly newsletter on AI and sales",
+      "metaDescription": "Real cases of how companies use AI to get clients. Every Monday at 9:00 in your inbox.",
+      "thesis": "Selling is a system. Those who understand it, win.",
+      "valueTitle": "What you get every Monday",
+      "valueDescription": "A brief email with real cases, actionable tactics, and AI tools companies use today to generate leads and close sales — no fluff, no empty theory.",
+      "reasons": [
+        {
+          "title": "Real cases",
+          "description": "Real companies, real results. What works in the market, not in a slide deck."
+        },
+        {
+          "title": "No filler",
+          "description": "Only what you can apply this week. Direct, actionable, no detours."
+        },
+        {
+          "title": "Free, always",
+          "description": "No paid plans, no upsells. The Briefing is free and will stay that way."
+        }
+      ],
+      "frequency": "Every Monday · ~5 min read · tores@umanialabs.com"
+    }
   },
   "common": {
     "includes": "Includes",

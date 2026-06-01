@@ -7,6 +7,7 @@ import Process from "@/components/Process";
 import AIAgent from "@/components/AIAgent";
 import MarketContext from "@/components/MarketContext";
 import CombinedCTA from "@/components/CombinedCTA";
+import BriefingSection from "@/components/BriefingSection";
 import Footer from "@/components/Footer";
 import { setRequestLocale } from "next-intl/server";
 
@@ -29,6 +30,7 @@ export default async function Home({ params }: Props) {
       <AIAgent key={locale} />
       <MarketContext />
       <CombinedCTA />
+      <BriefingSection />
       <Footer />
     </main>
   );

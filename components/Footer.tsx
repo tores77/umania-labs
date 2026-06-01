@@ -2,7 +2,8 @@
 
 import { useTranslations } from "next-intl";
 import LangToggle from "@/components/LangToggle";
-import { whatsappDirect } from "@/lib/constants";
+import { Link } from "@/i18n/navigation";
+import { whatsappDirect, BRIEFING_LANDING_URL } from "@/lib/constants";
 
 const SECTION_LINKS = [
   { href: "#services", key: "services" as const },
@@ -76,6 +77,40 @@ export default function Footer() {
                 </a>
               </li>
             ))}
+            <li style={{ marginBottom: 10 }}>
+              <Link
+                href="/briefing"
+                style={{
+                  fontSize: 13,
+                  color: "var(--fg-muted)",
+                  textDecoration: "none",
+                  transition: "color 0.3s",
+                }}
+              >
+                {t("briefingPage")}
+              </Link>
+            </li>
+            <li style={{ marginBottom: 10 }}>
+              <a
+                href={BRIEFING_LANDING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  fontSize: 13,
+                  color: "var(--fg-muted)",
+                  textDecoration: "none",
+                  transition: "color 0.3s",
+                }}
+                onMouseEnter={(e) =>
+                  ((e.currentTarget as HTMLElement).style.color = "var(--fg)")
+                }
+                onMouseLeave={(e) =>
+                  ((e.currentTarget as HTMLElement).style.color = "var(--fg-muted)")
+                }
+              >
+                {t("briefingLabel")}
+              </a>
+            </li>
           </ul>
         </nav>
 
