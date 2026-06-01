@@ -1,19 +1,23 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useLanguage } from "@/components/LanguageProvider";
+import { useTranslations } from "next-intl";
 import LangToggle from "@/components/LangToggle";
+import { CALENDLY_URL } from "@/lib/constants";
+
+const LINKS = [
+  { href: "#services", key: "services" as const },
+  { href: "#packages", key: "packages" as const },
+  { href: "#portfolio", key: "work" as const },
+  { href: "#process", key: "process" as const },
+  { href: "#agent", key: "agent" as const },
+  { href: "#contact", key: "contact" as const },
+];
 
 export default function Nav() {
-  const { t, whatsapp } = useLanguage();
+  const t = useTranslations("nav");
   const [hidden, setHidden] = useState(false);
   const [lastY, setLastY] = useState(0);
-
-  const links = [
-    { href: "#portfolio", label: t.nav.work },
-    { href: "#process", label: t.nav.process },
-    { href: whatsapp.cta, label: t.nav.contact, external: true },
-  ];
 
   useEffect(() => {
     const onScroll = () => {
@@ -35,30 +39,29 @@ export default function Nav() {
         left: 0,
         right: 0,
         zIndex: 100,
-        padding: "22px 36px",
+        padding: "20px clamp(20px, 5vw, 40px)",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
         pointerEvents: "none",
         transform: hidden ? "translateY(-100%)" : "translateY(0)",
         transition: "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
-        background: "rgba(250, 250, 248, 0.85)",
+        background: "rgba(10, 10, 10, 0.85)",
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
-        borderBottom: "0.5px solid var(--line)",
+        borderBottom: "1px solid var(--line)",
       }}
     >
       <a
         href="#top"
         data-cursor="HOME"
+        className="text-label"
         style={{
-          fontFamily: "var(--font-syne)",
-          fontWeight: 700,
-          fontSize: 13,
-          letterSpacing: "0.35em",
           color: "var(--fg)",
           textDecoration: "none",
           pointerEvents: "auto",
+          fontSize: 11,
+          letterSpacing: "0.3em",
         }}
       >
         UMANIA LABS
@@ -72,54 +75,50 @@ export default function Nav() {
           pointerEvents: "auto",
         }}
       >
-        <div className="hidden sm:flex items-center gap-7">
-          {links.map((l, i) => (
+        <div className="hidden sm:flex items-center gap-6">
+          {LINKS.map((l) => (
             <a
-              key={l.label}
+              key={l.key}
               href={l.href}
-              {...(l.external
-                ? { target: "_blank", rel: "noopener noreferrer" }
-                : {})}
               data-cursor="GO"
+              className="text-label"
               style={{
-                fontFamily: "var(--font-space-grotesk)",
-                fontWeight: 300,
-                fontSize: 10,
-                letterSpacing: "0.25em",
                 color: "var(--fg-muted)",
                 textDecoration: "none",
-                transition: "color 0.3s ease-out",
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 28,
+                fontSize: 9,
+                transition: "color 0.3s",
               }}
               onMouseEnter={(e) =>
                 ((e.currentTarget as HTMLElement).style.color = "var(--fg)")
               }
               onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLElement).style.color =
-                  "var(--fg-muted)")
+                ((e.currentTarget as HTMLElement).style.color = "var(--fg-muted)")
               }
             >
-              {i > 0 && (
-                <span
-                  aria-hidden
-                  style={{
-                    width: 4,
-                    height: 4,
-                    borderRadius: 999,
-                    background: "var(--fg-subtle)",
-                    marginRight: 28,
-                    marginLeft: -28,
-                  }}
-                />
-              )}
-              {l.label}
+              {t(l.key)}
             </a>
           ))}
         </div>
-        <LangToggle variant="light" />
+        <a
+          href={CALENDLY_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="cta-btn"
+          style={{ padding: "10px 20px", fontSize: 9, display: "none" }}
+          id="nav-cta-desktop"
+        >
+          {t("contact")}
+        </a>
+        <LangToggle />
       </div>
+
+      <style jsx global>{`
+        @media (min-width: 1100px) {
+          #nav-cta-desktop {
+            display: inline-flex !important;
+          }
+        }
+      `}</style>
     </nav>
   );
 }

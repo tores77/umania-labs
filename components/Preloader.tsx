@@ -73,10 +73,10 @@ export default function Preloader() {
     >
       <div
         style={{
-          fontFamily: "var(--font-syne)",
-          fontWeight: 800,
-          fontSize: 14,
-          letterSpacing: "0.4em",
+          fontFamily: "var(--font-cormorant)",
+          fontWeight: 400,
+          fontSize: 18,
+          letterSpacing: "0.35em",
           color: "var(--fg)",
         }}
       >

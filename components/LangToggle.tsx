@@ -1,54 +1,56 @@
 "use client";
 
-import { useLanguage } from "@/components/LanguageProvider";
+import { useLocale, useTranslations } from "next-intl";
+import { usePathname, useRouter } from "@/i18n/navigation";
+import type { Locale } from "@/i18n/routing";
 
 type LangToggleProps = {
   variant?: "light" | "dark";
 };
 
-export default function LangToggle({ variant = "light" }: LangToggleProps) {
-  const { locale, t, toggleLocale } = useLanguage();
+export default function LangToggle({ variant = "dark" }: LangToggleProps) {
+  const t = useTranslations("nav");
+  const locale = useLocale() as Locale;
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const switchLocale = () => {
+    const next = locale === "es" ? "en" : "es";
+    router.replace(pathname, { locale: next });
+  };
 
   const isDark = variant === "dark";
 
   return (
     <button
       type="button"
-      onClick={toggleLocale}
-      aria-label={t.lang.ariaLabel}
-      title={t.lang.ariaLabel}
+      onClick={switchLocale}
+      aria-label={t("langAria")}
+      title={t("langAria")}
       data-cursor="SWITCH"
+      className="text-label"
       style={{
-        fontFamily: "var(--font-space-mono)",
         fontSize: 10,
-        fontWeight: 400,
-        letterSpacing: "0.2em",
-        color: isDark ? "rgba(250,250,248,0.55)" : "var(--fg-muted)",
+        color: isDark ? "var(--fg-muted)" : "var(--fg-muted)",
         background: "transparent",
-        border: `0.5px solid ${isDark ? "rgba(250,250,248,0.2)" : "var(--line)"}`,
+        border: "1px solid var(--line)",
         borderRadius: 2,
         padding: "6px 10px",
         cursor: "pointer",
-        transition: "color 0.3s ease-out, border-color 0.3s ease-out, background 0.3s ease-out",
+        transition: "color 0.3s, border-color 0.3s",
         pointerEvents: "auto",
         lineHeight: 1,
       }}
       onMouseEnter={(e) => {
-        const el = e.currentTarget;
-        el.style.color = isDark ? "#FAFAF8" : "var(--fg)";
-        el.style.borderColor = isDark
-          ? "rgba(250,250,248,0.45)"
-          : "var(--fg-subtle)";
+        e.currentTarget.style.color = "var(--fg)";
+        e.currentTarget.style.borderColor = "var(--accent)";
       }}
       onMouseLeave={(e) => {
-        const el = e.currentTarget;
-        el.style.color = isDark ? "rgba(250,250,248,0.55)" : "var(--fg-muted)";
-        el.style.borderColor = isDark
-          ? "rgba(250,250,248,0.2)"
-          : "var(--line)";
+        e.currentTarget.style.color = "var(--fg-muted)";
+        e.currentTarget.style.borderColor = "var(--line)";
       }}
     >
-      {t.lang.switchTo}
+      {t("langSwitch")}
       <span className="sr-only">
         {" "}
         ({locale === "es" ? "English" : "Español"})

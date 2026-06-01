@@ -1,0 +1,126 @@
+"use client";
+
+import { useTranslations } from "next-intl";
+import LangToggle from "@/components/LangToggle";
+import { whatsappDirect } from "@/lib/constants";
+
+const SECTION_LINKS = [
+  { href: "#services", key: "services" as const },
+  { href: "#packages", key: "packages" as const },
+  { href: "#portfolio", key: "work" as const },
+  { href: "#process", key: "process" as const },
+  { href: "#agent", key: "agent" as const },
+  { href: "#contact", key: "contact" as const },
+];
+
+export default function Footer() {
+  const t = useTranslations("footer");
+  const tn = useTranslations("nav");
+  return (
+    <footer
+      className="section"
+      style={{
+        borderTop: "1px solid var(--line)",
+        padding: "clamp(48px, 8vw, 80px) clamp(20px, 5vw, 64px)",
+        paddingBottom: "max(48px, calc(24px + env(safe-area-inset-bottom, 0px)))",
+      }}
+    >
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+          gap: 48,
+          marginBottom: 64,
+        }}
+      >
+        <div>
+          <a
+            href="#top"
+            className="text-label"
+            style={{
+              color: "var(--fg)",
+              textDecoration: "none",
+              fontSize: 12,
+              letterSpacing: "0.3em",
+              display: "block",
+              marginBottom: 12,
+            }}
+          >
+            UMANIA LABS
+          </a>
+          <p style={{ fontSize: 14, color: "var(--fg-muted)", margin: 0 }}>
+            {t("tagline")}
+          </p>
+        </div>
+
+        <nav aria-label="Footer">
+          <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
+            {SECTION_LINKS.map((link) => (
+              <li key={link.key} style={{ marginBottom: 10 }}>
+                <a
+                  href={link.href}
+                  style={{
+                    fontSize: 13,
+                    color: "var(--fg-muted)",
+                    textDecoration: "none",
+                    transition: "color 0.3s",
+                  }}
+                  onMouseEnter={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color = "var(--fg)")
+                  }
+                  onMouseLeave={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color = "var(--fg-muted)")
+                  }
+                >
+                  {tn(link.key)}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div>
+          <p
+            className="text-label"
+            style={{ color: "var(--fg-muted)", marginBottom: 12, fontSize: 9 }}
+          >
+            Stack
+          </p>
+          <p style={{ fontSize: 13, color: "var(--fg-muted)", margin: 0, lineHeight: 1.8 }}>
+            {t("stack")}
+          </p>
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <LangToggle />
+          <a
+            href={whatsappDirect()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-label"
+            style={{
+              color: "var(--fg-muted)",
+              textDecoration: "none",
+              fontSize: 10,
+            }}
+          >
+            {t("whatsapp")} →
+          </a>
+        </div>
+      </div>
+
+      <div className="divider" style={{ marginBottom: 24 }} />
+
+      <p
+        style={{
+          fontSize: 12,
+          color: "var(--fg-muted)",
+          margin: 0,
+          textAlign: "center",
+        }}
+      >
+        {t("copyright")}
+      </p>
+    </footer>
+  );
+}
