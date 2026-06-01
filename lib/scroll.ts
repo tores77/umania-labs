@@ -11,63 +11,20 @@ type LenisBundle = {
 
 let lenisBundle: LenisBundle | null = null;
 let lenisWaiters: Array<(lenis: Lenis) => void> = [];
-let scrollProxyBound = false;
-let scrollProxyRefreshHandler: (() => void) | null = null;
 
-function bindScrollTriggerProxy(lenis: Lenis) {
-  if (scrollProxyBound) return;
-  scrollProxyBound = true;
-  registerGsap();
+/** Live Lenis instance — null until initLenis() runs on desktop. */
+export let lenis: Lenis | null = null;
 
-  ScrollTrigger.scrollerProxy(document.body, {
-    scrollTop(value) {
-      if (arguments.length && typeof value === "number") {
-        lenis.scrollTo(value, { immediate: true });
-      }
-      return lenis.scroll;
-    },
-    getBoundingClientRect() {
-      return {
-        top: 0,
-        left: 0,
-        width: window.innerWidth,
-        height: window.innerHeight,
-      };
-    },
-  });
-
-  scrollProxyRefreshHandler = () => {
-    lenis.resize();
-  };
-  ScrollTrigger.addEventListener("refresh", scrollProxyRefreshHandler);
-}
-
-export function setupLenisScrollTriggerProxy() {
-  const lenis = getLenis();
-  if (!lenis) return false;
-  bindScrollTriggerProxy(lenis);
-  return true;
-}
-
-export function waitForLenis(): Promise<Lenis> {
-  const existing = getLenis();
-  if (existing) return Promise.resolve(existing);
-
-  return new Promise((resolve) => {
-    onLenisReady(resolve);
-  });
-}
-
-function notifyLenisReady(lenis: Lenis) {
-  lenisWaiters.forEach((cb) => cb(lenis));
+function notifyLenisReady(instance: Lenis) {
+  lenisWaiters.forEach((cb) => cb(instance));
   lenisWaiters = [];
 }
 
 export function getLenis() {
-  return lenisBundle?.lenis ?? null;
+  return lenis;
 }
 
-export function onLenisReady(callback: (lenis: Lenis) => void) {
+export function onLenisReady(callback: (instance: Lenis) => void) {
   const existing = getLenis();
   if (existing) {
     callback(existing);
@@ -79,13 +36,26 @@ export function onLenisReady(callback: (lenis: Lenis) => void) {
   };
 }
 
+export function waitForLenis(): Promise<Lenis> {
+  const existing = getLenis();
+  if (existing) return Promise.resolve(existing);
+
+  initLenis();
+  const initialized = getLenis();
+  if (initialized) return Promise.resolve(initialized);
+
+  return new Promise((resolve) => {
+    onLenisReady(resolve);
+  });
+}
+
 export function subscribeLenisScroll(onScroll: (scrollY: number) => void) {
   const handler = ({ scroll }: { scroll: number }) => onScroll(scroll);
   let unsub: (() => void) | undefined;
 
-  const attach = (lenis: Lenis) => {
-    lenis.on("scroll", handler);
-    unsub = () => lenis.off("scroll", handler);
+  const attach = (instance: Lenis) => {
+    instance.on("scroll", handler);
+    unsub = () => instance.off("scroll", handler);
   };
 
   const existing = getLenis();
@@ -110,7 +80,7 @@ export function initLenis() {
 
   document.documentElement.classList.add("lenis", "lenis-smooth");
 
-  const lenis = new Lenis({
+  const instance = new Lenis({
     lerp: 0.08,
     smoothWheel: true,
     syncTouch: true,
@@ -118,31 +88,35 @@ export function initLenis() {
     gestureOrientation: "vertical",
   });
 
-  lenis.on("scroll", ScrollTrigger.update);
-  bindScrollTriggerProxy(lenis);
+  lenis = instance;
+
+  if (typeof window !== "undefined") {
+    (window as unknown as { lenis: Lenis }).lenis = instance;
+  }
+
+  instance.on("scroll", ScrollTrigger.update);
 
   const tick = (time: number) => {
-    lenis.raf(time * 1000);
+    instance.raf(time * 1000);
   };
   gsap.ticker.add(tick);
   gsap.ticker.lagSmoothing(0);
 
   lenisBundle = {
-    lenis,
+    lenis: instance,
     destroy: () => {
       gsap.ticker.remove(tick);
-      if (scrollProxyRefreshHandler) {
-        ScrollTrigger.removeEventListener("refresh", scrollProxyRefreshHandler);
-        scrollProxyRefreshHandler = null;
-      }
-      scrollProxyBound = false;
-      lenis.destroy();
+      instance.destroy();
       document.documentElement.classList.remove("lenis", "lenis-smooth");
+      if (typeof window !== "undefined") {
+        delete (window as unknown as { lenis?: Lenis }).lenis;
+      }
+      lenis = null;
       lenisBundle = null;
     },
   };
 
-  notifyLenisReady(lenis);
+  notifyLenisReady(instance);
 
   requestAnimationFrame(() => ScrollTrigger.refresh());
 

@@ -7,10 +7,7 @@ import {
   ScrollTrigger,
   animationVisibleFallback,
 } from "@/lib/scrollTriggerUtils";
-import {
-  setupLenisScrollTriggerProxy,
-  waitForLenis,
-} from "@/lib/scroll";
+import { getLenis, waitForLenis } from "@/lib/scroll";
 
 const NUMBERS = ["01", "02", "03", "04", "05", "06", "07"];
 
@@ -60,7 +57,10 @@ export default function Services() {
         await waitForLenis();
         if (cancelled) return;
 
-        setupLenisScrollTriggerProxy();
+        if (!getLenis()) {
+          console.error("[Services] Lenis not available — aborting GSAP init");
+          return;
+        }
 
         const trackEl = trackRef.current;
         const wrap = wrapRef.current;
@@ -110,22 +110,26 @@ export default function Services() {
           const cardEls = gsap.utils.toArray<HTMLElement>(
             ".service-card",
             trackEl
-          );
-          if (cardEls.length > 0) {
-            gsap.from(cardEls, {
-              opacity: 0,
-              x: 40,
-              duration: 0.8,
-              ease: "power3.out",
-              stagger: 0.08,
-              immediateRender: false,
-              scrollTrigger: {
-                trigger: section,
-                start: "top 80%",
-                invalidateOnRefresh: true,
-              },
-            });
-          }
+          ) as HTMLElement[];
+
+          cardEls.forEach((card) => {
+            gsap.fromTo(
+              card,
+              { opacity: 0, x: 40 },
+              {
+                opacity: 1,
+                x: 0,
+                duration: 0.8,
+                ease: "power3.out",
+                immediateRender: false,
+                scrollTrigger: {
+                  trigger: section,
+                  start: "top 80%",
+                  invalidateOnRefresh: true,
+                },
+              }
+            );
+          });
         }, section);
 
         ScrollTrigger.refresh(true);

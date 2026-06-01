@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { initLenis } from "@/lib/scroll";
+import { useEffect } from "react";
+import { initLenis, getLenis } from "@/lib/scroll";
 import { setupScrollTriggerRefresh } from "@/lib/scrollTriggerUtils";
 import { useIsMobile, useReducedMotion } from "@/hooks/useIsMobile";
 
@@ -12,22 +12,16 @@ export default function SmoothScrollProvider({
 }) {
   const isMobile = useIsMobile();
   const reduced = useReducedMotion();
-  const initialized = useRef(false);
 
   useEffect(() => {
     setupScrollTriggerRefresh();
 
     if (isMobile || reduced) return;
 
-    if (initialized.current) return;
-
-    const frame = requestAnimationFrame(() => {
-      initLenis();
-      initialized.current = true;
-    });
+    initLenis();
 
     return () => {
-      cancelAnimationFrame(frame);
+      getLenis()?.resize();
     };
   }, [isMobile, reduced]);
 
