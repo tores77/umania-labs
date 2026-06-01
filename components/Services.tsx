@@ -11,8 +11,17 @@ import {
 const NUMBERS = ["01", "02", "03", "04", "05", "06", "07"];
 
 function getHorizontalScrollDistance(track: HTMLElement) {
-  const padding = 128;
-  return Math.max(0, track.scrollWidth - window.innerWidth + padding);
+  return Math.max(0, track.scrollWidth - window.innerWidth);
+}
+
+async function waitForPaintReady() {
+  try {
+    await document.fonts.ready;
+  } catch {
+    /* fonts API unavailable */
+  }
+  await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+  await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
 }
 
 export default function Services() {
@@ -39,45 +48,96 @@ export default function Services() {
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 768px)", () => {
-      gsap.set(track, { x: 0, clearProps: "transform" });
+      let cancelled = false;
+      let ctx: gsap.Context | null = null;
+      let clearFallback: (() => void) | undefined;
 
-      gsap.to(track, {
-        x: () => -getHorizontalScrollDistance(track),
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: () => `+=${getHorizontalScrollDistance(track)}`,
-          pin: true,
-          scrub: 1,
-          invalidateOnRefresh: true,
-        },
-      });
+      const initDesktop = async () => {
+        await waitForPaintReady();
+        if (cancelled) return;
 
-      gsap.from(cards(), {
-        opacity: 0,
-        x: 40,
-        duration: 0.8,
-        ease: "power3.out",
-        stagger: 0.08,
-        immediateRender: false,
-        scrollTrigger: {
-          trigger: section,
-          start: "top 80%",
-          invalidateOnRefresh: true,
-        },
-      });
+        const trackEl = section.querySelector(
+          ".services-track"
+        ) as HTMLElement | null;
+        const scrollWrap = section.querySelector(
+          ".services-scroll-wrap"
+        ) as HTMLElement | null;
 
-      const refreshLayout = () => ScrollTrigger.refresh();
-      document.fonts?.ready.then(refreshLayout).catch(() => {});
-      window.addEventListener("load", refreshLayout, { once: true });
+        console.log("[Services desktop] track:", trackEl);
+        console.log("[Services desktop] scrollWidth:", trackEl?.scrollWidth);
+        console.log(
+          "[Services desktop] totalWidth:",
+          trackEl ? trackEl.scrollWidth - window.innerWidth : undefined
+        );
 
-      const clearFallback = animationVisibleFallback(section, ".service-card", 500);
+        if (!trackEl || !scrollWrap) {
+          console.error(
+            "[Services] track element not found — aborting GSAP init"
+          );
+          return;
+        }
+
+        const scrollWidth = trackEl.scrollWidth;
+        const innerWidth = window.innerWidth;
+        const totalWidth = getHorizontalScrollDistance(trackEl);
+
+        console.log("[Services desktop] measurements:", {
+          scrollWidth,
+          innerWidth,
+          totalWidth,
+        });
+
+        ctx = gsap.context(() => {
+          gsap.set(trackEl, { x: 0, clearProps: "transform" });
+
+          const horizontalTween = gsap.to(trackEl, {
+            x: () => -getHorizontalScrollDistance(trackEl),
+            ease: "none",
+            scrollTrigger: {
+              trigger: scrollWrap,
+              start: "top top",
+              end: () => `+=${getHorizontalScrollDistance(trackEl)}`,
+              pin: scrollWrap,
+              pinSpacing: true,
+              scrub: 1,
+              invalidateOnRefresh: true,
+            },
+          });
+
+          console.log(
+            "[Services desktop] ScrollTrigger end:",
+            horizontalTween.scrollTrigger?.end
+          );
+
+          gsap.from(cards(), {
+            opacity: 0,
+            x: 40,
+            duration: 0.8,
+            ease: "power3.out",
+            stagger: 0.08,
+            immediateRender: false,
+            scrollTrigger: {
+              trigger: section,
+              start: "top 80%",
+              invalidateOnRefresh: true,
+            },
+          });
+        }, section);
+
+        ScrollTrigger.refresh(true);
+        clearFallback = animationVisibleFallback(section, ".service-card", 500);
+      };
+
+      initDesktop();
 
       return () => {
-        window.removeEventListener("load", refreshLayout);
-        clearFallback();
-        gsap.set(track, { x: 0, clearProps: "transform" });
+        cancelled = true;
+        clearFallback?.();
+        ctx?.revert();
+        const trackEl = section.querySelector(".services-track") as HTMLElement | null;
+        if (trackEl) {
+          gsap.set(trackEl, { x: 0, clearProps: "transform" });
+        }
       };
     });
 
@@ -105,8 +165,6 @@ export default function Services() {
         gsap.set(track, { x: 0, clearProps: "transform" });
       };
     });
-
-    ScrollTrigger.refresh();
 
     return () => {
       mm.revert();
