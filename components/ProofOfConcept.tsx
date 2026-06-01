@@ -89,14 +89,25 @@ export default function ProofOfConcept() {
 
     const ctx = gsap.context(() => {
       buildScroll();
-      gsap.from(section.querySelectorAll(".case-card"), {
-        opacity: 0,
-        y: 40,
-        duration: 1,
-        stagger: 0.2,
-        scrollTrigger: { trigger: section, start: "top 85%" },
-      });
     }, section);
+
+    let caseCtx: gsap.Context | null = null;
+    const caseCards = document.querySelectorAll(".case-card");
+    if (caseCards.length > 0) {
+      caseCtx = gsap.context(() => {
+        gsap.from(Array.from(caseCards), {
+          opacity: 0,
+          y: 40,
+          duration: 1,
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: "#proof",
+            start: "top 85%",
+            invalidateOnRefresh: true,
+          },
+        });
+      });
+    }
 
     const onResize = () => {
       updateLayout();
@@ -108,6 +119,7 @@ export default function ProofOfConcept() {
     return () => {
       window.removeEventListener("resize", onResize);
       scrollTrigger?.kill();
+      caseCtx?.revert();
       ctx.revert();
     };
   }, [cards.length]);
