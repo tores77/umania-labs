@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { gsap, registerGsap } from "@/lib/gsap";
+import { CALENDLY_URL } from "@/lib/constants";
 
 const NUMBERS = ["01", "02", "03"];
 
@@ -143,6 +144,17 @@ export default function Packages() {
             </article>
           );
         })}
+      </div>
+
+      <div style={{ textAlign: "center", marginTop: 64 }}>
+        <a
+          href={CALENDLY_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="cta-btn-outline"
+        >
+          {t("scheduleCall")}
+        </a>
       </div>
 
       <style jsx global>{`

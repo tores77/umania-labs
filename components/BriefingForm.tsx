@@ -165,6 +165,7 @@ export default function BriefingForm({ layout = "inline" }: BriefingFormProps) {
   return (
     <form onSubmit={handleSubmit} noValidate>
       <div
+        className="briefing-form-row"
         style={{
           display: "flex",
           flexDirection: isInline ? "row" : "column",
@@ -250,8 +251,7 @@ export default function BriefingForm({ layout = "inline" }: BriefingFormProps) {
         <span>
           {t("consentPrefix")}{" "}
           <Link
-            href="/privacidad"
-            locale="es"
+            href="/privacy"
             style={{ color: BRIEFING_TEAL, textDecoration: "underline" }}
           >
             {t("privacyLink")}

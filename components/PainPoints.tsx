@@ -89,7 +89,7 @@ export default function PainPoints() {
       >
         {item.description}
       </p>
-      <div className="text-label" style={{ color: "var(--accent)", fontSize: 9 }}>
+      <div className="text-label" style={{ color: "var(--accent)", fontSize: 11 }}>
         → {item.solution}
       </div>
     </article>
@@ -97,6 +97,12 @@ export default function PainPoints() {
 
   return (
     <section ref={sectionRef} id="pain-points" className="section section-padding">
+      <p
+        className="text-label"
+        style={{ color: "var(--fg-muted)", marginBottom: 20 }}
+      >
+        {t("label")}
+      </p>
       <h2 data-fade className="section-title" style={{ marginBottom: 64 }}>
         {t("title")}
       </h2>

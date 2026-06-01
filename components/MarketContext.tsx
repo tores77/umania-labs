@@ -72,16 +72,16 @@ export default function MarketContext() {
               {item.name}
             </h3>
             <div style={{ marginBottom: 12 }}>
-              <span className="text-label" style={{ color: "var(--fg-muted)", fontSize: 9 }}>
-                Market
+              <span className="text-label" style={{ color: "var(--fg-muted)", fontSize: 11 }}>
+                {t("marketLabel")}
               </span>
               <p style={{ fontSize: 14, color: "var(--fg)", margin: "4px 0 0" }}>
                 {item.marketRange}
               </p>
             </div>
             <div style={{ marginBottom: 20 }}>
-              <span className="text-label" style={{ color: "var(--fg-muted)", fontSize: 9 }}>
-                Umania Labs
+              <span className="text-label" style={{ color: "var(--fg-muted)", fontSize: 11 }}>
+                {t("brandLabel")}
               </span>
               <p
                 style={{

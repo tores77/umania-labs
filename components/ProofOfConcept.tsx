@@ -157,7 +157,7 @@ export default function ProofOfConcept() {
               </h3>
               <p
                 className="text-label"
-                style={{ color: "var(--fg-muted)", marginBottom: 16, fontSize: 9 }}
+                style={{ color: "var(--fg-muted)", marginBottom: 16, fontSize: 11 }}
               >
                 {c.sector}
               </p>
@@ -166,7 +166,7 @@ export default function ProofOfConcept() {
               </p>
               <p
                 className="text-label"
-                style={{ color: "var(--accent)", marginBottom: 24, fontSize: 9 }}
+                style={{ color: "var(--accent)", marginBottom: 24, fontSize: 11 }}
               >
                 {c.status}
               </p>
@@ -175,7 +175,7 @@ export default function ProofOfConcept() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="cta-btn-outline"
-                style={{ fontSize: 10, padding: "10px 20px" }}
+                style={{ fontSize: 10, padding: "12px 24px", minHeight: 44 }}
               >
                 {tc("viewLive")} →
               </a>
@@ -277,7 +277,7 @@ export default function ProofOfConcept() {
                   >
                     <div
                       className="text-label"
-                      style={{ color: "var(--fg-muted)", marginBottom: 6, fontSize: 9 }}
+                      style={{ color: "var(--fg-muted)", marginBottom: 6, fontSize: 11 }}
                     >
                       {card.category}
                     </div>

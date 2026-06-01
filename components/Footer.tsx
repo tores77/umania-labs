@@ -119,7 +119,7 @@ export default function Footer() {
             className="text-label"
             style={{ color: "var(--fg-muted)", marginBottom: 12, fontSize: 9 }}
           >
-            Stack
+            {t("stackLabel")}
           </p>
           <p style={{ fontSize: 13, color: "var(--fg-muted)", margin: 0, lineHeight: 1.8 }}>
             {t("stack")}

@@ -12,7 +12,9 @@
     "agent": "AI Agent",
     "contact": "Contact",
     "langSwitch": "ES",
-    "langAria": "Switch to Spanish"
+    "langAria": "Switch to Spanish",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu"
   },
   "hero": {
     "headline": "Your website as an active sales machine 24/7",
@@ -21,6 +23,7 @@
     "ctaSecondary": "View services"
   },
   "painPoints": {
+    "label": "THE PROBLEM",
     "title": "The problem we solve",
     "items": [
       {
@@ -111,6 +114,7 @@
   },
   "packages": {
     "title": "Three levels, one standard",
+    "scheduleCall": "Schedule a call",
     "featured": "Recommended",
     "items": [
       {
@@ -220,6 +224,7 @@
   "agent": {
     "title": "Talk to our agent",
     "subtitle": "Discover which package fits your project — no calls, no forms, in 2 minutes",
+    "inputLabel": "Message for the agent",
     "placeholder": "Tell us about your project...",
     "send": "Send",
     "poweredBy": "Powered by Claude",
@@ -230,6 +235,8 @@
   },
   "market": {
     "title": "Why we charge what we charge",
+    "marketLabel": "Market",
+    "brandLabel": "Umania Labs",
     "ruleTitle": "The 5-10% rule",
     "ruleDescription": "A premium website should represent 5% to 10% of your annual revenue. For a business generating €200,000, investing €10,000–20,000 in digital presence isn't an expense — it's the infrastructure that generates the rest.",
     "items": [
@@ -276,6 +283,7 @@
   },
   "footer": {
     "tagline": "Your website as a sales machine",
+    "stackLabel": "Stack",
     "stack": "Next.js · Three.js · GSAP · Claude API · Higgsfield · Vercel",
     "copyright": "© 2026 Umania Labs · Mallorca, Spain",
     "whatsapp": "WhatsApp",
@@ -320,6 +328,12 @@
       ],
       "frequency": "Every Monday · ~5 min read · tores@umanialabs.com"
     }
+  },
+  "privacy": {
+    "metaTitle": "Privacy Policy — Umania Labs",
+    "metaDescription": "Information about how Umania Labs handles personal data.",
+    "title": "Privacy Policy",
+    "body": "This page describes how Umania Labs handles personal data collected through this website and The Briefing newsletter. For privacy inquiries, contact tores@umanialabs.com."
   },
   "common": {
     "includes": "Includes",

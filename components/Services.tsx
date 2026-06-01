@@ -65,10 +65,6 @@ export default function Services() {
         const trackEl = trackRef.current;
         const wrapEl = wrapRef.current;
 
-        console.log("[Services] track:", trackEl);
-        console.log("[Services] track.scrollWidth:", trackEl?.scrollWidth);
-        console.log("[Services] wrap.clientWidth:", wrapEl?.clientWidth);
-
         if (!trackEl || !wrapEl) {
           console.error(
             "[Services] track element not found — aborting GSAP init"
@@ -77,8 +73,6 @@ export default function Services() {
         }
 
         const distance = trackEl.scrollWidth - wrapEl.clientWidth;
-        console.log("[Services] distance:", distance);
-        console.log("[Services] end:", "+=" + distance);
 
         if (distance <= 0) {
           console.error("[Services] distance <= 0 — aborting GSAP init");
@@ -103,11 +97,6 @@ export default function Services() {
               invalidateOnRefresh: true,
             },
           });
-
-          console.log(
-            "[Services desktop] ScrollTrigger end:",
-            horizontalTween.scrollTrigger?.end
-          );
 
           const cardEls = Array.from(
             trackEl.querySelectorAll<HTMLElement>(".service-card")

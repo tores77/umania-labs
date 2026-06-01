@@ -12,7 +12,9 @@
     "agent": "Agente IA",
     "contact": "Contacto",
     "langSwitch": "EN",
-    "langAria": "Cambiar a inglés"
+    "langAria": "Cambiar a inglés",
+    "menuOpen": "Abrir menú",
+    "menuClose": "Cerrar menú"
   },
   "hero": {
     "headline": "Tu web como máquina de ventas activa 24/7",
@@ -21,6 +23,7 @@
     "ctaSecondary": "Ver servicios"
   },
   "painPoints": {
+    "label": "EL PROBLEMA",
     "title": "El problema que resolvemos",
     "items": [
       {
@@ -111,6 +114,7 @@
   },
   "packages": {
     "title": "Tres niveles, un estándar",
+    "scheduleCall": "Agendar una llamada",
     "featured": "Recomendado",
     "items": [
       {
@@ -220,6 +224,7 @@
   "agent": {
     "title": "Habla con nuestro agente",
     "subtitle": "Descubre qué paquete encaja con tu proyecto — sin llamadas, sin formularios, en 2 minutos",
+    "inputLabel": "Mensaje para el agente",
     "placeholder": "Cuéntanos sobre tu proyecto...",
     "send": "Enviar",
     "poweredBy": "Powered by Claude",
@@ -230,6 +235,8 @@
   },
   "market": {
     "title": "Por qué cobramos lo que cobramos",
+    "marketLabel": "Mercado",
+    "brandLabel": "Umania Labs",
     "ruleTitle": "La regla del 5-10%",
     "ruleDescription": "Una web premium debe representar entre el 5% y el 10% de tu facturación anual. Para un negocio que factura 200.000€, invertir 10.000–20.000€ en su presencia digital no es un gasto — es la infraestructura que genera el resto.",
     "items": [
@@ -276,6 +283,7 @@
   },
   "footer": {
     "tagline": "Tu web como máquina de ventas",
+    "stackLabel": "Stack",
     "stack": "Next.js · Three.js · GSAP · Claude API · Higgsfield · Vercel",
     "copyright": "© 2026 Umania Labs · Mallorca, España",
     "whatsapp": "WhatsApp",
@@ -320,6 +328,12 @@
       ],
       "frequency": "Cada lunes · ~5 min de lectura · tores@umanialabs.com"
     }
+  },
+  "privacy": {
+    "metaTitle": "Política de privacidad — Umania Labs",
+    "metaDescription": "Información sobre el tratamiento de datos personales en Umania Labs.",
+    "title": "Política de privacidad",
+    "body": "Esta página describe cómo Umania Labs trata los datos personales recogidos a través de este sitio web y El Briefing. Para consultas sobre privacidad, contacta en tores@umanialabs.com."
   },
   "common": {
     "includes": "Incluye",

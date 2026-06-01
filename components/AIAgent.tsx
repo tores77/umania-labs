@@ -200,7 +200,11 @@ export default function AIAgent() {
               gap: 12,
             }}
           >
+            <label htmlFor="agent-input" className="sr-only">
+              {t("inputLabel")}
+            </label>
             <input
+              id="agent-input"
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}

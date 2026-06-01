@@ -104,7 +104,7 @@ export default function Preloader() {
       </div>
       <div
         style={{
-          fontFamily: "var(--font-space-mono)",
+          fontFamily: "var(--font-dm-mono)",
           fontSize: 10,
           letterSpacing: "0.3em",
           color: "var(--fg-muted)",
