@@ -231,7 +231,7 @@ export default function BriefingForm({ layout = "inline" }: BriefingFormProps) {
           alignItems: "flex-start",
           gap: 10,
           fontSize: 13,
-          color: "#6b6560",
+          color: "var(--fg-muted)",
           lineHeight: 1.5,
           cursor: "pointer",
         }}

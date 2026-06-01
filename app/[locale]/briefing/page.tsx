@@ -52,7 +52,7 @@ export default async function BriefingPage({ params }: Props) {
           padding: "clamp(48px, 8vw, 80px) clamp(20px, 5vw, 64px)",
         }}
       >
-        <p className="text-label" style={{ color: "#6b6560", marginBottom: 24 }}>
+        <p className="text-label" style={{ color: "var(--fg-muted)", marginBottom: 24 }}>
           {t("label")}
         </p>
 
@@ -93,7 +93,7 @@ export default async function BriefingPage({ params }: Props) {
           <p
             style={{
               fontSize: 16,
-              color: "#6b6560",
+              color: "var(--fg-muted)",
               lineHeight: 1.65,
               margin: 0,
             }}
@@ -132,7 +132,7 @@ export default async function BriefingPage({ params }: Props) {
                 <p
                   style={{
                     fontSize: 14,
-                    color: "#6b6560",
+                    color: "var(--fg-muted)",
                     lineHeight: 1.6,
                     margin: 0,
                   }}
@@ -154,7 +154,7 @@ export default async function BriefingPage({ params }: Props) {
           <p
             style={{
               fontSize: 15,
-              color: "#6b6560",
+              color: "var(--fg-muted)",
               lineHeight: 1.65,
               margin: "0 0 28px",
             }}
@@ -166,7 +166,7 @@ export default async function BriefingPage({ params }: Props) {
 
         <p
           className="text-label"
-          style={{ color: "#6b6560", textAlign: "center", marginTop: 48 }}
+          style={{ color: "var(--fg-muted)", textAlign: "center", marginTop: 48 }}
         >
           {tp("frequency")}
         </p>
@@ -176,7 +176,7 @@ export default async function BriefingPage({ params }: Props) {
             href="/"
             style={{
               fontSize: 13,
-              color: "#6b6560",
+              color: "var(--fg-muted)",
               textDecoration: "none",
             }}
           >

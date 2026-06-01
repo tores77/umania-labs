@@ -87,9 +87,34 @@ export default function ProofOfConcept() {
       }
     };
 
-    const ctx = gsap.context(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 768px)", () => {
       buildScroll();
-    }, section);
+
+      const onResize = () => {
+        updateLayout();
+        buildScroll();
+        ScrollTrigger.refresh();
+      };
+      window.addEventListener("resize", onResize);
+
+      return () => {
+        window.removeEventListener("resize", onResize);
+        scrollTrigger?.kill();
+      };
+    });
+
+    mm.add("(max-width: 767px)", () => {
+      scrollTrigger?.kill();
+      gsap.set(track, { x: 0, clearProps: "transform" });
+      if (progressRef.current) {
+        progressRef.current.style.transform = "scaleX(0)";
+      }
+      return () => {
+        scrollTrigger?.kill();
+      };
+    });
 
     let caseCtx: gsap.Context | null = null;
     const caseCards = document.querySelectorAll(".case-card");
@@ -109,18 +134,10 @@ export default function ProofOfConcept() {
       });
     }
 
-    const onResize = () => {
-      updateLayout();
-      buildScroll();
-      ScrollTrigger.refresh();
-    };
-    window.addEventListener("resize", onResize);
-
     return () => {
-      window.removeEventListener("resize", onResize);
       scrollTrigger?.kill();
       caseCtx?.revert();
-      ctx.revert();
+      mm.revert();
     };
   }, [cards.length]);
 
@@ -187,21 +204,10 @@ export default function ProofOfConcept() {
       <section
         ref={sectionRef}
         id="portfolio"
-        className="section"
-        style={{ height: "300vh", background: "var(--surface)" }}
+        className="section portfolio-section"
+        style={{ background: "var(--surface)" }}
       >
-        <div
-          style={{
-            position: "sticky",
-            top: 0,
-            height: "100dvh",
-            overflow: "hidden",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            paddingTop: 88,
-          }}
-        >
+        <div className="portfolio-sticky-inner">
           <div style={{ padding: `0 ${layout.padding}px 32px`, flexShrink: 0 }}>
             <h2 className="section-title">{t("portfolioTitle")}</h2>
             <p
@@ -234,9 +240,10 @@ export default function ProofOfConcept() {
             </div>
           </div>
 
-          <div style={{ overflow: "visible", flex: 1, display: "flex", alignItems: "center" }}>
+          <div className="portfolio-cards-viewport">
             <div
               ref={trackRef}
+              className="portfolio-track"
               style={{
                 display: "flex",
                 gap: GAP,
@@ -248,6 +255,7 @@ export default function ProofOfConcept() {
               {cards.map((card) => (
                 <article
                   key={card.niche}
+                  className="portfolio-card-item"
                   data-cursor="VIEW"
                   tabIndex={0}
                   aria-label={`${card.category}: ${card.niche}`}
@@ -293,7 +301,7 @@ export default function ProofOfConcept() {
             </div>
           </div>
 
-          <div style={{ padding: `0 ${layout.padding}px 28px`, flexShrink: 0 }}>
+          <div className="portfolio-progress" style={{ padding: `0 ${layout.padding}px 28px`, flexShrink: 0 }}>
             <div
               role="progressbar"
               aria-valuemin={0}
@@ -316,6 +324,59 @@ export default function ProofOfConcept() {
         </div>
 
         <style jsx global>{`
+          @media (min-width: 768px) {
+            .portfolio-section {
+              height: 300vh;
+            }
+            .portfolio-sticky-inner {
+              position: sticky;
+              top: 0;
+              height: 100dvh;
+              overflow: hidden;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              padding-top: 88px;
+            }
+            .portfolio-cards-viewport {
+              overflow: visible;
+              flex: 1;
+              display: flex;
+              align-items: center;
+            }
+          }
+          @media (max-width: 767px) {
+            .portfolio-section {
+              height: auto;
+            }
+            .portfolio-sticky-inner {
+              position: static;
+              height: auto;
+              overflow: visible;
+              display: block;
+              padding: clamp(80px, 12vw, 140px) 0 clamp(48px, 8vw, 80px);
+            }
+            .portfolio-cards-viewport {
+              overflow-x: auto;
+              overflow-y: visible;
+              -webkit-overflow-scrolling: touch;
+              scroll-snap-type: x mandatory;
+              scrollbar-width: none;
+              padding-bottom: 8px;
+            }
+            .portfolio-cards-viewport::-webkit-scrollbar {
+              display: none;
+            }
+            .portfolio-track {
+              transform: none !important;
+            }
+            .portfolio-card-item {
+              scroll-snap-align: start;
+            }
+            .portfolio-progress {
+              display: none;
+            }
+          }
           @media (min-width: 1024px) {
             .portfolio-scroll-hint {
               display: none;

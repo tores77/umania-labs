@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, DM_Mono, Outfit } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 import { SITE_URL } from "@/lib/constants";
@@ -146,6 +146,7 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   setRequestLocale(locale);
   const messages = await getMessages();
+  const t = await getTranslations({ locale, namespace: "common" });
 
   return (
     <html
@@ -153,6 +154,12 @@ export default async function LocaleLayout({ children, params }: Props) {
       className={`${cormorant.variable} ${dmMono.variable} ${outfit.variable}`}
     >
       <body>
+        <a
+          href="#main-content"
+          className="skip-to-content sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[99999] focus:bg-[#0a0a0a] focus:text-[#c8a96e] focus:px-4 focus:py-2 focus:text-sm"
+        >
+          {t("skipToContent")}
+        </a>
         <JsonLd locale={locale as Locale} />
         <NextIntlClientProvider messages={messages}>
           <Preloader />

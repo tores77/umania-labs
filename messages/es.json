@@ -20,7 +20,8 @@
     "headline": "Tu web como máquina de ventas activa 24/7",
     "subline": "Diseño premium, tecnología de vanguardia y un sistema completo que genera leads mientras duermes",
     "ctaPrimary": "Agendar llamada",
-    "ctaSecondary": "Ver servicios"
+    "ctaSecondary": "Ver servicios",
+    "scrollHint": "SCROLL"
   },
   "painPoints": {
     "label": "EL PROBLEMA",
@@ -231,7 +232,12 @@
     "typing": "Escribiendo...",
     "error": "No pudimos conectar con el agente. Inténtalo de nuevo.",
     "errorNoKey": "El agente no está disponible en este momento.",
-    "welcome": "Hola, soy el asistente de Umania Labs. ¿En qué sector está tu negocio?"
+    "welcome": "Hola, soy el asistente de Umania Labs. ¿En qué sector está tu negocio?",
+    "starterPrompts": [
+      "Tengo un negocio en Mallorca",
+      "Soy una startup buscando inversión",
+      "Quiero vender más desde mi web"
+    ]
   },
   "market": {
     "title": "Por qué cobramos lo que cobramos",
@@ -338,6 +344,7 @@
   "common": {
     "includes": "Incluye",
     "viewLive": "Ver live",
-    "learnMore": "Saber más"
+    "learnMore": "Saber más",
+    "skipToContent": "Ir al contenido principal"
   }
 }

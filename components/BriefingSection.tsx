@@ -45,7 +45,7 @@ export default function BriefingSection() {
         <p
           data-fade
           className="text-label"
-          style={{ color: "#6b6560", marginBottom: 20 }}
+          style={{ color: "var(--fg-muted)", marginBottom: 20 }}
         >
           {t("label")}
         </p>
@@ -75,7 +75,7 @@ export default function BriefingSection() {
           data-fade
           style={{
             fontSize: 15,
-            color: "#6b6560",
+            color: "var(--fg-muted)",
             lineHeight: 1.65,
             margin: "0 0 36px",
           }}

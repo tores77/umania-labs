@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { gsap, registerGsap } from "@/lib/gsap";
 
@@ -12,12 +12,16 @@ export default function AIAgent() {
   const sectionRef = useRef<HTMLElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const welcome = t("welcome");
+  const starterPrompts = t.raw("starterPrompts") as string[];
   const [messages, setMessages] = useState<Message[]>([
     { role: "assistant", content: welcome },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const userMessageCount = messages.filter((m) => m.role === "user").length;
+  const showPrompts = userMessageCount === 0 && !loading;
 
   useEffect(() => {
     registerGsap();
@@ -43,44 +47,51 @@ export default function AIAgent() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading]);
 
+  const submitText = useCallback(
+    async (text: string) => {
+      const trimmed = text.trim();
+      if (!trimmed || loading) return;
+
+      setInput("");
+      setError("");
+      const userMsg: Message = { role: "user", content: trimmed };
+      const updated = [...messages, userMsg];
+      setMessages(updated);
+      setLoading(true);
+
+      try {
+        const res = await fetch("/api/agent", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            messages: updated.map((m) => ({ role: m.role, content: m.content })),
+            locale,
+          }),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          setError(data.error === "no_api_key" ? t("errorNoKey") : t("error"));
+          return;
+        }
+
+        setMessages((prev) => [
+          ...prev,
+          { role: "assistant", content: data.message },
+        ]);
+      } catch {
+        setError(t("error"));
+      } finally {
+        setLoading(false);
+      }
+    },
+    [loading, locale, messages, t]
+  );
+
   const sendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
-    const text = input.trim();
-    if (!text || loading) return;
-
-    setInput("");
-    setError("");
-    const userMsg: Message = { role: "user", content: text };
-    const updated = [...messages, userMsg];
-    setMessages(updated);
-    setLoading(true);
-
-    try {
-      const res = await fetch("/api/agent", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          messages: updated.map((m) => ({ role: m.role, content: m.content })),
-          locale,
-        }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        setError(data.error === "no_api_key" ? t("errorNoKey") : t("error"));
-        return;
-      }
-
-      setMessages((prev) => [
-        ...prev,
-        { role: "assistant", content: data.message },
-      ]);
-    } catch {
-      setError(t("error"));
-    } finally {
-      setLoading(false);
-    }
+    await submitText(input);
   };
 
   return (
@@ -148,6 +159,30 @@ export default function AIAgent() {
                 </div>
               </div>
             ))}
+
+            {showPrompts && (
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: 8,
+                  alignSelf: "flex-start",
+                  maxWidth: "100%",
+                }}
+              >
+                {starterPrompts.map((prompt) => (
+                  <button
+                    key={prompt}
+                    type="button"
+                    className="agent-prompt-chip"
+                    onClick={() => submitText(prompt)}
+                    disabled={loading}
+                  >
+                    {prompt}
+                  </button>
+                ))}
+              </div>
+            )}
 
             {loading && (
               <div style={{ alignSelf: "flex-start" }}>

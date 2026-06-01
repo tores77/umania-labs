@@ -23,6 +23,7 @@ export default function HeroSequence() {
   const contentRef = useRef<HTMLDivElement>(null);
   const lastTime = useRef<number[]>([0, 0, 0, 0]);
   const [allReady, setAllReady] = useState(false);
+  const [showScrollHint, setShowScrollHint] = useState(true);
 
   useEffect(() => {
     const videos = videoRefs.current.filter(Boolean) as HTMLVideoElement[];
@@ -103,6 +104,31 @@ export default function HeroSequence() {
 
     return () => {
       trigger?.kill();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const onScroll = () => {
+      if (window.scrollY > 100) setShowScrollHint(false);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    const hintTrigger = ScrollTrigger.create({
+      trigger: containerRef.current,
+      start: "top top",
+      end: "bottom top",
+      onUpdate: () => {
+        if (window.scrollY > 100) setShowScrollHint(false);
+      },
+    });
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      hintTrigger.kill();
     };
   }, []);
 
@@ -236,6 +262,44 @@ export default function HeroSequence() {
               background: "var(--accent)",
               transformOrigin: "left center",
               transform: "scaleX(0)",
+            }}
+          />
+        </div>
+
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            bottom: 20,
+            left: "50%",
+            transform: "translateX(-50%)",
+            zIndex: 10,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 8,
+            opacity: showScrollHint ? 0.5 : 0,
+            pointerEvents: "none",
+            transition: "opacity 0.4s ease",
+          }}
+        >
+          <span
+            className="text-label"
+            style={{
+              fontSize: 10,
+              color: "var(--accent)",
+              letterSpacing: "0.3em",
+            }}
+          >
+            {t("scrollHint")}
+          </span>
+          <span
+            style={{
+              display: "block",
+              width: 1,
+              height: 24,
+              background: "var(--accent)",
+              animation: showScrollHint ? "scroll-hint-bounce 1.8s ease-in-out infinite" : "none",
             }}
           />
         </div>

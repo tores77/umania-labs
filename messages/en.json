@@ -20,7 +20,8 @@
     "headline": "Your website as an active sales machine 24/7",
     "subline": "Premium design, cutting-edge technology and a complete system that generates leads while you sleep",
     "ctaPrimary": "Book a call",
-    "ctaSecondary": "View services"
+    "ctaSecondary": "View services",
+    "scrollHint": "SCROLL"
   },
   "painPoints": {
     "label": "THE PROBLEM",
@@ -231,7 +232,12 @@
     "typing": "Typing...",
     "error": "We couldn't connect to the agent. Please try again.",
     "errorNoKey": "The agent is not available at this time.",
-    "welcome": "Hi, I'm the Umania Labs assistant. What sector is your business in?"
+    "welcome": "Hi, I'm the Umania Labs assistant. What sector is your business in?",
+    "starterPrompts": [
+      "I have a business in Mallorca",
+      "I'm a startup looking for investment",
+      "I want to sell more from my website"
+    ]
   },
   "market": {
     "title": "Why we charge what we charge",
@@ -338,6 +344,7 @@
   "common": {
     "includes": "Includes",
     "viewLive": "View live",
-    "learnMore": "Learn more"
+    "learnMore": "Learn more",
+    "skipToContent": "Skip to main content"
   }
 }
