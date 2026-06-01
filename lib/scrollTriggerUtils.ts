@@ -48,7 +48,7 @@ export function animationVisibleFallback(
       const opacity = parseFloat(getComputedStyle(el).opacity);
       if (Number.isNaN(opacity) || opacity >= 0.99) return;
 
-      gsap.set(el, { opacity: 1, y: 0, clearProps: "transform" });
+      gsap.set(el, { opacity: 1, x: 0, y: 0, clearProps: "transform" });
     });
   }, delayMs);
 

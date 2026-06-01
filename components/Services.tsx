@@ -6,11 +6,14 @@ import { gsap, registerGsap } from "@/lib/gsap";
 import {
   ScrollTrigger,
   animationVisibleFallback,
-  isMobileViewport,
 } from "@/lib/scrollTriggerUtils";
 
 const NUMBERS = ["01", "02", "03", "04", "05", "06", "07"];
-const MOBILE_BREAKPOINT = 768;
+
+function getHorizontalScrollDistance(track: HTMLElement) {
+  const padding = 128;
+  return Math.max(0, track.scrollWidth - window.innerWidth + padding);
+}
 
 export default function Services() {
   const t = useTranslations("services");
@@ -32,86 +35,81 @@ export default function Services() {
     const track = trackRef.current;
     if (!section || !track) return;
 
-    let ctx: gsap.Context | null = null;
-    let clearFallback: (() => void) | undefined;
+    const cards = () => track.querySelectorAll(".service-card");
+    const mm = gsap.matchMedia();
 
-    const build = () => {
-      clearFallback?.();
+    mm.add("(min-width: 768px)", () => {
       gsap.set(track, { x: 0, clearProps: "transform" });
 
-      const mobile = isMobileViewport(MOBILE_BREAKPOINT);
+      gsap.to(track, {
+        x: () => -getHorizontalScrollDistance(track),
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: () => `+=${getHorizontalScrollDistance(track)}`,
+          pin: true,
+          scrub: 1,
+          invalidateOnRefresh: true,
+        },
+      });
 
-      if (mobile) {
-        gsap.from(track.querySelectorAll(".service-card"), {
-          opacity: 0,
-          y: 30,
-          duration: 0.8,
-          ease: "power3.out",
-          stagger: 0.08,
-          immediateRender: false,
-          scrollTrigger: {
-            trigger: section,
-            start: "top 85%",
-            invalidateOnRefresh: true,
-          },
-        });
-      } else {
-        const totalWidth = track.scrollWidth - window.innerWidth + 128;
-        if (totalWidth > 0) {
-          gsap.to(track, {
-            x: -totalWidth,
-            ease: "none",
-            scrollTrigger: {
-              trigger: section,
-              start: "top top",
-              end: () => `+=${totalWidth}`,
-              pin: true,
-              scrub: 1,
-              invalidateOnRefresh: true,
-            },
-          });
+      gsap.from(cards(), {
+        opacity: 0,
+        x: 40,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.08,
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          invalidateOnRefresh: true,
+        },
+      });
 
-          gsap.from(track.querySelectorAll(".service-card"), {
-            opacity: 0,
-            y: 30,
-            duration: 0.8,
-            ease: "power3.out",
-            stagger: 0.08,
-            immediateRender: false,
-            scrollTrigger: {
-              trigger: section,
-              start: "top 80%",
-              invalidateOnRefresh: true,
-            },
-          });
-        }
-      }
+      const refreshLayout = () => ScrollTrigger.refresh();
+      document.fonts?.ready.then(refreshLayout).catch(() => {});
+      window.addEventListener("load", refreshLayout, { once: true });
 
-      ScrollTrigger.refresh();
-      clearFallback = animationVisibleFallback(section, ".service-card", 500);
-    };
+      const clearFallback = animationVisibleFallback(section, ".service-card", 500);
 
-    const mount = () => {
-      ctx?.revert();
-      ctx = gsap.context(() => build(), section);
-    };
+      return () => {
+        window.removeEventListener("load", refreshLayout);
+        clearFallback();
+        gsap.set(track, { x: 0, clearProps: "transform" });
+      };
+    });
 
-    mount();
+    mm.add("(max-width: 767px)", () => {
+      gsap.set(track, { x: 0, clearProps: "transform" });
 
-    const onResize = () => {
-      mount();
-    };
+      gsap.from(cards(), {
+        opacity: 0,
+        y: 30,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.08,
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: section,
+          start: "top 85%",
+          invalidateOnRefresh: true,
+        },
+      });
 
-    const onLoad = () => ScrollTrigger.refresh();
+      const clearFallback = animationVisibleFallback(section, ".service-card", 500);
 
-    window.addEventListener("resize", onResize);
-    window.addEventListener("load", onLoad, { once: true });
+      return () => {
+        clearFallback();
+        gsap.set(track, { x: 0, clearProps: "transform" });
+      };
+    });
+
+    ScrollTrigger.refresh();
 
     return () => {
-      window.removeEventListener("resize", onResize);
-      window.removeEventListener("load", onLoad);
-      clearFallback?.();
-      ctx?.revert();
+      mm.revert();
     };
   }, []);
 
