@@ -35,6 +35,7 @@ type ValidationResult =
         tags: string[];
         seoTitle: string;
         seoDescription: string;
+        status: string;
       };
     }
   | { ok: false; error: string };
@@ -93,6 +94,10 @@ function validatePayload(body: DistribbPayload): ValidationResult {
     typeof article.meta_description === "string"
       ? article.meta_description.trim()
       : "";
+  const status =
+    typeof article.status === "string" && article.status.trim()
+      ? article.status.trim()
+      : "Published";
 
   return {
     ok: true,
@@ -104,6 +109,7 @@ function validatePayload(body: DistribbPayload): ValidationResult {
       tags: tags.map((tag) => tag.trim()).filter(Boolean),
       seoTitle: article.title.trim(),
       seoDescription: metaDescription,
+      status,
     },
   };
 }
@@ -146,16 +152,16 @@ export async function POST(request: Request) {
       );
     }
 
-    const { article } = await storeArticle(validation.data);
+    const { articleId } = await storeArticle(validation.data);
 
     logWebhook({
       tokenValid: true,
       success: true,
-      articleId: article.articleId,
+      articleId,
     });
 
     return NextResponse.json(
-      { success: true, articleId: article.articleId },
+      { success: true, articleId },
       { status: 200 },
     );
   } catch (error) {
