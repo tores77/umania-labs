@@ -5,19 +5,31 @@ import { storeArticle } from "@/lib/distribb/store-article";
 const WEBHOOK_SECRET = "distribb-secret-key-umania-2026";
 const EXPECTED_AUTH = `Bearer ${WEBHOOK_SECRET}`;
 
-type DistribbPayload = {
+type DistribbArticle = {
   title?: unknown;
-  content?: unknown;
+  slug?: unknown;
+  content_html?: unknown;
+  content_markdown?: unknown;
+  meta_description?: unknown;
+  image_url?: unknown;
+  alt_text?: unknown;
   tags?: unknown;
-  seoTitle?: unknown;
-  seoDescription?: unknown;
-  publishedUrl?: unknown;
+  author?: unknown;
+  status?: unknown;
+};
+
+type DistribbPayload = {
+  data?: {
+    articles?: unknown;
+  };
 };
 
 type ValidationResult =
   | {
       ok: true;
       data: {
+        articleId: string;
+        slug: string;
         title: string;
         content: string;
         tags: string[];
@@ -43,48 +55,55 @@ function logWebhook(event: {
 }
 
 function validatePayload(body: DistribbPayload): ValidationResult {
-  if (typeof body.title !== "string" || !body.title.trim()) {
+  if (!body.data || !Array.isArray(body.data.articles)) {
+    return { ok: false, error: "data.articles is required" };
+  }
+
+  if (body.data.articles.length === 0) {
+    return { ok: false, error: "data.articles must contain at least one article" };
+  }
+
+  const article = body.data.articles[0] as DistribbArticle;
+
+  if (typeof article.title !== "string" || !article.title.trim()) {
     return { ok: false, error: "title is required" };
   }
 
-  if (typeof body.content !== "string" || !body.content.trim()) {
-    return { ok: false, error: "content is required" };
+  if (typeof article.content_html !== "string" || !article.content_html.trim()) {
+    return { ok: false, error: "content_html is required" };
   }
 
-  if (body.tags !== undefined) {
-    if (!Array.isArray(body.tags)) {
+  if (article.tags !== undefined) {
+    if (!Array.isArray(article.tags)) {
       return { ok: false, error: "tags must be an array of strings" };
     }
-    if (!body.tags.every((tag) => typeof tag === "string")) {
+    if (!article.tags.every((tag) => typeof tag === "string")) {
       return { ok: false, error: "tags must be an array of strings" };
     }
   }
 
-  if (typeof body.seoTitle !== "string") {
-    return { ok: false, error: "seoTitle must be a string" };
-  }
-
-  if (typeof body.seoDescription !== "string") {
-    return { ok: false, error: "seoDescription must be a string" };
-  }
-
-  if (
-    body.publishedUrl !== undefined &&
-    typeof body.publishedUrl !== "string"
-  ) {
-    return { ok: false, error: "publishedUrl must be a string" };
-  }
-
-  const tags = (body.tags ?? []) as string[];
+  const slug =
+    typeof article.slug === "string" && article.slug.trim()
+      ? article.slug.trim()
+      : "article";
+  const timestamp = Date.now();
+  const articleId = `${slug}-${timestamp}`;
+  const tags = (article.tags ?? []) as string[];
+  const metaDescription =
+    typeof article.meta_description === "string"
+      ? article.meta_description.trim()
+      : "";
 
   return {
     ok: true,
     data: {
-      title: body.title.trim(),
-      content: sanitizeHtml(body.content.trim()),
+      articleId,
+      slug,
+      title: article.title.trim(),
+      content: sanitizeHtml(article.content_html.trim()),
       tags: tags.map((tag) => tag.trim()).filter(Boolean),
-      seoTitle: body.seoTitle.trim(),
-      seoDescription: body.seoDescription.trim(),
+      seoTitle: article.title.trim(),
+      seoDescription: metaDescription,
     },
   };
 }
