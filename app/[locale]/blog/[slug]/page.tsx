@@ -3,90 +3,105 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import {
-  getAllPostParams,
-  getPostBySlug,
-  getRelatedPosts,
-} from "@/lib/blog";
+  getAllArticleSlugs,
+  getArticleBySlug,
+  getArticles,
+} from "@/lib/supabase/server";
+import type { Article } from "@/lib/supabase/server";
+import { getRelatedArticles, toBlogListItem } from "@/lib/blog-utils";
 import { getBlogLanguageSlugs } from "@/lib/blog-slugs";
-import { renderBlogMDX } from "@/lib/render-mdx";
 import { SITE_URL } from "@/lib/constants";
+
+export const revalidate = 60;
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
 };
 
 export async function generateStaticParams() {
-  return getAllPostParams();
+  try {
+    return await getAllArticleSlugs();
+  } catch {
+    return [];
+  }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
-  const post = getPostBySlug(slug, locale);
-  if (!post) return {};
 
-  const { es: esSlug, en: enSlug } = getBlogLanguageSlugs(slug, locale);
-  const imagePath = post.image || "/og-default.jpg";
-  const imageUrl = imagePath.startsWith("http")
-    ? imagePath
-    : `${SITE_URL}${imagePath}`;
+  try {
+    const article = await getArticleBySlug(slug, locale);
+    if (!article) return {};
 
-  return {
-    title: post.title,
-    description: post.description,
-    authors: [{ name: post.author }],
-    alternates: {
-      canonical: `${SITE_URL}/${locale}/blog/${slug}`,
-      languages: {
-        es: `${SITE_URL}/es/blog/${esSlug}`,
-        en: `${SITE_URL}/en/blog/${enSlug}`,
-        "x-default": `${SITE_URL}/es/blog/${esSlug}`,
+    const { es: esSlug, en: enSlug } = getBlogLanguageSlugs(slug, locale);
+    const seoTitle = article.seo_title || article.title;
+    const seoDescription = article.seo_description;
+
+    return {
+      title: seoTitle,
+      description: seoDescription,
+      alternates: {
+        canonical: `${SITE_URL}/${locale}/blog/${slug}`,
+        languages: {
+          es: `${SITE_URL}/es/blog/${esSlug}`,
+          en: `${SITE_URL}/en/blog/${enSlug}`,
+          "x-default": `${SITE_URL}/es/blog/${esSlug}`,
+        },
       },
-    },
-    openGraph: {
-      type: "article",
-      title: post.title,
-      description: post.description,
-      url: `${SITE_URL}/${locale}/blog/${post.slug}`,
-      images: [{ url: imageUrl, width: 1200, height: 630, alt: post.title }],
-      publishedTime: post.date,
-      authors: [post.author],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: post.title,
-      description: post.description,
-      images: [imageUrl],
-    },
-  };
+      openGraph: {
+        type: "article",
+        title: seoTitle,
+        description: seoDescription,
+        url: `${SITE_URL}/${locale}/blog/${article.slug}`,
+        images: [{ url: "/og-default.jpg", width: 1200, height: 630, alt: seoTitle }],
+        publishedTime: article.created_at,
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: seoTitle,
+        description: seoDescription,
+        images: ["/og-default.jpg"],
+      },
+    };
+  } catch {
+    return {};
+  }
 }
 
-function ArticleJsonLd({
-  post,
+function BlogPostingJsonLd({
+  article,
   locale,
 }: {
-  post: NonNullable<ReturnType<typeof getPostBySlug>>;
+  article: Article;
   locale: string;
 }) {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    headline: post.title,
-    description: post.description,
+    "@type": "BlogPosting",
+    headline: article.seo_title || article.title,
+    description: article.seo_description,
+    datePublished: article.created_at,
+    dateModified: article.created_at,
+    image: `${SITE_URL}/og-default.jpg`,
     author: {
-      "@type": "Person",
-      name: post.author,
-    },
-    datePublished: post.date,
-    image: post.image.startsWith("http") ? post.image : `${SITE_URL}${post.image}`,
-    publisher: {
       "@type": "Organization",
       name: "Umania Labs",
       url: SITE_URL,
     },
+    publisher: {
+      "@type": "Organization",
+      name: "Umania Labs",
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/studio-door.png`,
+      },
+    },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `${SITE_URL}/${locale}/blog/${post.slug}`,
+      "@id": `${SITE_URL}/${locale}/blog/${article.slug}`,
     },
+    keywords: (article.tags ?? []).join(", "),
   };
 
   return (
@@ -101,16 +116,28 @@ export default async function BlogPostPage({ params }: Props) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
 
-  const post = getPostBySlug(slug, locale);
-  if (!post) notFound();
+  let article: Article | null = null;
+  let related: ReturnType<typeof toBlogListItem>[] = [];
+
+  try {
+    article = await getArticleBySlug(slug, locale);
+    if (article) {
+      const allArticles = await getArticles(locale);
+      related = getRelatedArticles(allArticles, article.tags ?? [], article.slug);
+    }
+  } catch (error) {
+    console.error("[blog] Failed to load article:", error);
+    notFound();
+  }
+
+  if (!article) notFound();
 
   const t = await getTranslations("blog");
-  const Content = await renderBlogMDX(post.content);
-  const related = getRelatedPosts(post.tags, locale, post.slug);
+  const listItem = toBlogListItem(article);
 
   return (
     <>
-      <ArticleJsonLd post={post} locale={locale} />
+      <BlogPostingJsonLd article={article} locale={locale} />
       <main
         id="main-content"
         style={{
@@ -139,7 +166,7 @@ export default async function BlogPostPage({ params }: Props) {
 
           <header style={{ marginBottom: 48 }}>
             <time
-              dateTime={post.date}
+              dateTime={listItem.date}
               className="text-label"
               style={{
                 color: "var(--fg-muted)",
@@ -148,13 +175,13 @@ export default async function BlogPostPage({ params }: Props) {
                 marginBottom: 16,
               }}
             >
-              {new Date(post.date).toLocaleDateString(locale, {
+              {new Date(listItem.date).toLocaleDateString(locale, {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
               })}
               {" · "}
-              {post.readingTime}
+              {listItem.readingTime}
             </time>
             <h1
               className="text-display"
@@ -165,7 +192,7 @@ export default async function BlogPostPage({ params }: Props) {
                 lineHeight: 1.1,
               }}
             >
-              {post.title}
+              {article.title}
             </h1>
             <p
               style={{
@@ -175,16 +202,10 @@ export default async function BlogPostPage({ params }: Props) {
                 margin: "0 0 20px",
               }}
             >
-              {post.description}
-            </p>
-            <p
-              className="text-label"
-              style={{ color: "var(--accent)", fontSize: 10, margin: "0 0 16px" }}
-            >
-              {post.author}
+              {article.seo_description}
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-              {post.tags.map((tag) => (
+              {listItem.tags.map((tag) => (
                 <span
                   key={tag}
                   className="text-label"
@@ -201,9 +222,10 @@ export default async function BlogPostPage({ params }: Props) {
             </div>
           </header>
 
-          <div className="blog-article-content">
-            <Content />
-          </div>
+          <div
+            className="blog-article-content"
+            dangerouslySetInnerHTML={{ __html: article.content }}
+          />
 
           {related.length > 0 && (
             <aside

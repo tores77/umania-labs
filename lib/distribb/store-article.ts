@@ -20,6 +20,7 @@ export async function storeArticle(input: {
   seoTitle: string;
   seoDescription: string;
   status: string;
+  locale?: string;
 }): Promise<{ articleId: string }> {
   const supabase = getSupabaseClient();
 
@@ -33,7 +34,8 @@ export async function storeArticle(input: {
       seo_description: input.seoDescription,
       slug: input.slug,
       tags: input.tags,
-      status: input.status,
+      status: input.status.trim().toLowerCase(),
+      locale: (input.locale ?? "en").trim().toLowerCase(),
     })
     .select("article_id")
     .single();

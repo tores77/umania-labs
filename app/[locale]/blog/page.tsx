@@ -1,8 +1,11 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
-import { getAllPosts } from "@/lib/blog";
+import { getArticles } from "@/lib/supabase/server";
+import { toBlogListItem } from "@/lib/blog-utils";
 import { SITE_URL } from "@/lib/constants";
+
+export const revalidate = 60;
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -35,7 +38,23 @@ export default async function BlogIndexPage({ params }: Props) {
   setRequestLocale(locale);
 
   const t = await getTranslations("blog");
-  const posts = getAllPosts(locale);
+  let posts: ReturnType<typeof toBlogListItem>[] = [];
+
+  try {
+    const articles = await getArticles(locale);
+    posts = articles
+      .map((article) => {
+        try {
+          return toBlogListItem(article);
+        } catch (error) {
+          console.error("[blog] Failed to map article:", article.slug, error);
+          return null;
+        }
+      })
+      .filter((post): post is ReturnType<typeof toBlogListItem> => post !== null);
+  } catch (error) {
+    console.error("[blog] Failed to load articles:", error);
+  }
 
   return (
     <main
@@ -65,7 +84,7 @@ export default async function BlogIndexPage({ params }: Props) {
           <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
             {posts.map((post) => (
               <li
-                key={post.slug}
+                key={`${post.slug}-${post.date}`}
                 style={{
                   borderTop: "1px solid var(--line)",
                   padding: "32px 0",

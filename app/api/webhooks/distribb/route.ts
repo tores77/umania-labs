@@ -16,6 +16,7 @@ type DistribbArticle = {
   tags?: unknown;
   author?: unknown;
   status?: unknown;
+  locale?: unknown;
 };
 
 type DistribbPayload = {
@@ -36,6 +37,7 @@ type ValidationResult =
         seoTitle: string;
         seoDescription: string;
         status: string;
+        locale: string;
       };
     }
   | { ok: false; error: string };
@@ -97,7 +99,11 @@ function validatePayload(body: DistribbPayload): ValidationResult {
   const status =
     typeof article.status === "string" && article.status.trim()
       ? article.status.trim()
-      : "Published";
+      : "published";
+  const locale =
+    typeof article.locale === "string" && article.locale.trim()
+      ? article.locale.trim().toLowerCase()
+      : "en";
 
   return {
     ok: true,
@@ -110,6 +116,7 @@ function validatePayload(body: DistribbPayload): ValidationResult {
       seoTitle: article.title.trim(),
       seoDescription: metaDescription,
       status,
+      locale,
     },
   };
 }
