@@ -8,7 +8,7 @@ import {
   getArticles,
 } from "@/lib/supabase/server";
 import type { Article } from "@/lib/supabase/server";
-import { getRelatedArticles, toBlogListItem } from "@/lib/blog-utils";
+import { getRelatedArticles, toBlogListItem, extractFaqFromHtml, buildFaqPageJsonLd } from "@/lib/blog-utils";
 import { getBlogLanguageSlugs } from "@/lib/blog-slugs";
 import { SITE_URL } from "@/lib/constants";
 
@@ -112,6 +112,21 @@ function BlogPostingJsonLd({
   );
 }
 
+function FaqPageJsonLd({ pairs }: { pairs: ReturnType<typeof extractFaqFromHtml> }) {
+  if (pairs.length === 0) {
+    return null;
+  }
+
+  const schema = buildFaqPageJsonLd(pairs);
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
 export default async function BlogPostPage({ params }: Props) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
@@ -134,10 +149,12 @@ export default async function BlogPostPage({ params }: Props) {
 
   const t = await getTranslations("blog");
   const listItem = toBlogListItem(article);
+  const faqPairs = extractFaqFromHtml(article.content ?? "");
 
   return (
     <>
       <BlogPostingJsonLd article={article} locale={locale} />
+      <FaqPageJsonLd pairs={faqPairs} />
       <main
         id="main-content"
         style={{
