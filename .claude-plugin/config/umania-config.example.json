@@ -1,0 +1,73 @@
+{
+  "umania_labs_config": {
+    "version": "1.0.0",
+    "environment": "production",
+    
+    "directories": {
+      "config_dir": "~/.config/umania-labs",
+      "scripts_dir": "scripts/",
+      "agents_dir": ".claude-plugin/agents/",
+      "skills_dir": ".claude-plugin/skills/"
+    },
+    
+    "quality_gates": {
+      "min_score_required": 13,
+      "total_gates": 15,
+      "required_gates": [
+        "no_broken_images",
+        "no_console_errors",
+        "no_mixed_content",
+        "ctas_functional",
+        "canonical_tag",
+        "h1_tag",
+        "schema_markup",
+        "hero_video"
+      ]
+    },
+    
+    "drift_monitoring": {
+      "database_location": "~/.config/umania-labs/{domain}-baseline.db",
+      "severity_levels": {
+        "critical": ["canonical_changed", "h1_removed", "video_missing"],
+        "high": ["title_changed", "schema_types_changed", "cta_count_changed"],
+        "medium": ["image_count_changed", "word_count_changed"]
+      }
+    },
+    
+    "schema_generation": {
+      "default_types": [
+        "restaurant",
+        "luxury-yacht",
+        "beach-club",
+        "hotel",
+        "architecture",
+        "fashion"
+      ],
+      "default_country_code": "ES",
+      "default_currency": "EUR"
+    },
+    
+    "integrations": {
+      "whatsapp": {
+        "business_number": "+34676967465",
+        "message_template": "Hola Pere, quiero saber más sobre el diseño premium para mi web."
+      },
+      "calendly": {
+        "url": "https://calendly.com/pere-umania/30min",
+        "timezone": "Europe/Madrid"
+      },
+      "stripe": {
+        "enabled": false,
+        "deposit_amount_eur": 100,
+        "currency": "EUR"
+      }
+    },
+    
+    "delivery_slas": {
+      "web_delivery_hours": 48,
+      "quality_gates_required": true,
+      "schema_validation_required": false,
+      "post_launch_monitoring_weeks": 4
+    }
+  }
+}
