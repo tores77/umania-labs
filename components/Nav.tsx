@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import LangToggle from "@/components/LangToggle";
 import { CALENDLY_URL } from "@/lib/constants";
-import { subscribeLenisScroll } from "@/lib/scroll";
+import { subscribeLenisScroll, scrollToHash } from "@/lib/scroll";
 
 const LINKS = [
   { href: "#services", key: "services" as const },
@@ -18,6 +18,7 @@ const LINKS = [
 
 export default function Nav() {
   const t = useTranslations("nav");
+  const tc = useTranslations("common");
   const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeHash, setActiveHash] = useState("");
@@ -65,6 +66,15 @@ export default function Nav() {
 
   const closeMenu = () => setMenuOpen(false);
   const navHidden = isDesktop && hidden && !menuOpen;
+
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+    if (hash.startsWith("#") && hash.length > 1) {
+      e.preventDefault();
+      scrollToHash(hash);
+      window.history.pushState(null, "", hash);
+    }
+    closeMenu();
+  };
 
   return (
     <>
@@ -160,14 +170,14 @@ export default function Nav() {
             </Link>
           </div>
           <a
-            href={CALENDLY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#agent"
+            data-cursor="GO"
             className="cta-btn"
             style={{ padding: "10px 20px", fontSize: 9, display: "none" }}
             id="nav-cta-desktop"
+            onClick={(e) => handleAnchorClick(e, "#agent")}
           >
-            {t("contact")}
+            {tc("talkToAgent")}
           </a>
           <button
             type="button"
@@ -307,14 +317,22 @@ export default function Nav() {
           {t("blog")}
         </Link>
         <a
+          href="#agent"
+          className="cta-btn"
+          onClick={(e) => handleAnchorClick(e, "#agent")}
+          style={{ marginTop: 24, minHeight: 44 }}
+        >
+          {tc("talkToAgent")}
+        </a>
+        <a
           href={CALENDLY_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="cta-btn-outline"
           onClick={closeMenu}
-          style={{ marginTop: 24, minHeight: 44 }}
+          style={{ marginTop: 12, minHeight: 44 }}
         >
-          {t("contact")}
+          {tc("bookCall")}
         </a>
       </div>
     </>

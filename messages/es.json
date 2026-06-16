@@ -20,8 +20,8 @@
   "hero": {
     "headline": "Tu web como máquina de ventas activa 24/7",
     "subline": "Diseño premium, tecnología de vanguardia y un sistema completo que genera leads mientras duermes",
-    "ctaPrimary": "Agendar llamada",
-    "ctaSecondary": "Ver servicios",
+    "ctaPrimary": "Habla con el agente",
+    "ctaSecondary": "Reservar llamada",
     "scrollHint": "SCROLL"
   },
   "painPoints": {
@@ -355,6 +355,8 @@
     "includes": "Incluye",
     "viewLive": "Ver live",
     "learnMore": "Saber más",
-    "skipToContent": "Ir al contenido principal"
+    "skipToContent": "Ir al contenido principal",
+    "talkToAgent": "Habla con el agente",
+    "bookCall": "Reservar llamada"
   }
 }

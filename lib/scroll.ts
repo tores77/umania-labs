@@ -71,6 +71,27 @@ export function subscribeLenisScroll(onScroll: (scrollY: number) => void) {
   };
 }
 
+export function scrollToHash(hash: string, offset = -80) {
+  if (typeof window === "undefined") return;
+
+  const id = hash.replace(/^#/, "");
+  if (!id) return;
+
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  const instance = getLenis();
+  if (instance) {
+    instance.scrollTo(el, { offset, duration: 1.2 });
+    return;
+  }
+
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (offset) {
+    window.scrollBy(0, offset);
+  }
+}
+
 export function initLenis() {
   if (typeof window === "undefined") return null;
   if (lenisBundle) return lenisBundle;

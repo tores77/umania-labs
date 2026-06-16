@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { gsap, registerGsap } from "@/lib/gsap";
 import { CALENDLY_URL } from "@/lib/constants";
+import { scrollToHash } from "@/lib/scroll";
 
 const NUMBERS = ["01", "02", "03"];
 
@@ -146,14 +147,33 @@ export default function Packages() {
         })}
       </div>
 
-      <div style={{ textAlign: "center", marginTop: 64 }}>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 16,
+          justifyContent: "center",
+          marginTop: 64,
+        }}
+      >
+        <a
+          href="#agent"
+          className="cta-btn"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToHash("#agent");
+            window.history.pushState(null, "", "#agent");
+          }}
+        >
+          {tc("talkToAgent")}
+        </a>
         <a
           href={CALENDLY_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="cta-btn-outline"
         >
-          {t("scheduleCall")}
+          {tc("bookCall")}
         </a>
       </div>
 

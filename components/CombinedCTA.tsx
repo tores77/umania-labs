@@ -4,9 +4,11 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { gsap, registerGsap } from "@/lib/gsap";
 import { CALENDLY_URL, whatsappLink } from "@/lib/constants";
+import { scrollToHash } from "@/lib/scroll";
 
 export default function CombinedCTA() {
   const t = useTranslations("cta");
+  const tc = useTranslations("common");
   const locale = useLocale() as "es" | "en";
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -73,6 +75,12 @@ export default function CombinedCTA() {
     }
   };
 
+  const scrollToAgent = (e: React.MouseEvent) => {
+    e.preventDefault();
+    scrollToHash("#agent");
+    window.history.pushState(null, "", "#agent");
+  };
+
   return (
     <section ref={sectionRef} id="contact" className="section section-padding">
       <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
@@ -102,12 +110,19 @@ export default function CombinedCTA() {
           }}
         >
           <a
+            href="#agent"
+            onClick={scrollToAgent}
+            className="cta-btn"
+          >
+            {tc("talkToAgent")}
+          </a>
+          <a
             href={CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="cta-btn"
+            className="cta-btn-outline"
           >
-            {t("calendly")}
+            {tc("bookCall")}
           </a>
           <a
             href={whatsappLink(locale)}

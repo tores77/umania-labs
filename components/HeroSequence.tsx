@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { CALENDLY_URL } from "@/lib/constants";
+import { scrollToHash } from "@/lib/scroll";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -129,9 +130,10 @@ export default function HeroSequence() {
     };
   }, []);
 
-  const scrollToServices = (e: React.MouseEvent) => {
+  const scrollToAgent = (e: React.MouseEvent) => {
     e.preventDefault();
-    document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
+    scrollToHash("#agent");
+    window.history.pushState(null, "", "#agent");
   };
 
   return (
@@ -222,19 +224,19 @@ export default function HeroSequence() {
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
             <a
-              href={CALENDLY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#agent"
+              onClick={scrollToAgent}
               className="cta-btn"
-              data-cursor="BOOK"
+              data-cursor="GO"
             >
               {t("ctaPrimary")}
             </a>
             <a
-              href="#services"
-              onClick={scrollToServices}
+              href={CALENDLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="cta-btn-outline"
-              data-cursor="VIEW"
+              data-cursor="BOOK"
             >
               {t("ctaSecondary")}
             </a>

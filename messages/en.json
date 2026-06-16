@@ -20,8 +20,8 @@
   "hero": {
     "headline": "Your website as an active sales machine 24/7",
     "subline": "Premium design, cutting-edge technology and a complete system that generates leads while you sleep",
-    "ctaPrimary": "Book a call",
-    "ctaSecondary": "View services",
+    "ctaPrimary": "Talk to the agent",
+    "ctaSecondary": "Book a call",
     "scrollHint": "SCROLL"
   },
   "painPoints": {
@@ -355,6 +355,8 @@
     "includes": "Includes",
     "viewLive": "View live",
     "learnMore": "Learn more",
-    "skipToContent": "Skip to main content"
+    "skipToContent": "Skip to main content",
+    "talkToAgent": "Talk to the agent",
+    "bookCall": "Book a call"
   }
 }
