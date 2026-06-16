@@ -22,88 +22,85 @@ export default function HeroSequence() {
   const progressBarRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const lastTime = useRef<number[]>([0, 0, 0, 0]);
-  const [allReady, setAllReady] = useState(false);
+  const loadedVideos = useRef(new Set<number>([0]));
   const [showScrollHint, setShowScrollHint] = useState(true);
 
   useEffect(() => {
-    const videos = videoRefs.current.filter(Boolean) as HTMLVideoElement[];
-    if (videos.length === 0) return;
+    const ensureVideoLoaded = (index: number) => {
+      if (loadedVideos.current.has(index)) return;
 
-    let readyCount = 0;
-    const total = videos.length;
-    let trigger: ScrollTrigger | null = null;
+      const video = videoRefs.current[index];
+      if (!video) return;
+
+      loadedVideos.current.add(index);
+      video.src = VIDEO_SRCS[index];
+      video.muted = true;
+      video.playsInline = true;
+      video.preload = "auto";
+      video.load();
+    };
 
     const prebuffer = (videoIndex: number, time: number) => {
-      const v = videoRefs.current[videoIndex];
-      if (v && v.readyState >= 2) {
-        v.currentTime = time;
+      const video = videoRefs.current[videoIndex];
+      if (video && video.readyState >= 2) {
+        video.currentTime = time;
         lastTime.current[videoIndex] = time;
       }
     };
 
-    const initScrollTrigger = () => {
-      trigger = ScrollTrigger.create({
-        trigger: containerRef.current,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1,
-        onUpdate: (self) => {
-          const p = self.progress;
+    const firstVideo = videoRefs.current[0];
+    if (firstVideo) {
+      firstVideo.muted = true;
+      firstVideo.playsInline = true;
+      firstVideo.load();
+    }
 
-          if (progressBarRef.current) {
-            progressBarRef.current.style.transform = `scaleX(${p})`;
+    const trigger = ScrollTrigger.create({
+      trigger: containerRef.current,
+      start: "top top",
+      end: "bottom bottom",
+      scrub: 1,
+      onUpdate: (self) => {
+        const p = self.progress;
+
+        if (progressBarRef.current) {
+          progressBarRef.current.style.transform = `scaleX(${p})`;
+        }
+
+        if (p > 0.08) ensureVideoLoaded(1);
+        if (p > 0.33) ensureVideoLoaded(2);
+        if (p > 0.58) ensureVideoLoaded(3);
+
+        const segment = p < 0.25 ? 0 : p < 0.5 ? 1 : p < 0.75 ? 2 : 3;
+
+        if (p > 0.22 && p < 0.25) prebuffer(1, 0);
+        if (p > 0.47 && p < 0.5) prebuffer(2, 0);
+        if (p > 0.72 && p < 0.75) prebuffer(3, 0);
+
+        videoRefs.current.forEach((video, i) => {
+          if (!video) return;
+          if (i === segment) {
+            video.style.opacity = "1";
+          } else {
+            video.style.opacity = "0";
+            if (!video.paused) video.pause();
           }
+        });
 
-          const segment = p < 0.25 ? 0 : p < 0.5 ? 1 : p < 0.75 ? 2 : 3;
-
-          if (p > 0.22 && p < 0.25) prebuffer(1, 0);
-          if (p > 0.47 && p < 0.5) prebuffer(2, 0);
-          if (p > 0.72 && p < 0.75) prebuffer(3, 0);
-
-          videoRefs.current.forEach((v, i) => {
-            if (!v) return;
-            if (i === segment) {
-              v.style.opacity = "1";
-            } else {
-              v.style.opacity = "0";
-              if (!v.paused) v.pause();
-            }
-          });
-
-          const active = videoRefs.current[segment];
-          if (active && active.duration && isFinite(active.duration)) {
-            const segP = Math.max(0, Math.min(1, (p - segment * 0.25) / 0.25));
-            const newTime = segP * active.duration;
-            if (Math.abs(newTime - lastTime.current[segment]) > 0.05) {
-              active.currentTime = newTime;
-              lastTime.current[segment] = newTime;
-            }
+        const active = videoRefs.current[segment];
+        if (active && active.duration && isFinite(active.duration)) {
+          const segP = Math.max(0, Math.min(1, (p - segment * 0.25) / 0.25));
+          const newTime = segP * active.duration;
+          if (Math.abs(newTime - lastTime.current[segment]) > 0.05) {
+            active.currentTime = newTime;
+            lastTime.current[segment] = newTime;
           }
-        },
-      });
-      setAllReady(true);
-    };
-
-    videos.forEach((v, i) => {
-      v.muted = true;
-      v.playsInline = true;
-      v.preload = i === 0 ? "auto" : "none";
-
-      const onReady = () => {
-        readyCount++;
-        if (readyCount === total) initScrollTrigger();
-      };
-
-      if (v.readyState >= 3) {
-        onReady();
-      } else {
-        v.addEventListener("canplay", onReady, { once: true });
-        v.load();
-      }
+        }
+      },
     });
 
     return () => {
-      trigger?.kill();
+      trigger.kill();
     };
   }, []);
 
@@ -155,7 +152,7 @@ export default function HeroSequence() {
             ref={(el) => {
               videoRefs.current[i] = el;
             }}
-            src={src}
+            src={i === 0 ? src : undefined}
             muted
             playsInline
             preload={i === 0 ? "auto" : "none"}
@@ -304,38 +301,6 @@ export default function HeroSequence() {
             }}
           />
         </div>
-
-        {!allReady && (
-          <div
-            aria-hidden
-            style={{
-              position: "absolute",
-              inset: 0,
-              background: "#0a0a0a",
-              zIndex: 20,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <div
-              style={{
-                width: 120,
-                height: 1,
-                background: "var(--line)",
-                overflow: "hidden",
-              }}
-            >
-              <div
-                style={{
-                  height: "100%",
-                  background: "var(--accent)",
-                  animation: "loading 1.2s ease-in-out infinite",
-                }}
-              />
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );
