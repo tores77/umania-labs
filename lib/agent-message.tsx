@@ -51,7 +51,13 @@ function isWhatsAppLink(href: string): boolean {
   return href.includes("wa.me/") || href.includes("api.whatsapp.com");
 }
 
-export function AgentMessageContent({ content }: { content: string }) {
+export function AgentMessageContent({
+  content,
+  onWhatsAppClick,
+}: {
+  content: string;
+  onWhatsAppClick?: () => void;
+}) {
   const parts = parseAgentMessage(content);
 
   return (
@@ -71,6 +77,7 @@ export function AgentMessageContent({ content }: { content: string }) {
               target="_blank"
               rel="noopener noreferrer"
               className="agent-whatsapp-cta"
+              onClick={onWhatsAppClick}
             >
               {part.label}
             </a>

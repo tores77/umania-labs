@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { AgentMessageContent } from "@/lib/agent-message";
+import { trackEvent } from "@/lib/analytics";
 import { gsap, registerGsap } from "@/lib/gsap";
 
 type Message = { role: "user" | "assistant"; content: string };
@@ -52,6 +53,11 @@ export default function AIAgent() {
     async (text: string) => {
       const trimmed = text.trim();
       if (!trimmed || loading) return;
+
+      const isFirstUserMessage = messages.every((message) => message.role !== "user");
+      if (isFirstUserMessage) {
+        trackEvent("agent_conversation_started");
+      }
 
       setInput("");
       setError("");
@@ -156,7 +162,10 @@ export default function AIAgent() {
                     color: "var(--fg)",
                   }}
                 >
-                  <AgentMessageContent content={msg.content} />
+                  <AgentMessageContent
+                    content={msg.content}
+                    onWhatsAppClick={() => trackEvent("agent_whatsapp_click")}
+                  />
                 </div>
               </div>
             ))}
