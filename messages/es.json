@@ -225,7 +225,7 @@
   },
   "agent": {
     "title": "Habla con nuestro agente",
-    "subtitle": "Descubre qué paquete encaja con tu proyecto — sin llamadas, sin formularios, en 2 minutos",
+    "subtitle": "Cuéntanos tu proyecto y te conectamos por WhatsApp para ver tu propuesta — en 2 minutos",
     "inputLabel": "Mensaje para el agente",
     "placeholder": "Cuéntanos sobre tu proyecto...",
     "send": "Enviar",
@@ -233,10 +233,10 @@
     "typing": "Escribiendo...",
     "error": "No pudimos conectar con el agente. Inténtalo de nuevo.",
     "errorNoKey": "El agente no está disponible en este momento.",
-    "welcome": "Hola, soy el asistente de Umania Labs. ¿En qué sector está tu negocio?",
+    "welcome": "Hola, soy el asistente de Umania Labs. ¿En qué sector está tu negocio y cuál es tu objetivo principal con la web?",
     "starterPrompts": [
       "Tengo un negocio en Mallorca",
-      "Soy una startup buscando inversión",
+      "Tengo un restaurante o club premium en Mallorca",
       "Quiero vender más desde mi web"
     ]
   },

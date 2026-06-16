@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useTranslations, useLocale } from "next-intl";
+import { AgentMessageContent } from "@/lib/agent-message";
 import { gsap, registerGsap } from "@/lib/gsap";
 
 type Message = { role: "user" | "assistant"; content: string };
@@ -155,7 +156,7 @@ export default function AIAgent() {
                     color: "var(--fg)",
                   }}
                 >
-                  {msg.content}
+                  <AgentMessageContent content={msg.content} />
                 </div>
               </div>
             ))}

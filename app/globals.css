@@ -408,6 +408,22 @@ select:focus-visible {
   font-weight: 500;
 }
 
-.blog-article-content em {
-  font-style: italic;
+.agent-whatsapp-cta {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 12px 18px;
+  background: rgba(200, 169, 110, 0.15);
+  border: 1px solid rgba(200, 169, 110, 0.45);
+  color: var(--accent);
+  font-family: var(--font-outfit), system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.agent-whatsapp-cta:hover {
+  background: rgba(200, 169, 110, 0.28);
+  border-color: var(--accent);
+  color: var(--fg);
 }

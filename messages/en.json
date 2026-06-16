@@ -225,7 +225,7 @@
   },
   "agent": {
     "title": "Talk to our agent",
-    "subtitle": "Discover which package fits your project — no calls, no forms, in 2 minutes",
+    "subtitle": "Tell us about your project and we'll connect you on WhatsApp to see your proposal — in 2 minutes",
     "inputLabel": "Message for the agent",
     "placeholder": "Tell us about your project...",
     "send": "Send",
@@ -233,10 +233,10 @@
     "typing": "Typing...",
     "error": "We couldn't connect to the agent. Please try again.",
     "errorNoKey": "The agent is not available at this time.",
-    "welcome": "Hi, I'm the Umania Labs assistant. What sector is your business in?",
+    "welcome": "Hi, I'm the Umania Labs assistant. What sector is your business in, and what's your main website goal?",
     "starterPrompts": [
       "I have a business in Mallorca",
-      "I'm a startup looking for investment",
+      "I run a premium hospitality business in Mallorca",
       "I want to sell more from my website"
     ]
   },
