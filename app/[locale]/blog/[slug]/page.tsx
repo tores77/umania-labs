@@ -8,7 +8,15 @@ import {
   getArticles,
 } from "@/lib/supabase/server";
 import type { Article } from "@/lib/supabase/server";
-import { getRelatedArticles, toBlogListItem, extractFaqFromHtml, buildFaqPageJsonLd, buildBlogLanguageAlternates } from "@/lib/blog-utils";
+import {
+  getRelatedArticles,
+  toBlogListItem,
+  extractFaqFromHtml,
+  buildFaqPageJsonLd,
+  buildBlogLanguageAlternates,
+  getBlogAlternateSlug,
+} from "@/lib/blog-utils";
+import BlogLocaleSwitch from "@/components/BlogLocaleSwitch";
 import { SITE_URL } from "@/lib/constants";
 
 export const revalidate = 60;
@@ -145,9 +153,12 @@ export default async function BlogPostPage({ params }: Props) {
   const t = await getTranslations("blog");
   const listItem = toBlogListItem(article);
   const faqPairs = extractFaqFromHtml(article.content ?? "");
+  const otherLocale = locale === "es" ? "en" : "es";
+  const alternateSlug = await getBlogAlternateSlug(article, otherLocale);
 
   return (
     <>
+      <BlogLocaleSwitch alternateSlug={alternateSlug} />
       <BlogPostingJsonLd article={article} locale={locale} />
       <FaqPageJsonLd pairs={faqPairs} />
       <main

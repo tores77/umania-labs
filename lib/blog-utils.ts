@@ -175,3 +175,20 @@ export async function buildBlogLanguageAlternates(
 
   return Object.keys(languages).length > 0 ? languages : undefined;
 }
+
+export async function getBlogAlternateSlug(
+  article: Article,
+  targetLocale: string,
+): Promise<string | null> {
+  const translationKey = article.translation_key?.trim();
+  if (!translationKey) return null;
+
+  const currentLocale = article.locale.trim().toLowerCase();
+  const normalizedTarget = targetLocale.trim().toLowerCase();
+
+  if (currentLocale === normalizedTarget) {
+    return article.slug;
+  }
+
+  return getAlternateSlug(translationKey, normalizedTarget);
+}

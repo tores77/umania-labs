@@ -8,6 +8,7 @@ import { SITE_URL } from "@/lib/constants";
 import "../globals.css";
 
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
+import { LocaleSwitchProvider } from "@/components/LocaleSwitchProvider";
 import Cursor from "@/components/Cursor";
 import Nav from "@/components/Nav";
 
@@ -190,9 +191,11 @@ export default async function LocaleLayout({ children, params }: Props) {
         </a>
         <JsonLd locale={locale as Locale} />
         <NextIntlClientProvider messages={messages}>
-          <Cursor />
-          <Nav />
-          <SmoothScrollProvider>{children}</SmoothScrollProvider>
+          <LocaleSwitchProvider>
+            <Cursor />
+            <Nav />
+            <SmoothScrollProvider>{children}</SmoothScrollProvider>
+          </LocaleSwitchProvider>
         </NextIntlClientProvider>
       </body>
     </html>

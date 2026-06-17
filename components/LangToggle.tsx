@@ -4,7 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
-import { getBlogLanguageSlugs } from "@/lib/blog-slugs";
+import { useLocaleSwitch } from "@/components/LocaleSwitchProvider";
 
 type LangToggleProps = {
   variant?: "light" | "dark";
@@ -17,17 +17,21 @@ export default function LangToggle({ variant = "dark" }: LangToggleProps) {
   const pathname = usePathname();
   const params = useParams();
   const slug = typeof params?.slug === "string" ? params.slug : undefined;
+  const { blogAlternateSlug } = useLocaleSwitch();
 
   const switchLocale = () => {
     const next = locale === "es" ? "en" : "es";
 
     if (slug && pathname === "/blog/[slug]") {
-      const slugs = getBlogLanguageSlugs(slug, locale);
-      const targetSlug = next === "es" ? slugs.es : slugs.en;
-      router.replace(
-        { pathname: "/blog/[slug]", params: { slug: targetSlug } } as never,
-        { locale: next }
-      );
+      if (blogAlternateSlug) {
+        router.replace(
+          { pathname: "/blog/[slug]", params: { slug: blogAlternateSlug } } as never,
+          { locale: next },
+        );
+        return;
+      }
+
+      router.replace("/blog" as never, { locale: next });
       return;
     }
 
