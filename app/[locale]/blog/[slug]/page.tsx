@@ -8,8 +8,7 @@ import {
   getArticles,
 } from "@/lib/supabase/server";
 import type { Article } from "@/lib/supabase/server";
-import { getRelatedArticles, toBlogListItem, extractFaqFromHtml, buildFaqPageJsonLd } from "@/lib/blog-utils";
-import { getBlogLanguageSlugs } from "@/lib/blog-slugs";
+import { getRelatedArticles, toBlogListItem, extractFaqFromHtml, buildFaqPageJsonLd, buildBlogLanguageAlternates } from "@/lib/blog-utils";
 import { SITE_URL } from "@/lib/constants";
 
 export const revalidate = 60;
@@ -33,20 +32,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const article = await getArticleBySlug(slug, locale);
     if (!article) return {};
 
-    const { es: esSlug, en: enSlug } = getBlogLanguageSlugs(slug, locale);
     const seoTitle = article.seo_title || article.title;
     const seoDescription = article.seo_description;
+    const languages = await buildBlogLanguageAlternates(article);
 
     return {
       title: seoTitle,
       description: seoDescription,
       alternates: {
         canonical: `${SITE_URL}/${locale}/blog/${slug}`,
-        languages: {
-          es: `${SITE_URL}/es/blog/${esSlug}`,
-          en: `${SITE_URL}/en/blog/${enSlug}`,
-          "x-default": `${SITE_URL}/es/blog/${esSlug}`,
-        },
+        ...(languages ? { languages } : {}),
       },
       openGraph: {
         type: "article",

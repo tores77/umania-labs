@@ -10,6 +10,7 @@ export type Article = {
   tags: string[];
   status: string;
   locale: string;
+  translation_key?: string | null;
   created_at: string;
 };
 
@@ -86,6 +87,35 @@ export async function getArticleBySlug(
   }
 
   return data as Article;
+}
+
+export async function getAlternateSlug(
+  translationKey: string,
+  targetLocale: string,
+): Promise<string | null> {
+  const normalizedKey = translationKey.trim();
+  if (!normalizedKey) return null;
+
+  const supabase = createSupabaseClient();
+  const normalizedLocale = normalizeLocale(targetLocale);
+
+  const { data, error } = await supabase
+    .from("articles")
+    .select("slug, status")
+    .eq("translation_key", normalizedKey)
+    .eq("locale", normalizedLocale)
+    .filter("status", "ilike", PUBLISHED_STATUS)
+    .maybeSingle();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  if (!data || !isPublishedStatus(data.status)) {
+    return null;
+  }
+
+  return data.slug;
 }
 
 export async function getAllArticleSlugs(): Promise<

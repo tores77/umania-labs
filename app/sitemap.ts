@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/constants";
 import { routing } from "@/i18n/routing";
 import { getArticles } from "@/lib/supabase/server";
-import { getBlogLanguageSlugs } from "@/lib/blog-slugs";
+import { buildBlogLanguageAlternates } from "@/lib/blog-utils";
 
 type StaticRoute = {
   pathname: "/" | "/briefing" | "/blog" | "/privacy";
@@ -60,24 +60,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }))
     );
 
-    blogEntries = postsByLocale.flatMap(({ locale, posts }) =>
-      posts.map((post) => {
-        const { es, en } = getBlogLanguageSlugs(post.slug, locale);
-        return {
-          url: `${SITE_URL}/${locale}/blog/${post.slug}`,
-          lastModified: new Date(post.created_at),
-          changeFrequency: "monthly" as const,
-          priority: 0.7,
-          alternates: {
-            languages: {
-              es: `${SITE_URL}/es/blog/${es}`,
-              en: `${SITE_URL}/en/blog/${en}`,
-              "x-default": `${SITE_URL}/es/blog/${es}`,
-            },
-          },
-        };
-      })
-    );
+    blogEntries = (
+      await Promise.all(
+        postsByLocale.flatMap(({ locale, posts }) =>
+          posts.map(async (post) => {
+            const languages = await buildBlogLanguageAlternates(post);
+
+            return {
+              url: `${SITE_URL}/${locale}/blog/${post.slug}`,
+              lastModified: new Date(post.created_at),
+              changeFrequency: "monthly" as const,
+              priority: 0.7,
+              ...(languages ? { alternates: { languages } } : {}),
+            };
+          }),
+        ),
+      )
+    ).flat();
   } catch (error) {
     console.error("[sitemap] Failed to load blog articles:", error);
   }

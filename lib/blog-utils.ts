@@ -1,6 +1,7 @@
 import { parse } from "node-html-parser";
 import readingTime from "reading-time";
-import type { Article } from "@/lib/supabase/server";
+import { SITE_URL } from "@/lib/constants";
+import { getAlternateSlug, type Article } from "@/lib/supabase/server";
 
 export type BlogListItem = {
   slug: string;
@@ -146,4 +147,31 @@ export function getRelatedArticles(
     .sort((a, b) => b.score - a.score)
     .slice(0, 3)
     .map(({ article }) => toBlogListItem(article));
+}
+
+export async function buildBlogLanguageAlternates(
+  article: Article,
+): Promise<Record<string, string> | undefined> {
+  const translationKey = article.translation_key?.trim();
+  if (!translationKey) return undefined;
+
+  const locale = article.locale.trim().toLowerCase();
+  const esSlug =
+    locale === "es" ? article.slug : await getAlternateSlug(translationKey, "es");
+  const enSlug =
+    locale === "en" ? article.slug : await getAlternateSlug(translationKey, "en");
+
+  const languages: Record<string, string> = {};
+
+  if (esSlug) {
+    languages.es = `${SITE_URL}/es/blog/${esSlug}`;
+  }
+  if (enSlug) {
+    languages.en = `${SITE_URL}/en/blog/${enSlug}`;
+  }
+  if (esSlug) {
+    languages["x-default"] = `${SITE_URL}/es/blog/${esSlug}`;
+  }
+
+  return Object.keys(languages).length > 0 ? languages : undefined;
 }
