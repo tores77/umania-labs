@@ -112,6 +112,12 @@
         "includes": ["Google Ads", "Meta Ads", "Monthly reporting", "Continuous optimization"],
         "price": "Fee €1,000–2,500/mo"
       }
+    ],
+    "sectorLinks": [
+      {
+        "label": "Luxury villa real estate · Mallorca",
+        "href": "/services/luxury-villas"
+      }
     ]
   },
   "packages": {
@@ -295,7 +301,11 @@
     "copyright": "© 2026 Umania Labs · Mallorca, Spain",
     "whatsapp": "WhatsApp",
     "briefingLabel": "THE BRIEFING — Weekly newsletter",
-    "briefingPage": "The Briefing"
+    "briefingPage": "The Briefing",
+    "servicesLabel": "Sectors",
+    "serviceLinks": {
+      "luxuryVillas": "Luxury villas · Mallorca"
+    }
   },
   "briefing": {
     "label": "EVERY MONDAY · 09:00",
@@ -350,6 +360,137 @@
     "back": "Back to blog",
     "related": "Related articles",
     "empty": "New articles coming soon."
+  },
+  "servicePages": {
+    "luxuryVillas": {
+      "metaTitle": "Luxury villa real estate web design in Mallorca | Umania Labs",
+      "metaDescription": "Editorial multilingual websites for exclusive property agencies in Mallorca. Per-language SEO, international buyer capture, and premium conversion architecture.",
+      "hero": {
+        "label": "SECTOR · LUXURY REAL ESTATE",
+        "headline": "Luxury villa real estate web design in Mallorca",
+        "subline": "A digital presence worthy of your exclusive portfolio. We reach international buyers through editorial design, true multilingual SEO, and conversion architecture built for discretion.",
+        "ctaWhatsapp": "Direct WhatsApp"
+      },
+      "challenge": {
+        "label": "THE CHALLENGE",
+        "title": "When the website undersells the portfolio",
+        "items": [
+          {
+            "stat": "68%",
+            "title": "The site fails to convey exclusivity",
+            "description": "Generic portals and templates that misrepresent multi-million euro villas.",
+            "solution": "Editorial design with photography and video as the narrative core"
+          },
+          {
+            "stat": "4 markets",
+            "title": "International buyers lost in translation",
+            "description": "UK, DACH and Nordic buyers leave when language and local context are missing.",
+            "solution": "True multilingual architecture with independent SEO per language"
+          },
+          {
+            "stat": "72h",
+            "title": "Leads that go cold",
+            "description": "Hidden forms, no visible WhatsApp, no private viewing scheduling.",
+            "solution": "Visible conversion: forms, WhatsApp, and qualified capture"
+          },
+          {
+            "stat": "0%",
+            "title": "Invisible in luxury search",
+            "description": "No positioning by Mallorca zones, property types, or international buyer intent.",
+            "solution": "Luxury SEO by zones and property typologies"
+          }
+        ]
+      },
+      "solution": {
+        "label": "THE SOLUTION",
+        "title": "What a Umania luxury real estate website includes",
+        "items": [
+          {
+            "title": "Editorial design with photo and video at the centre",
+            "description": "Cinematic walkthroughs, high-resolution galleries, and serif typography that signals exclusivity before the first enquiry."
+          },
+          {
+            "title": "True multilingual with SEO per language",
+            "description": "Spanish, English and key markets with independent URLs, metadata and hreflang. Each language competes in its market — not a surface-level translation."
+          },
+          {
+            "title": "Conversion architecture for qualified leads",
+            "description": "Visible forms, contextual WhatsApp, private viewing scheduling, and an AI agent that qualifies budget and area before handoff to your team."
+          },
+          {
+            "title": "Luxury SEO by zones and typologies",
+            "description": "Pages optimised for Son Vida, Port d'Andratx, Deià, rustic estates, waterfront and off-market properties with international buyer intent."
+          },
+          {
+            "title": "Speed, trust and a sense of exclusivity",
+            "description": "Optimised Core Web Vitals, progressive media loading, and a fluid experience that reinforces premium brand perception from the first second."
+          }
+        ]
+      },
+      "walkthrough": {
+        "label": "EXPERIENCE",
+        "title": "Walkthrough of a luxury villa",
+        "description": "This is how an exclusive property feels on screen: unhurried pace, natural light, and spaces that breathe — the same editorial logic we apply to your portfolio."
+      },
+      "audience": {
+        "label": "FOR WHOM",
+        "title": "International buyers who demand coherence",
+        "marketLabel": "Buyer profile",
+        "brandLabel": "Umania positioning",
+        "ruleTitle": "Your website is the first private viewing",
+        "ruleDescription": "For a luxury villa portfolio, digital presence must inspire the same trust as an in-person visit. Investing in an editorial website is not a marketing expense — it is the infrastructure that attracts the right buyer before they contact a competitor.",
+        "items": [
+          {
+            "name": "Spain HNWI",
+            "marketRange": "Domestic high-net-worth buyers",
+            "ourPrice": "Websites from €15,000",
+            "insight": "They value discretion, visual quality, and immediate response. Clear forms and direct agent contact are essential."
+          },
+          {
+            "name": "UK + Northern Europe",
+            "marketRange": "Second home · Relocation · Investment",
+            "ourPrice": "Projects €25,000–50,000",
+            "insight": "They expect flawless English, local SEO by area, and an experience comparable to top London or Geneva agencies."
+          },
+          {
+            "name": "Scandinavia + DACH",
+            "marketRange": "Demanding buyers, long cycles",
+            "ourPrice": "Retainer + continuous evolution",
+            "insight": "They prioritise clarity, performance, and technical trust. True multilingual and speed are decisive differentiators."
+          }
+        ]
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "items": [
+          {
+            "question": "Do you build multilingual luxury real estate websites?",
+            "answer": "Yes. We develop true multilingual architectures — not translation plugins — with independent URLs, metadata, and SEO per language to reach buyers in Spain, the UK, Northern Europe, and other key markets."
+          },
+          {
+            "question": "Does SEO work per language?",
+            "answer": "Each language has its own strategy: keywords, canonical, hreflang, and market-adapted content. We rank for Mallorca zones, property types, and international search intent."
+          },
+          {
+            "question": "Do you integrate CRM or real estate software?",
+            "answer": "We integrate forms with your CRM, private portals, or portfolio management tools. We define the flow in the briefing: web capture, qualification, and handoff to your sales team."
+          },
+          {
+            "question": "How do you capture international buyers?",
+            "answer": "We combine multilingual SEO, editorial content by area, contextual WhatsApp, a qualifying AI agent, and visible CTAs at every stage. The goal is to filter browsers and accelerate contacts with real budget."
+          },
+          {
+            "question": "Do you have cases with results or metrics?",
+            "answer": "We work with premium agencies and developers in Mallorca. On the discovery call we share sector references, conversion metrics, and the editorial approach applied to portfolios similar to yours."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Let's discuss your portfolio",
+        "subtitle": "A private conversation to understand your positioning, target markets, and how your digital presence should feel.",
+        "whatsapp": "WhatsApp"
+      }
+    }
   },
   "common": {
     "includes": "Includes",

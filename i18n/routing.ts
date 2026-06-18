@@ -13,6 +13,10 @@ export const routing = defineRouting({
       es: "/privacidad",
       en: "/privacy",
     },
+    "/services/luxury-villas": {
+      es: "/servicios/diseno-web-villas-lujo-mallorca",
+      en: "/services/luxury-villa-real-estate-web-design",
+    },
   },
 });
 

@@ -112,6 +112,12 @@
         "includes": ["Google Ads", "Meta Ads", "Reporting mensual", "Optimización continua"],
         "price": "Fee 1.000–2.500€/mes"
       }
+    ],
+    "sectorLinks": [
+      {
+        "label": "Inmobiliaria de villas de lujo · Mallorca",
+        "href": "/services/luxury-villas"
+      }
     ]
   },
   "packages": {
@@ -295,7 +301,11 @@
     "copyright": "© 2026 Umania Labs · Mallorca, España",
     "whatsapp": "WhatsApp",
     "briefingLabel": "EL BRIEFING — Newsletter semanal",
-    "briefingPage": "El Briefing"
+    "briefingPage": "El Briefing",
+    "servicesLabel": "Sectores",
+    "serviceLinks": {
+      "luxuryVillas": "Villas de lujo · Mallorca"
+    }
   },
   "briefing": {
     "label": "CADA LUNES · 09:00",
@@ -350,6 +360,137 @@
     "back": "Volver al blog",
     "related": "Artículos relacionados",
     "empty": "Próximamente publicaremos nuevos artículos."
+  },
+  "servicePages": {
+    "luxuryVillas": {
+      "metaTitle": "Diseño web para inmobiliarias de villas de lujo en Mallorca | Umania Labs",
+      "metaDescription": "Webs editoriales multilingües para agencias de propiedades exclusivas en Mallorca. SEO por idioma, captación de compradores internacionales y arquitectura de conversión premium.",
+      "hero": {
+        "label": "SECTOR · INMOBILIARIA DE LUJO",
+        "headline": "Diseño web para inmobiliarias de villas de lujo en Mallorca",
+        "subline": "Presencia digital a la altura de sus propiedades exclusivas. Captamos compradores internacionales con una experiencia editorial, multilingüe y orientada a la conversión.",
+        "ctaWhatsapp": "WhatsApp directo"
+      },
+      "challenge": {
+        "label": "EL RETO",
+        "title": "Cuando la web no refleja el valor de la cartera",
+        "items": [
+          {
+            "stat": "68%",
+            "title": "La web no transmite exclusividad",
+            "description": "Portales genéricos y plantillas que desvirtúan villas de varios millones de euros.",
+            "solution": "Diseño editorial con fotografía y vídeo como eje narrativo"
+          },
+          {
+            "stat": "4 mercados",
+            "title": "Compradores internacionales sin idioma",
+            "description": "UK, DACH y Nordics abandonan la web si no encuentran su idioma ni contexto local.",
+            "solution": "Arquitectura multilingüe real con SEO independiente por idioma"
+          },
+          {
+            "stat": "72h",
+            "title": "Leads que se enfrían",
+            "description": "Formularios ocultos, sin WhatsApp visible ni agenda de visitas privadas.",
+            "solution": "Conversión visible: formularios, WhatsApp y captación cualificada"
+          },
+          {
+            "stat": "0%",
+            "title": "Invisibilidad en búsquedas de lujo",
+            "description": "Sin posicionamiento por zonas, tipologías ni intención de compra internacional.",
+            "solution": "SEO de lujo por zonas y tipologías de Mallorca"
+          }
+        ]
+      },
+      "solution": {
+        "label": "LA SOLUCIÓN",
+        "title": "Qué incluye una web inmobiliaria de lujo Umania",
+        "items": [
+          {
+            "title": "Diseño editorial con foto y vídeo como eje",
+            "description": "Recorridos cinematográficos, galerías de alta resolución y tipografía serif que comunican exclusividad antes del primer contacto."
+          },
+          {
+            "title": "Multilingüe real con SEO por idioma",
+            "description": "Español, inglés y mercados clave con URLs, metadatos y hreflang independientes. Cada idioma compite en su mercado, no es una traducción superficial."
+          },
+          {
+            "title": "Arquitectura de conversión para leads cualificados",
+            "description": "Formularios visibles, WhatsApp con contexto, agenda de visitas privadas y agente IA que cualifica presupuesto y zona antes de derivar al equipo."
+          },
+          {
+            "title": "SEO de lujo por zonas y tipologías",
+            "description": "Páginas optimizadas para Son Vida, Port d'Andratx, Deià, fincas rústicas, waterfront y propiedades off-market con intención de compra internacional."
+          },
+          {
+            "title": "Velocidad, confianza y percepción de exclusividad",
+            "description": "Core Web Vitals optimizados, carga progresiva de media y una experiencia fluida que refuerza la sensación de marca premium desde el primer segundo."
+          }
+        ]
+      },
+      "walkthrough": {
+        "label": "EXPERIENCIA",
+        "title": "Recorrido por una villa de lujo",
+        "description": "Así se siente una propiedad exclusiva en pantalla: ritmo pausado, luz natural y espacios que respiran — la misma lógica editorial que aplicamos a su cartera."
+      },
+      "audience": {
+        "label": "PARA QUIÉN",
+        "title": "Compradores internacionales que exigen coherencia",
+        "marketLabel": "Perfil de comprador",
+        "brandLabel": "Posicionamiento Umania",
+        "ruleTitle": "Su web es la primera visita privada",
+        "ruleDescription": "Para una cartera de villas de lujo, la presencia digital debe generar la misma confianza que una visita presencial. Invertir en una web editorial no es un gasto de marketing: es la infraestructura que atrae al comprador correcto antes de que contacte con la competencia.",
+        "items": [
+          {
+            "name": "España HNWI",
+            "marketRange": "Compradores nacionales de alto patrimonio",
+            "ourPrice": "Webs desde 15.000€",
+            "insight": "Buscan discreción, calidad visual y respuesta inmediata. Valoran formularios claros y contacto directo con el agente."
+          },
+          {
+            "name": "UK + Norte de Europa",
+            "marketRange": "Second home · Relocation · Inversión",
+            "ourPrice": "Proyectos 25.000–50.000€",
+            "insight": "Exigen inglés impecable, SEO local por zona y una experiencia comparable a las mejores agencias de Londres o Ginebra."
+          },
+          {
+            "name": "Escandinavia + DACH",
+            "marketRange": "Compradores exigentes, ciclo largo",
+            "ourPrice": "Retainer + evolución continua",
+            "insight": "Priorizan claridad, rendimiento y confianza técnica. Multilingüe real y velocidad son diferenciadores decisivos."
+          }
+        ]
+      },
+      "faq": {
+        "title": "Preguntas frecuentes",
+        "items": [
+          {
+            "question": "¿Hacéis webs inmobiliarias de lujo multilingües?",
+            "answer": "Sí. Desarrollamos arquitecturas multilingües reales — no plugins de traducción — con URLs, metadatos y SEO independientes por idioma para captar compradores en España, Reino Unido, Europa del Norte y otros mercados clave."
+          },
+          {
+            "question": "¿El SEO funciona por idioma?",
+            "answer": "Cada idioma tiene su propia estrategia: keywords, canonical, hreflang y contenido adaptado al mercado. Posicionamos por zonas de Mallorca, tipologías de propiedad e intención de búsqueda internacional."
+          },
+          {
+            "question": "¿Integráis CRM o software inmobiliario?",
+            "answer": "Integramos formularios con su CRM, portales privados o herramientas de gestión de cartera. Definimos el flujo en el briefing: captación web, cualificación y derivación al equipo comercial."
+          },
+          {
+            "question": "¿Cómo captáis compradores internacionales?",
+            "answer": "Combinamos SEO multilingüe, contenido editorial por zona, WhatsApp con contexto, agente IA cualificador y CTAs visibles en cada punto del recorrido. El objetivo es filtrar curiosos y acelerar contactos con presupuesto real."
+          },
+          {
+            "question": "¿Tenéis casos con resultados o métricas?",
+            "answer": "Trabajamos con agencias y promotores premium en Mallorca. En la llamada de descubrimiento compartimos referencias del sector, métricas de conversión y el enfoque editorial aplicado a carteras similares a la suya."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Conversemos sobre su cartera",
+        "subtitle": "Una conversación privada para entender su posicionamiento, mercados objetivo y cómo debería sentirse su presencia digital.",
+        "whatsapp": "WhatsApp"
+      }
+    }
   },
   "common": {
     "includes": "Incluye",

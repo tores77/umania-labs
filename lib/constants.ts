@@ -19,6 +19,14 @@ export function whatsappDirect() {
   return `https://wa.me/${WHATSAPP_NUMBER}`;
 }
 
+export function whatsappLuxuryVillasLink(locale: "es" | "en") {
+  const text =
+    locale === "es"
+      ? "Hola Umania Labs, me interesa diseño web para inmobiliaria de villas de lujo en Mallorca."
+      : "Hi Umania Labs, I'm interested in luxury villa real estate web design in Mallorca.";
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+}
+
 export const BRIEFING_SUBSCRIBE_URL =
   "https://briefing.umanialabs.com/api/subscribe";
 
