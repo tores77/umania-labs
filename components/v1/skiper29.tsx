@@ -1,21 +1,18 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
-import { useRef } from "react";
-import { VILLA_HERO_HEIGHT, VILLA_HERO_WIDTH } from "@/lib/constants";
+import { useRef, type ReactNode } from "react";
+import { scrollToHash } from "@/lib/scroll";
 
 export type Skiper29Props = {
   label: string;
   eyebrow: string;
   headline: string;
   subline: string;
-  parallaxImage: string;
-  priorityImage?: boolean;
+  heroImage: ReactNode;
   primaryCta?: {
     label: string;
     href: string;
-    onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
   };
   secondaryCta?: {
     label: string;
@@ -24,15 +21,12 @@ export type Skiper29Props = {
   };
 };
 
-const MotionImage = motion.create(Image);
-
 const Skiper29 = ({
   label,
   eyebrow,
   headline,
   subline,
-  parallaxImage,
-  priorityImage = false,
+  heroImage,
   primaryCta,
   secondaryCta,
 }: Skiper29Props) => {
@@ -42,6 +36,12 @@ const Skiper29 = ({
     offset: ["start end", "end start"],
   });
   const y = useTransform(scrollYProgress, [0.6, 1], ["0%", "30%"]);
+
+  const scrollToAgent = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    scrollToHash("#agent");
+    window.history.pushState(null, "", "#agent");
+  };
 
   return (
     <section id="top" aria-label={headline}>
@@ -59,17 +59,13 @@ const Skiper29 = ({
             </p>
           </div>
           <div className="absolute left-0 top-0 z-10 h-1/2 w-full bg-gradient-to-t from-transparent to-[var(--bg)]/95" />
-          <MotionImage
-            src={parallaxImage}
-            alt=""
-            width={VILLA_HERO_WIDTH}
-            height={VILLA_HERO_HEIGHT}
-            priority={priorityImage}
-            fetchPriority={priorityImage ? "high" : "auto"}
-            sizes="100vw"
-            className="h-screen w-full object-cover"
+          <motion.div
+            className="absolute inset-0 h-full w-full"
             style={{ y }}
-          />
+            initial={false}
+          >
+            {heroImage}
+          </motion.div>
         </div>
 
         <div className="flex w-full flex-col items-center justify-center px-[clamp(20px,5vw,64px)] pb-[clamp(48px,8vw,80px)]">
@@ -91,7 +87,7 @@ const Skiper29 = ({
               {primaryCta && (
                 <a
                   href={primaryCta.href}
-                  onClick={primaryCta.onClick}
+                  onClick={scrollToAgent}
                   className="cta-btn"
                 >
                   {primaryCta.label}
