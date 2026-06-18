@@ -34,3 +34,7 @@ export const BRIEFING_LANDING_URL =
   "https://briefing.umanialabs.com/suscribirse";
 
 export const BRIEFING_TEAL = "#2DD4BF";
+
+export const VILLA_HERO_IMAGE = "/villa-hero-2.jpg";
+export const VILLA_HERO_WIDTH = 1071;
+export const VILLA_HERO_HEIGHT = 1920;

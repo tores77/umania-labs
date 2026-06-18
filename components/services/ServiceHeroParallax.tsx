@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Skiper29 } from "@/components/v1/skiper29";
+import { VILLA_HERO_IMAGE } from "@/lib/constants";
 import { scrollToHash } from "@/lib/scroll";
 import type { ServiceDefinition } from "@/lib/services/registry";
 
@@ -29,7 +30,8 @@ export default function ServiceHeroParallax({
       eyebrow={t("hero.eyebrow")}
       headline={t("hero.headline")}
       subline={t("hero.subline")}
-      parallaxImage="/portfolio-realestate.jpg"
+      parallaxImage={VILLA_HERO_IMAGE}
+      priorityImage
       primaryCta={{
         href: "#agent",
         label: tc("talkToAgent"),

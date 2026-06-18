@@ -192,10 +192,10 @@ export default async function LocaleLayout({ children, params }: Props) {
         <JsonLd locale={locale as Locale} />
         <NextIntlClientProvider messages={messages}>
           <LocaleSwitchProvider>
-            <Cursor />
             <Nav />
             <SmoothScrollProvider>{children}</SmoothScrollProvider>
           </LocaleSwitchProvider>
+          <Cursor />
         </NextIntlClientProvider>
       </body>
     </html>

@@ -1,10 +1,16 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 export default function Cursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const labelRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -29,7 +35,6 @@ export default function Cursor() {
 
     let raf = 0;
     const render = () => {
-      // lerp toward target
       dotX += (mouseX - dotX) * 0.22;
       dotY += (mouseY - dotY) * 0.22;
       labelX += (mouseX - labelX) * 0.18;
@@ -73,9 +78,11 @@ export default function Cursor() {
       document.removeEventListener("mouseover", onOver, true);
       document.documentElement.classList.remove("has-custom-cursor");
     };
-  }, []);
+  }, [mounted]);
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <>
       <div ref={dotRef} className="cursor" aria-hidden />
       <div
@@ -86,6 +93,7 @@ export default function Cursor() {
       >
         OPEN
       </div>
-    </>
+    </>,
+    document.body
   );
 }

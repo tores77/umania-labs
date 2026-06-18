@@ -280,8 +280,9 @@ select:focus-visible {
   border-radius: 50%;
   background: var(--accent);
   pointer-events: none;
-  z-index: 9999;
+  z-index: 2147483646;
   transform: translate3d(-100px, -100px, 0);
+  will-change: transform;
   transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
     height 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -295,7 +296,7 @@ select:focus-visible {
   top: 0;
   left: 0;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 2147483646;
   font-family: var(--font-dm-mono), monospace;
   font-size: 9px;
   letter-spacing: 0.25em;

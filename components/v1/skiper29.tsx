@@ -1,7 +1,9 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import { useRef } from "react";
+import { VILLA_HERO_HEIGHT, VILLA_HERO_WIDTH } from "@/lib/constants";
 
 export type Skiper29Props = {
   label: string;
@@ -9,6 +11,7 @@ export type Skiper29Props = {
   headline: string;
   subline: string;
   parallaxImage: string;
+  priorityImage?: boolean;
   primaryCta?: {
     label: string;
     href: string;
@@ -21,12 +24,15 @@ export type Skiper29Props = {
   };
 };
 
+const MotionImage = motion.create(Image);
+
 const Skiper29 = ({
   label,
   eyebrow,
   headline,
   subline,
   parallaxImage,
+  priorityImage = false,
   primaryCta,
   secondaryCta,
 }: Skiper29Props) => {
@@ -53,9 +59,14 @@ const Skiper29 = ({
             </p>
           </div>
           <div className="absolute left-0 top-0 z-10 h-1/2 w-full bg-gradient-to-t from-transparent to-[var(--bg)]/95" />
-          <motion.img
+          <MotionImage
             src={parallaxImage}
             alt=""
+            width={VILLA_HERO_WIDTH}
+            height={VILLA_HERO_HEIGHT}
+            priority={priorityImage}
+            fetchPriority={priorityImage ? "high" : "auto"}
+            sizes="100vw"
             className="h-screen w-full object-cover"
             style={{ y }}
           />
