@@ -69,7 +69,7 @@ export default function ServiceWalkthroughVideo({
   }, [shouldLoad, videoSrc]);
 
   return (
-    <section ref={sectionRef} className="section" style={{ padding: 0 }}>
+    <section ref={sectionRef} id="walkthrough" className="section" style={{ padding: 0 }}>
       <div
         className="section-padding"
         style={{ maxWidth: 1200, margin: "0 auto 48px" }}
