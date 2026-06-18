@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
+import { gsap, registerGsap } from "@/lib/gsap";
 import { scrollToHash } from "@/lib/scroll";
 
 export type Skiper29Props = {
@@ -30,12 +30,32 @@ const Skiper29 = ({
   primaryCta,
   secondaryCta,
 }: Skiper29Props) => {
-  const gallery = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: gallery,
-    offset: ["start end", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0.6, 1], ["0%", "30%"]);
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const parallaxRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    registerGsap();
+    if (!galleryRef.current || !parallaxRef.current) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        parallaxRef.current,
+        { y: "0%" },
+        {
+          y: "30%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: galleryRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        }
+      );
+    }, galleryRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const scrollToAgent = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -47,7 +67,7 @@ const Skiper29 = ({
     <section id="top" aria-label={headline}>
       <div className="flex w-full flex-col items-center overflow-hidden bg-[var(--bg)] text-[var(--fg)]">
         <div
-          ref={gallery}
+          ref={galleryRef}
           className="relative flex h-[70vh] w-full items-end overflow-hidden"
         >
           <div className="absolute left-[clamp(20px,5vw,40px)] top-[clamp(80px,12vh,100px)] z-30 flex items-center justify-center gap-3">
@@ -59,13 +79,12 @@ const Skiper29 = ({
             </p>
           </div>
           <div className="absolute left-0 top-0 z-10 h-1/2 w-full bg-gradient-to-t from-transparent to-[var(--bg)]/95" />
-          <motion.div
-            className="absolute inset-0 h-full w-full"
-            style={{ y }}
-            initial={false}
+          <div
+            ref={parallaxRef}
+            className="absolute inset-0 h-full w-full will-change-transform"
           >
             {heroImage}
-          </motion.div>
+          </div>
         </div>
 
         <div className="flex w-full flex-col items-center justify-center px-[clamp(20px,5vw,64px)] pb-[clamp(48px,8vw,80px)]">
@@ -138,7 +157,8 @@ const ArrowWeired = ({ className }: { className?: string }) => {
 };
 
 /**
- * Skiper 29 Parallax_001 — React + framer motion + lenis
- * Inspired by and adapted from https://www.siena.film/films/my-project-x
- * Attribution to Skiper UI. Author: @gurvinder-singh02 / https://gxuri.me
+ * Skiper 29 Parallax_001 — design adapted from Skiper UI (https://skiper-ui.com)
+ * Original inspiration: https://www.siena.film/films/my-project-x
+ * Attribution: @gurvinder-singh02 / https://gxuri.me
+ * Parallax implemented with GSAP ScrollTrigger + Lenis (same stack as the rest of the site).
  */
