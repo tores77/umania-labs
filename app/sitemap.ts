@@ -3,6 +3,7 @@ import { SITE_URL } from "@/lib/constants";
 import { routing } from "@/i18n/routing";
 import { getArticles } from "@/lib/supabase/server";
 import { buildBlogLanguageAlternates } from "@/lib/blog-utils";
+import { getServiceSitemapEntries } from "@/lib/services/registry";
 
 type StaticRoute = {
   pathname: "/" | "/briefing" | "/blog" | "/privacy";
@@ -81,5 +82,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error("[sitemap] Failed to load blog articles:", error);
   }
 
-  return [...staticEntries, ...blogEntries];
+  const serviceEntries: MetadataRoute.Sitemap = getServiceSitemapEntries().map(
+    ({ url, alternates, changeFrequency, priority }) => ({
+      url,
+      lastModified,
+      changeFrequency,
+      priority,
+      alternates: { languages: alternates },
+    }),
+  );
+
+  return [...staticEntries, ...blogEntries, ...serviceEntries];
 }

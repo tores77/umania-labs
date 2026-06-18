@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { gsap, registerGsap } from "@/lib/gsap";
 import {
   ScrollTrigger,
@@ -34,6 +35,10 @@ export default function Services() {
     description: string;
     includes: string[];
     price: string;
+  }>;
+  const sectorLinks = t.raw("sectorLinks") as Array<{
+    label: string;
+    href: "/services/luxury-villas";
   }>;
 
   useEffect(() => {
@@ -250,6 +255,35 @@ export default function Services() {
           ))}
         </div>
       </div>
+
+      {sectorLinks.length > 0 && (
+        <div
+          style={{
+            padding: "0 clamp(20px, 5vw, 64px) clamp(80px, 12vw, 120px)",
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 12,
+          }}
+        >
+          {sectorLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-label"
+              style={{
+                fontSize: 10,
+                color: "var(--fg-muted)",
+                textDecoration: "none",
+                border: "1px solid var(--line)",
+                padding: "12px 20px",
+                transition: "color 0.3s, border-color 0.3s",
+              }}
+            >
+              {link.label} →
+            </Link>
+          ))}
+        </div>
+      )}
 
       <style jsx global>{`
         .services-scroll-wrap {

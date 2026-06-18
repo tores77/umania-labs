@@ -5,6 +5,8 @@ import LangToggle from "@/components/LangToggle";
 import { Link } from "@/i18n/navigation";
 import { whatsappDirect, BRIEFING_LANDING_URL } from "@/lib/constants";
 
+import { SERVICES } from "@/lib/services/registry";
+
 const SECTION_LINKS = [
   { href: "#services", key: "services" as const },
   { href: "#packages", key: "packages" as const },
@@ -90,6 +92,27 @@ export default function Footer() {
                 {t("briefingPage")}
               </Link>
             </li>
+            {SERVICES.map((service) => (
+              <li key={service.id} style={{ marginBottom: 10 }}>
+                <Link
+                  href={service.pathname}
+                  style={{
+                    fontSize: 13,
+                    color: "var(--fg-muted)",
+                    textDecoration: "none",
+                    transition: "color 0.3s",
+                  }}
+                  onMouseEnter={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color = "var(--fg)")
+                  }
+                  onMouseLeave={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color = "var(--fg-muted)")
+                  }
+                >
+                  {t(`serviceLinks.${service.messageKey}`)}
+                </Link>
+              </li>
+            ))}
             <li style={{ marginBottom: 10 }}>
               <a
                 href={BRIEFING_LANDING_URL}
