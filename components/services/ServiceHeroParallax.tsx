@@ -30,10 +30,6 @@ export default function ServiceHeroParallax({
       headline={t("hero.headline")}
       subline={t("hero.subline")}
       parallaxImage="/portfolio-realestate.jpg"
-      featuredImage="/portfolio-yacht.jpg"
-      walkthroughHref="#walkthrough"
-      walkthroughLabel={t("hero.walkthroughLabel")}
-      walkthroughTitle={t("hero.walkthroughTitle")}
       primaryCta={{
         href: "#agent",
         label: tc("talkToAgent"),
@@ -44,7 +40,6 @@ export default function ServiceHeroParallax({
         href: whatsappHref,
         external: true,
       }}
-      clipPathId="luxury-villas-hero-clip"
     />
   );
 }
