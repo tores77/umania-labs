@@ -21,6 +21,28 @@ export default function AIAgent() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const agentOpenTracked = useRef(false);
+  const agentEngageTracked = useRef(false);
+
+  const trackAgentOpen = useCallback(() => {
+    if (agentOpenTracked.current) return;
+    agentOpenTracked.current = true;
+    trackEvent("agent_open", { location: "homepage_agent" });
+  }, []);
+
+  const trackAgentEngage = useCallback(() => {
+    if (agentEngageTracked.current) return;
+    agentEngageTracked.current = true;
+    trackEvent("agent_engage", { location: "homepage_agent" });
+  }, []);
+
+  const trackGenerateLead = useCallback(() => {
+    trackEvent("generate_lead", {
+      method: "whatsapp",
+      value: 1500,
+      currency: "EUR",
+    });
+  }, []);
 
   const userMessageCount = messages.filter((m) => m.role === "user").length;
   const showPrompts = userMessageCount === 0 && !loading;
@@ -54,9 +76,11 @@ export default function AIAgent() {
       const trimmed = text.trim();
       if (!trimmed || loading) return;
 
+      trackAgentOpen();
+
       const isFirstUserMessage = messages.every((message) => message.role !== "user");
       if (isFirstUserMessage) {
-        trackEvent("agent_conversation_started");
+        trackAgentEngage();
       }
 
       setInput("");
@@ -93,7 +117,7 @@ export default function AIAgent() {
         setLoading(false);
       }
     },
-    [loading, locale, messages, t]
+    [loading, locale, messages, t, trackAgentOpen, trackAgentEngage]
   );
 
   const sendMessage = async (e: React.FormEvent) => {
@@ -164,7 +188,7 @@ export default function AIAgent() {
                 >
                   <AgentMessageContent
                     content={msg.content}
-                    onWhatsAppClick={() => trackEvent("agent_whatsapp_click")}
+                    onWhatsAppClick={trackGenerateLead}
                   />
                 </div>
               </div>
@@ -253,6 +277,8 @@ export default function AIAgent() {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
+              onFocus={trackAgentOpen}
+              onClick={trackAgentOpen}
               placeholder={t("placeholder")}
               disabled={loading}
               style={{
