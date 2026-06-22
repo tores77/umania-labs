@@ -1,8 +1,19 @@
 export const CALENDLY_URL =
   process.env.NEXT_PUBLIC_CALENDLY_URL ?? "https://calendly.com/umanialabs";
 
-export const WHATSAPP_NUMBER =
-  process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "34676967465";
+/** Digits only — strips accidental wa.me/ or + prefixes from env vars. */
+function normalizeWhatsAppNumber(raw: string): string {
+  return raw
+    .trim()
+    .replace(/^https?:\/\/(?:api\.)?whatsapp\.com\/send\?phone=/i, "")
+    .replace(/^https?:\/\/wa\.me\//i, "")
+    .replace(/\?.*$/, "")
+    .replace(/^\+/, "");
+}
+
+export const WHATSAPP_NUMBER = normalizeWhatsAppNumber(
+  process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "34676967465",
+);
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://studio.umanialabs.com";
