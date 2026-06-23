@@ -5,7 +5,9 @@ import { useTranslations } from "next-intl";
 import { gsap, registerGsap } from "@/lib/gsap";
 import type { ServiceDefinition } from "@/lib/services/registry";
 
-const NUMBERS = ["01", "02", "03", "04", "05"];
+function formatItemNumber(index: number) {
+  return String(index + 1).padStart(2, "0");
+}
 
 export default function ServiceSectionIncludes({
   service,
@@ -68,7 +70,7 @@ export default function ServiceSectionIncludes({
             }}
           >
             <span className="text-label" style={{ color: "var(--accent)", fontSize: 11 }}>
-              {NUMBERS[index]}
+              {formatItemNumber(index)}
             </span>
             <div>
               <h3

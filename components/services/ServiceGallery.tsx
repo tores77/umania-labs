@@ -11,10 +11,34 @@ type ServiceGalleryProps = {
   service: ServiceDefinition;
 };
 
+const IMAGE_WIDTH = 1920;
+const IMAGE_HEIGHT = 1071;
+
+function GalleryFigure({ src, alt }: { src: string; alt: string }) {
+  return (
+    <figure
+      data-gallery-item
+      className="flex items-center justify-center overflow-hidden border border-[var(--line)] bg-[var(--bg)]"
+      style={{ margin: 0, aspectRatio: "16 / 9" }}
+    >
+      <Image
+        src={src}
+        alt={alt}
+        width={IMAGE_WIDTH}
+        height={IMAGE_HEIGHT}
+        sizes="(max-width: 768px) 100vw, 33vw"
+        className="h-full w-full object-contain"
+      />
+    </figure>
+  );
+}
+
 export default function ServiceGallery({ service }: ServiceGalleryProps) {
   const t = useTranslations(`servicePages.${service.messageKey}.gallery`);
   const sectionRef = useRef<HTMLElement>(null);
   const alts = t.raw("alts") as string[];
+  const topRow = RESTAURANT_GALLERY_IMAGES.slice(0, 3);
+  const bottomRow = RESTAURANT_GALLERY_IMAGES.slice(3, 5);
 
   useEffect(() => {
     registerGsap();
@@ -58,34 +82,18 @@ export default function ServiceGallery({ service }: ServiceGalleryProps) {
         {t("description")}
       </p>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          gap: 16,
-        }}
-      >
-        {RESTAURANT_GALLERY_IMAGES.map((src, index) => (
-          <figure
-            key={src}
-            data-gallery-item
-            style={{
-              margin: 0,
-              overflow: "hidden",
-              border: "1px solid var(--line)",
-              aspectRatio: index % 3 === 0 ? "3 / 4" : "4 / 3",
-            }}
-          >
-            <Image
-              src={src}
-              alt={alts[index] ?? ""}
-              width={800}
-              height={index % 3 === 0 ? 1067 : 600}
-              sizes="(max-width: 768px) 100vw, 33vw"
-              className="h-full w-full object-cover"
-            />
-          </figure>
-        ))}
+      <div className="flex flex-col gap-5">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {topRow.map((src, index) => (
+            <GalleryFigure key={src} src={src} alt={alts[index] ?? ""} />
+          ))}
+        </div>
+
+        <div className="mx-auto grid w-full max-w-[920px] grid-cols-1 gap-5 sm:grid-cols-2">
+          {bottomRow.map((src, index) => (
+            <GalleryFigure key={src} src={src} alt={alts[index + 3] ?? ""} />
+          ))}
+        </div>
       </div>
     </section>
   );
