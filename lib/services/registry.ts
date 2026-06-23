@@ -13,12 +13,14 @@ import type { Locale } from "@/i18n/routing";
  * 6. Link from `services.sectorLinks` (home) and `footer.serviceLinks` (footer).
  */
 
-export type ServicePathname = "/services/luxury-villas";
+export type ServicePathname = "/services/luxury-villas" | "/services/fine-dining";
+
+export type ServiceMessageKey = "luxuryVillas" | "fineDining";
 
 export type ServiceDefinition = {
   id: string;
   pathname: ServicePathname;
-  messageKey: "luxuryVillas";
+  messageKey: ServiceMessageKey;
   paths: {
     es: string;
     en: string;
@@ -37,6 +39,19 @@ export const SERVICES: ServiceDefinition[] = [
     paths: {
       es: "/servicios/diseno-web-villas-lujo-mallorca",
       en: "/services/luxury-villa-real-estate-web-design",
+    },
+    sitemap: {
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+  },
+  {
+    id: "fine-dining",
+    pathname: "/services/fine-dining",
+    messageKey: "fineDining",
+    paths: {
+      es: "/servicios/diseno-web-restaurantes-alta-gama-mallorca",
+      en: "/services/fine-dining-restaurant-web-design-mallorca",
     },
     sitemap: {
       changeFrequency: "monthly",

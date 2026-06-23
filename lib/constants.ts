@@ -38,6 +38,14 @@ export function whatsappLuxuryVillasLink(locale: "es" | "en") {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 }
 
+export function whatsappFineDiningLink(locale: "es" | "en") {
+  const text =
+    locale === "es"
+      ? "Hola Umania Labs, me interesa diseño web para restaurantes de alta gama en Mallorca."
+      : "Hi Umania Labs, I'm interested in fine dining restaurant web design in Mallorca.";
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+}
+
 export const BRIEFING_SUBSCRIBE_URL =
   "https://briefing.umanialabs.com/api/subscribe";
 
@@ -49,3 +57,17 @@ export const BRIEFING_TEAL = "#2DD4BF";
 export const VILLA_HERO_IMAGE = "/villa-hero-2.jpg";
 export const VILLA_HERO_WIDTH = 1071;
 export const VILLA_HERO_HEIGHT = 1920;
+
+export const RESTAURANT_HERO_IMAGE = "/restaurant-1.jpg";
+export const RESTAURANT_HERO_VIDEO = "/restaurant-hero.mp4";
+export const RESTAURANT_HERO_WIDTH = 1071;
+export const RESTAURANT_HERO_HEIGHT = 1920;
+
+export const RESTAURANT_GALLERY_IMAGES = [
+  "/restaurant-1.jpg",
+  "/restaurant-2.jpg",
+  "/restaurant-3.jpg",
+  "/restaurant-4.jpg",
+  "/restaurant-5.jpg",
+  "/restaurant-6.jpg",
+] as const;

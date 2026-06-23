@@ -17,6 +17,10 @@ export const routing = defineRouting({
       es: "/servicios/diseno-web-villas-lujo-mallorca",
       en: "/services/luxury-villa-real-estate-web-design",
     },
+    "/services/fine-dining": {
+      es: "/servicios/diseno-web-restaurantes-alta-gama-mallorca",
+      en: "/services/fine-dining-restaurant-web-design-mallorca",
+    },
   },
 });
 

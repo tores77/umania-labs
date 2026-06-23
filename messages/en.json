@@ -117,6 +117,10 @@
       {
         "label": "Luxury villa real estate · Mallorca",
         "href": "/services/luxury-villas"
+      },
+      {
+        "label": "Fine dining restaurants · Mallorca",
+        "href": "/services/fine-dining"
       }
     ]
   },
@@ -304,7 +308,8 @@
     "briefingPage": "The Briefing",
     "servicesLabel": "Sectors",
     "serviceLinks": {
-      "luxuryVillas": "Luxury villas · Mallorca"
+      "luxuryVillas": "Luxury villas · Mallorca",
+      "fineDining": "Fine dining · Mallorca"
     }
   },
   "briefing": {
@@ -491,6 +496,148 @@
       "cta": {
         "title": "Let's discuss your portfolio",
         "subtitle": "A private conversation to understand your positioning, target markets, and how your digital presence should feel.",
+        "whatsapp": "WhatsApp"
+      }
+    },
+    "fineDining": {
+      "metaTitle": "Fine dining restaurant web design in Mallorca | Umania Labs",
+      "metaDescription": "Editorial websites for fine dining and premium restaurants in Mallorca. Photography and video as heroes, frictionless booking, native menus, local SEO and multilingual reach for international diners.",
+      "hero": {
+        "label": "SECTOR · FINE DINING",
+        "eyebrow": "FINE DINING · MALLORCA",
+        "headline": "Fine dining restaurant web design in Mallorca",
+        "subline": "A digital presence that conveys the gastronomic experience before the first bite. Editorial photography, one-click reservations, and brand narrative for local and international diners.",
+        "ctaWhatsapp": "Direct WhatsApp"
+      },
+      "challenge": {
+        "label": "THE CHALLENGE",
+        "title": "When the website undersells the table",
+        "items": [
+          {
+            "stat": "83%",
+            "title": "They choose where to dine by checking the web",
+            "description": "Between 77% and 89% of diners consult the website before booking. If it doesn't signal fine dining, they choose elsewhere.",
+            "solution": "Editorial luxury aesthetics that communicate experience without words"
+          },
+          {
+            "stat": "7 sec",
+            "title": "Seven seconds to convince",
+            "description": "The first digital impression decides whether they book or keep searching. Generic templates kill premium perception.",
+            "solution": "Photography and video as hero, with the pace and whitespace of a gastronomic magazine"
+          },
+          {
+            "stat": "68%",
+            "title": "Discouraged by a poor website",
+            "description": "Clunky PDF menus, booking friction, and stock photos turn demanding diners away before they visit.",
+            "solution": "Native menu, one-click booking, and visible OpenTable/Resy integration"
+          },
+          {
+            "stat": "4 languages",
+            "title": "International diners without context",
+            "description": "High-spending tourism in Palma, Deià, Sóller and the coast won't book without their language and the chef's narrative.",
+            "solution": "True multilingual with SEO and GEO by market and dining intent"
+          }
+        ]
+      },
+      "solution": {
+        "label": "THE SOLUTION",
+        "title": "What a Umania fine dining website includes",
+        "items": [
+          {
+            "title": "Photography and video as the hero",
+            "description": "The dish, the room, and the experience as visual centrepiece. Editorial galleries, cinematic video, and progressive loading without sacrificing PageSpeed."
+          },
+          {
+            "title": "Editorial luxury aesthetics",
+            "description": "Serif typography, sober palette, and generous whitespace that signals fine dining before a single line of copy is read."
+          },
+          {
+            "title": "Frictionless booking",
+            "description": "Updatable native menu (not PDF), one-click reservation, OpenTable/Resy or custom engine integration, with a visible mobile CTA."
+          },
+          {
+            "title": "Brand and chef narrative",
+            "description": "Culinary philosophy, provenance, team, and experience told with the same editorial rigour as a gastronomic review."
+          },
+          {
+            "title": "Mobile-first performance",
+            "description": "Optimised Core Web Vitals with high-resolution images served efficiently. Most reservations start on mobile."
+          },
+          {
+            "title": "SEO + GEO for restaurants",
+            "description": "Restaurant, Menu and LocalBusiness schema; content structured for citation in Google and generative AI by area and experience type."
+          }
+        ]
+      },
+      "gallery": {
+        "label": "GALLERY",
+        "title": "Photography as the sales argument",
+        "description": "In fine dining, the image is the first tasting. This is how we structure editorial galleries that elevate dish, ambience, and service detail.",
+        "alts": [
+          "Signature dish at a premium Mallorca restaurant",
+          "Fine dining room with warm lighting",
+          "Table service detail with glassware",
+          "Open kitchen and team in action",
+          "Terrace and evening ambience at a luxury restaurant",
+          "Wine pairing and editorial gastronomic presentation"
+        ]
+      },
+      "audience": {
+        "label": "FOR WHOM",
+        "title": "Restaurants competing for the right table",
+        "marketLabel": "Establishment profile",
+        "brandLabel": "Umania positioning",
+        "ruleTitle": "Your website is the first reservation that costs nothing",
+        "ruleDescription": "For a fine dining restaurant, the website must generate the same anticipation as the printed menu. Investing in editorial design is not decoration — it is the infrastructure that fills tables with the right diner.",
+        "items": [
+          {
+            "name": "Independent fine dining",
+            "marketRange": "Chef-driven restaurants · Palma · Sóller · Deià",
+            "ourPrice": "Websites from €15,000",
+            "insight": "They need to stand apart from generic portals and convey the chef's experience with direct reservations."
+          },
+          {
+            "name": "Hotel with signature restaurant",
+            "marketRange": "Five-star · Boutique · Premium resort",
+            "ourPrice": "Projects €25,000–50,000",
+            "insight": "They require brand coherence between accommodation and gastronomy, with integrated menu and booking."
+          },
+          {
+            "name": "Premium beach club",
+            "marketRange": "South coast · Marina · Seasonal experience",
+            "ourPrice": "Retainer + continuous evolution",
+            "insight": "They prioritise mobile, speed, and multilingual for high-spending international tourism."
+          }
+        ]
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "items": [
+          {
+            "question": "Do you build websites for fine dining and premium restaurants?",
+            "answer": "Yes. We design editorial websites for premium restaurants, fine dining, and gastronomic experiences in Mallorca, with photography and video as the narrative core and conversion focused on direct reservations."
+          },
+          {
+            "question": "Do you integrate booking systems (OpenTable, Resy, custom engine)?",
+            "answer": "We integrate OpenTable, Resy, TheFork, or your own booking engine. The reservation CTA is visible on mobile and desktop with the minimum number of steps."
+          },
+          {
+            "question": "Can the menu be updated easily without PDFs?",
+            "answer": "Yes. We build native menus on the website — not downloadable PDFs — with clear category structure, allergens, and pricing, updatable without a designer every week."
+          },
+          {
+            "question": "Is the website multilingual for international guests?",
+            "answer": "We develop true multilingual architectures with independent URLs, metadata, and hreflang to reach diners in Spanish, English, and other key premium tourism markets."
+          },
+          {
+            "question": "Does it improve direct bookings and visibility in Google and AI?",
+            "answer": "We combine local SEO by area, Restaurant/Menu schema, mobile performance, and citable content for AI. The goal is more direct bookings and less dependence on aggregators."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Let's talk about your restaurant",
+        "subtitle": "A conversation to understand your gastronomic proposition, diner profile, and how your digital presence should feel.",
         "whatsapp": "WhatsApp"
       }
     }

@@ -117,6 +117,10 @@
       {
         "label": "Inmobiliaria de villas de lujo · Mallorca",
         "href": "/services/luxury-villas"
+      },
+      {
+        "label": "Restaurantes de alta gama · Mallorca",
+        "href": "/services/fine-dining"
       }
     ]
   },
@@ -304,7 +308,8 @@
     "briefingPage": "El Briefing",
     "servicesLabel": "Sectores",
     "serviceLinks": {
-      "luxuryVillas": "Villas de lujo · Mallorca"
+      "luxuryVillas": "Villas de lujo · Mallorca",
+      "fineDining": "Restaurantes alta gama · Mallorca"
     }
   },
   "briefing": {
@@ -491,6 +496,148 @@
       "cta": {
         "title": "Conversemos sobre su cartera",
         "subtitle": "Una conversación privada para entender su posicionamiento, mercados objetivo y cómo debería sentirse su presencia digital.",
+        "whatsapp": "WhatsApp"
+      }
+    },
+    "fineDining": {
+      "metaTitle": "Diseño web para restaurantes de alta gama en Mallorca | Umania Labs",
+      "metaDescription": "Webs editoriales para fine dining y restaurantes premium en Mallorca. Fotografía y vídeo como protagonistas, reservas sin fricción, menú nativo, SEO local y multilingüe para comensales internacionales.",
+      "hero": {
+        "label": "SECTOR · ALTA GASTRONOMÍA",
+        "eyebrow": "FINE DINING · MALLORCA",
+        "headline": "Diseño web para restaurantes de alta gama en Mallorca",
+        "subline": "Una presencia digital que transmite la experiencia gastronómica antes del primer bocado. Fotografía editorial, reservas en un clic y narrativa de marca para el comensal local e internacional.",
+        "ctaWhatsapp": "WhatsApp directo"
+      },
+      "challenge": {
+        "label": "EL RETO",
+        "title": "Cuando la web no refleja el nivel de la mesa",
+        "items": [
+          {
+            "stat": "83%",
+            "title": "Deciden dónde comer mirando la web",
+            "description": "Entre el 77% y el 89% de los comensales consultan la web antes de reservar. Si no transmite fine dining, eligen otro restaurante.",
+            "solution": "Estética editorial de lujo que comunica experiencia sin palabras"
+          },
+          {
+            "stat": "7 seg",
+            "title": "Siete segundos para convencer",
+            "description": "La primera impresión digital define si reservan o siguen buscando. Plantillas genéricas matan la percepción premium.",
+            "solution": "Fotografía y vídeo como héroe, con ritmo y whitespace de revista gastronómica"
+          },
+          {
+            "stat": "68%",
+            "title": "Se desaniman con una mala web",
+            "description": "Menús en PDF torpes, reservas con fricción y fotos de stock alejan al comensal exigente antes de ver el local.",
+            "solution": "Menú nativo, reserva en 1 clic e integración OpenTable/Resy visible"
+          },
+          {
+            "stat": "4 idiomas",
+            "title": "Comensal internacional sin contexto",
+            "description": "Turismo de alto poder en Palma, Deià, Sóller y la costa no reserva si no encuentra su idioma ni la narrativa del chef.",
+            "solution": "Multilingüe real con SEO y GEO por mercado e intención gastronómica"
+          }
+        ]
+      },
+      "solution": {
+        "label": "LA SOLUCIÓN",
+        "title": "Qué incluye una web fine dining Umania",
+        "items": [
+          {
+            "title": "Fotografía y vídeo como protagonista",
+            "description": "El plato, la sala y la experiencia como héroe visual. Galerías editoriales, vídeo cinematográfico y carga progresiva sin sacrificar PageSpeed."
+          },
+          {
+            "title": "Estética editorial de lujo",
+            "description": "Tipografía serif, paleta sobria y whitespace generoso que transmite fine dining antes de leer una sola línea de copy."
+          },
+          {
+            "title": "Reserva sin fricción",
+            "description": "Menú nativo actualizable (no PDF), reserva en un clic, integración OpenTable/Resy o motor propio, con CTA visible en móvil."
+          },
+          {
+            "title": "Narrativa de marca y chef",
+            "description": "Filosofía culinaria, origen de producto, equipo y experiencia contados con el mismo rigor editorial que una crítica gastronómica."
+          },
+          {
+            "title": "Mobile-first y rendimiento",
+            "description": "Core Web Vitals optimizados con imágenes de alta resolución servidas de forma eficiente. La mayoría de reservas empiezan en el móvil."
+          },
+          {
+            "title": "SEO + GEO para restaurantes",
+            "description": "Schema Restaurant, Menu y LocalBusiness; contenido listo para citación en Google e IA generativa por zona y tipo de experiencia."
+          }
+        ]
+      },
+      "gallery": {
+        "label": "GALERÍA",
+        "title": "La fotografía como argumento de venta",
+        "description": "En alta gastronomía, la imagen es la primera degustación. Así estructuramos galerías editoriales que elevan plato, ambiente y detalle de servicio.",
+        "alts": [
+          "Plato de autor en restaurante premium de Mallorca",
+          "Sala de fine dining con iluminación cálida",
+          "Detalle de servicio en mesa con cristalería",
+          "Cocina abierta y equipo en acción",
+          "Terraza y ambiente nocturno en restaurante de lujo",
+          "Maridaje y presentación gastronómica editorial"
+        ]
+      },
+      "audience": {
+        "label": "PARA QUIÉN",
+        "title": "Restaurantes que compiten por la mesa correcta",
+        "marketLabel": "Perfil de establecimiento",
+        "brandLabel": "Posicionamiento Umania",
+        "ruleTitle": "Su web es la primera reserva que no cobra",
+        "ruleDescription": "Para un restaurante de alta gama, la web debe generar la misma anticipación que la carta impresa. Invertir en diseño editorial no es decoración: es la infraestructura que llena mesas con el comensal adecuado.",
+        "items": [
+          {
+            "name": "Fine dining independiente",
+            "marketRange": "Restaurantes de autor · Palma · Sóller · Deià",
+            "ourPrice": "Webs desde 15.000€",
+            "insight": "Buscan diferenciarse de portales genéricos y transmitir la experiencia del chef con reservas directas."
+          },
+          {
+            "name": "Hotel con restaurante de autor",
+            "marketRange": "Cinco estrellas · Boutique · Resort premium",
+            "ourPrice": "Proyectos 25.000–50.000€",
+            "insight": "Necesitan coherencia de marca entre alojamiento y gastronomía, con menú y reserva integrados."
+          },
+          {
+            "name": "Beach club premium",
+            "marketRange": "Costa sur · Puerto · Experiencia estacional",
+            "ourPrice": "Retainer + evolución continua",
+            "insight": "Priorizan móvil, velocidad y multilingüe para turismo internacional de alto poder adquisitivo."
+          }
+        ]
+      },
+      "faq": {
+        "title": "Preguntas frecuentes",
+        "items": [
+          {
+            "question": "¿Hacéis webs para restaurantes de alta gama y fine dining?",
+            "answer": "Sí. Diseñamos webs editoriales para restaurantes premium, fine dining y experiencias gastronómicas en Mallorca, con fotografía y vídeo como eje narrativo y conversión orientada a reservas directas."
+          },
+          {
+            "question": "¿Integráis sistema de reservas (OpenTable, Resy, motor propio)?",
+            "answer": "Integramos OpenTable, Resy, TheFork o su motor de reservas propio. El CTA de reserva es visible en móvil y desktop, con el mínimo número de pasos posible."
+          },
+          {
+            "question": "¿El menú se puede actualizar fácilmente sin PDF?",
+            "answer": "Sí. Construimos menús nativos en la web — no PDFs descargables — con estructura clara por categorías, alérgenos y precios, actualizables sin depender de un diseñador cada semana."
+          },
+          {
+            "question": "¿La web es multilingüe para clientes internacionales?",
+            "answer": "Desarrollamos arquitecturas multilingües reales con URLs, metadatos y hreflang independientes para captar comensales en español, inglés y otros mercados clave del turismo premium."
+          },
+          {
+            "question": "¿Mejora las reservas directas y la visibilidad en Google e IA?",
+            "answer": "Combinamos SEO local por zona, schema Restaurant/Menu, rendimiento móvil y contenido citables para IA. El objetivo es más reservas directas y menos dependencia de agregadores."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Hablemos de su restaurante",
+        "subtitle": "Una conversación para entender su propuesta gastronómica, tipo de comensal y cómo debería sentirse su presencia digital.",
         "whatsapp": "WhatsApp"
       }
     }

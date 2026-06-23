@@ -38,7 +38,7 @@ export default function Services() {
   }>;
   const sectorLinks = t.raw("sectorLinks") as Array<{
     label: string;
-    href: "/services/luxury-villas";
+    href: import("@/lib/services/registry").ServicePathname;
   }>;
 
   useEffect(() => {
