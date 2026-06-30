@@ -83,7 +83,10 @@ export async function generateMetadata({
       description: meta.description,
       images: ["/og-default.jpg"],
     },
-    verification: {
+    other: {
+    "TXZ6d0Fld25Oa2pySW13c005anpZaD1x": "5e6ce366e163ff1f5e177e7be7f7a94c",
+  },
+  verification: {
       google: "YNye_b6MkxpPodlxRlX6FnbS_7Lt7u65tJv3rB10R4A",
     },
     robots: { index: true, follow: true },
