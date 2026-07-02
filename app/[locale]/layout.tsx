@@ -84,7 +84,7 @@ export async function generateMetadata({
       images: ["/og-default.jpg"],
     },
     other: {
-      "TXZ6d0Fld25Oa2pySW13c005anpZaD1x": "5e6ce366e163ff1f5e177e7be7f7a94c",
+      "TTREMkk4d2pOaHp1SXl3Nk0wamFZYz1o": "5e6ce366e163ff1f5e177e7be7f7a94c",
     },
     verification: {
       google: "YNye_b6MkxpPodlxRlX6FnbS_7Lt7u65tJv3rB10R4A",
