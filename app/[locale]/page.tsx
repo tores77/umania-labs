@@ -8,6 +8,7 @@ import AIAgent from "@/components/AIAgent";
 import MarketContext from "@/components/MarketContext";
 import CombinedCTA from "@/components/CombinedCTA";
 import BriefingSection from "@/components/BriefingSection";
+import SeoSection from "@/components/SeoSection";
 import Footer from "@/components/Footer";
 import { setRequestLocale } from "next-intl/server";
 
@@ -31,6 +32,7 @@ export default async function Home({ params }: Props) {
       <MarketContext />
       <CombinedCTA />
       <BriefingSection />
+      <SeoSection />
       <Footer />
     </main>
   );
