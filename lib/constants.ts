@@ -78,7 +78,7 @@ export const YACHT_HERO_HEIGHT = 1080;
 
 export const YACHT_GALLERY_IMAGES = [
   "/yacht-1.jpg",
-  "/yacht-2.jpg",
+  "/yacht-4.jpg",
   "/yacht-5.jpg",
   "/yacht-6.jpg",
   "/yacht-7.jpg",
