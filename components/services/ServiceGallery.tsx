@@ -4,15 +4,29 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { gsap, registerGsap } from "@/lib/gsap";
-import { RESTAURANT_GALLERY_IMAGES } from "@/lib/constants";
-import type { ServiceDefinition } from "@/lib/services/registry";
+import {
+  RESTAURANT_GALLERY_IMAGES,
+  YACHT_GALLERY_IMAGES,
+} from "@/lib/constants";
+import type { ServiceDefinition, ServiceMessageKey } from "@/lib/services/registry";
 
 type ServiceGalleryProps = {
   service: ServiceDefinition;
 };
 
 const IMAGE_WIDTH = 1920;
-const IMAGE_HEIGHT = 1071;
+const IMAGE_HEIGHT = 1080;
+
+function getGalleryImages(messageKey: ServiceMessageKey) {
+  switch (messageKey) {
+    case "fineDining":
+      return RESTAURANT_GALLERY_IMAGES;
+    case "yachtCharter":
+      return YACHT_GALLERY_IMAGES;
+    default:
+      return [];
+  }
+}
 
 function GalleryFigure({ src, alt }: { src: string; alt: string }) {
   return (
@@ -37,8 +51,9 @@ export default function ServiceGallery({ service }: ServiceGalleryProps) {
   const t = useTranslations(`servicePages.${service.messageKey}.gallery`);
   const sectionRef = useRef<HTMLElement>(null);
   const alts = t.raw("alts") as string[];
-  const topRow = RESTAURANT_GALLERY_IMAGES.slice(0, 3);
-  const bottomRow = RESTAURANT_GALLERY_IMAGES.slice(3, 5);
+  const galleryImages = getGalleryImages(service.messageKey);
+  const topRow = galleryImages.slice(0, 3);
+  const bottomRow = galleryImages.slice(3);
 
   useEffect(() => {
     registerGsap();
@@ -89,7 +104,13 @@ export default function ServiceGallery({ service }: ServiceGalleryProps) {
           ))}
         </div>
 
-        <div className="mx-auto grid w-full max-w-[920px] grid-cols-1 gap-5 sm:grid-cols-2">
+        <div
+          className={`mx-auto grid w-full grid-cols-1 gap-5 ${
+            bottomRow.length === 3
+              ? "lg:grid-cols-3"
+              : "max-w-[920px] sm:grid-cols-2"
+          }`}
+        >
           {bottomRow.map((src, index) => (
             <GalleryFigure key={src} src={src} alt={alts[index + 3] ?? ""} />
           ))}

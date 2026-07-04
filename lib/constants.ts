@@ -70,3 +70,23 @@ export const RESTAURANT_GALLERY_IMAGES = [
   "/restaurant-5.jpg",
   "/restaurant-6.jpg",
 ] as const;
+
+export const YACHT_HERO_IMAGE = "/yacht-1.jpg";
+export const YACHT_HERO_VIDEO = "/yacht-hero.mp4";
+export const YACHT_HERO_WIDTH = 1920;
+export const YACHT_HERO_HEIGHT = 1080;
+
+export const YACHT_GALLERY_IMAGES = [
+  "/yacht-1.jpg",
+  "/yacht-2.jpg",
+  "/yacht-5.jpg",
+  "/yacht-6.jpg",
+  "/yacht-7.jpg",
+  "/yacht-8.jpg",
+] as const;
+
+export function whatsappYachtLink(locale: "es" | "en") {
+  return locale === "es"
+    ? `https://wa.me/34676967465?text=${encodeURIComponent("Hola, vengo de la web de Umania Labs. Tengo una empresa de yacht charter en Mallorca y quiero mejorar mi presencia digital.")}`
+    : `https://wa.me/34676967465?text=${encodeURIComponent("Hi, I'm coming from Umania Labs website. I run a yacht charter company in Mallorca and want to improve my digital presence.")}`;
+}

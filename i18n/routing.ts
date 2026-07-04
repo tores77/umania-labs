@@ -21,6 +21,10 @@ export const routing = defineRouting({
       es: "/servicios/diseno-web-restaurantes-alta-gama-mallorca",
       en: "/services/fine-dining-restaurant-web-design-mallorca",
     },
+    "/services/yacht-charter": {
+      es: "/servicios/diseno-web-empresas-charter-yates-mallorca",
+      en: "/services/yacht-charter-web-design-mallorca",
+    },
   },
 });
 

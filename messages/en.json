@@ -121,6 +121,10 @@
       {
         "label": "Fine dining restaurants · Mallorca",
         "href": "/services/fine-dining"
+      },
+      {
+        "label": "Yacht charter · Mallorca",
+        "href": "/services/yacht-charter"
       }
     ]
   },
@@ -313,7 +317,8 @@
     "servicesLabel": "Sectors",
     "serviceLinks": {
       "luxuryVillas": "Luxury villas · Mallorca",
-      "fineDining": "Fine dining · Mallorca"
+      "fineDining": "Fine dining · Mallorca",
+      "yachtCharter": "Yacht charter · Mallorca"
     }
   },
   "briefing": {
@@ -641,6 +646,148 @@
       "cta": {
         "title": "Let's talk about your restaurant",
         "subtitle": "A conversation to understand your gastronomic proposition, diner profile, and how your digital presence should feel.",
+        "whatsapp": "WhatsApp"
+      }
+    },
+    "yachtCharter": {
+      "metaTitle": "Yacht Charter Web Design in Mallorca | Umania Labs",
+      "metaDescription": "Premium website design for yacht charter companies in Mallorca. Cinematic fleet catalogue, multilingual architecture, port-based SEO and GEO for international clients.",
+      "hero": {
+        "label": "SECTOR · LUXURY NAUTICAL",
+        "eyebrow": "YACHT CHARTER · MALLORCA",
+        "headline": "Yacht charter web design in Mallorca",
+        "subline": "A digital presence that captures Mediterranean exclusivity. Fleet presented with superyacht-level cinematography, frictionless enquiries, and visibility for high-net-worth international clients.",
+        "ctaWhatsapp": "Direct WhatsApp"
+      },
+      "challenge": {
+        "label": "THE CHALLENGE",
+        "title": "When the website undersells your fleet",
+        "items": [
+          {
+            "stat": "41",
+            "title": "Mallorca has 41 marinas",
+            "description": "The largest nautical hub in the western Mediterranean. Competition is fierce and international clients choose based on what they see online before they call.",
+            "solution": "Digital presence worthy of Europe's most exclusive ports"
+          },
+          {
+            "stat": "€150K",
+            "title": "Clients pay up to €150,000/week",
+            "description": "Someone chartering a superyacht at that price will not accept a generic website. Your digital presence determines whether you make their shortlist.",
+            "solution": "Superyacht editorial design that signals exclusivity instantly"
+          },
+          {
+            "stat": "UK+DE",
+            "title": "Your client is international",
+            "description": "British, German, Nordic and American clients search in English from London or Munich. Without true multilingual SEO by market, you are invisible to them.",
+            "solution": "Multilingual architecture with independent SEO per market"
+          },
+          {
+            "stat": "0 clicks",
+            "title": "The fleet is not shown as it deserves",
+            "description": "Small photos, no page per vessel, no indicative pricing or availability enquiry. The lead goes to a competitor who does.",
+            "solution": "Visual fleet catalogue with specs, gallery and CTA per yacht"
+          }
+        ]
+      },
+      "solution": {
+        "label": "THE SOLUTION",
+        "title": "What a Umania yacht charter website includes",
+        "items": [
+          {
+            "title": "Cinematic fleet catalogue",
+            "description": "Each vessel with its own page, high-resolution gallery, specifications, capacity and indicative pricing. The client decides before calling."
+          },
+          {
+            "title": "Superyacht-level hero video",
+            "description": "Cinematic clip of your fleet sailing Mallorca's turquoise waters. The first digital impression your business deserves."
+          },
+          {
+            "title": "Frictionless availability enquiry",
+            "description": "Visible CTA on every yacht page. Charter is not booked like a hotel — it is enquired. Your website generates that enquiry."
+          },
+          {
+            "title": "True multilingual ES + EN",
+            "description": "Independent URLs, metadata and SEO to reach UK, German and Nordic clients searching from their home country."
+          },
+          {
+            "title": "Port and area SEO",
+            "description": "Positioning for Puerto Portals, Palma, Andratx, Sóller and sailing zones. Where your client searches, you appear."
+          },
+          {
+            "title": "GEO readiness for AI",
+            "description": "Nautical schema and citable content for ChatGPT and Perplexity on searches like 'best yacht charter web design Mallorca'."
+          }
+        ]
+      },
+      "gallery": {
+        "label": "GALLERY",
+        "title": "The fleet as the sales argument",
+        "description": "In yacht charter, the image is the first voyage. This is how we structure visual catalogues that elevate vessel, experience and onboard service detail.",
+        "alts": [
+          "Superyacht sailing in Mallorca's turquoise waters",
+          "Deck and exterior lines of a luxury charter yacht",
+          "Main salon interior on a premium charter yacht",
+          "Deck detail with onboard service",
+          "Aerial view of yacht in a Mediterranean cove",
+          "Charter experience at sunset in the Balearics"
+        ]
+      },
+      "audience": {
+        "label": "FOR WHOM",
+        "title": "Nautical businesses competing for the highest-value client",
+        "marketLabel": "Company profile",
+        "brandLabel": "Umania positioning",
+        "ruleTitle": "Your website is the digital boarding pier",
+        "ruleDescription": "For a yacht charter company, the website must inspire the same trust as the first glimpse of the vessel. Investing in premium design is not a marketing expense — it is the infrastructure that attracts clients with real budget before they call a competitor.",
+        "items": [
+          {
+            "name": "Premium day charter",
+            "marketRange": "Puerto Portals · Palma · Andratx",
+            "ourPrice": "Websites from €15,000",
+            "insight": "High-net-worth clients seeking day experiences. They need to see the vessel, captain and services before booking."
+          },
+          {
+            "name": "Weekly charter / superyachts",
+            "marketRange": "40-80m fleet · Mediterranean",
+            "ourPrice": "Projects €25,000–50,000",
+            "insight": "International clients search in English, compare 3-4 companies and choose whoever conveys the most trust and exclusivity online."
+          },
+          {
+            "name": "Nautical broker / fleet management",
+            "marketRange": "Mallorca · Balearics · Med",
+            "ourPrice": "Retainer + continuous evolution",
+            "insight": "They need an updatable fleet catalogue, multiple languages and a website that works as a sales tool for their team."
+          }
+        ]
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "items": [
+          {
+            "question": "Do you build websites for yacht charter and luxury yacht rental companies?",
+            "answer": "Yes. We design websites for nautical charter companies in Mallorca: day charter, weekly charter, superyachts and fleet brokers. With visual catalogue, page per vessel and true multilingual architecture."
+          },
+          {
+            "question": "Can you show the fleet with a technical page per yacht?",
+            "answer": "Yes. We build fleet catalogues with an individual page per vessel: gallery, specifications, capacity, indicative pricing and enquiry CTA. The client decides before calling."
+          },
+          {
+            "question": "Is the website multilingual for international clients?",
+            "answer": "We develop true multilingual architectures with independent URLs, metadata and hreflang to reach clients in Spanish, English and other key Mediterranean charter markets."
+          },
+          {
+            "question": "Do you integrate availability enquiry or booking forms?",
+            "answer": "We integrate availability enquiry forms visible on every yacht page and on the homepage. Charter is managed by enquiry, not automatic booking — we design the flow to maximise those enquiries."
+          },
+          {
+            "question": "Does it improve visibility in Google for nautical searches?",
+            "answer": "We combine port-based SEO (Puerto Portals, Palma, Andratx), nautical schema, generative AI-optimised content and technical architecture that ranks for the searches your client makes before hiring."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Let's talk about your fleet",
+        "subtitle": "A conversation to understand your vessel portfolio, target markets and how your digital presence should feel.",
         "whatsapp": "WhatsApp"
       }
     }

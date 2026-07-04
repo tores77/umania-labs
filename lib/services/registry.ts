@@ -13,9 +13,12 @@ import type { Locale } from "@/i18n/routing";
  * 6. Link from `services.sectorLinks` (home) and `footer.serviceLinks` (footer).
  */
 
-export type ServicePathname = "/services/luxury-villas" | "/services/fine-dining";
+export type ServicePathname =
+  | "/services/luxury-villas"
+  | "/services/fine-dining"
+  | "/services/yacht-charter";
 
-export type ServiceMessageKey = "luxuryVillas" | "fineDining";
+export type ServiceMessageKey = "luxuryVillas" | "fineDining" | "yachtCharter";
 
 export type ServiceDefinition = {
   id: string;
@@ -52,6 +55,19 @@ export const SERVICES: ServiceDefinition[] = [
     paths: {
       es: "/servicios/diseno-web-restaurantes-alta-gama-mallorca",
       en: "/services/fine-dining-restaurant-web-design-mallorca",
+    },
+    sitemap: {
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+  },
+  {
+    id: "yacht-charter",
+    pathname: "/services/yacht-charter",
+    messageKey: "yachtCharter",
+    paths: {
+      es: "/servicios/diseno-web-empresas-charter-yates-mallorca",
+      en: "/services/yacht-charter-web-design-mallorca",
     },
     sitemap: {
       changeFrequency: "monthly",

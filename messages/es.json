@@ -121,6 +121,10 @@
       {
         "label": "Restaurantes de alta gama · Mallorca",
         "href": "/services/fine-dining"
+      },
+      {
+        "label": "Yacht charter · Mallorca",
+        "href": "/services/yacht-charter"
       }
     ]
   },
@@ -313,7 +317,8 @@
     "servicesLabel": "Sectores",
     "serviceLinks": {
       "luxuryVillas": "Villas de lujo · Mallorca",
-      "fineDining": "Restaurantes alta gama · Mallorca"
+      "fineDining": "Restaurantes alta gama · Mallorca",
+      "yachtCharter": "Yacht charter · Mallorca"
     }
   },
   "briefing": {
@@ -641,6 +646,148 @@
       "cta": {
         "title": "Hablemos de su restaurante",
         "subtitle": "Una conversación para entender su propuesta gastronómica, tipo de comensal y cómo debería sentirse su presencia digital.",
+        "whatsapp": "WhatsApp"
+      }
+    },
+    "yachtCharter": {
+      "metaTitle": "Diseño web para empresas de yacht charter en Mallorca | Umania Labs",
+      "metaDescription": "Webs editoriales para empresas de yacht charter y alquiler de yates en Mallorca. Catálogo de flota cinematográfico, multilingüe, SEO por puerto y GEO para el cliente internacional.",
+      "hero": {
+        "label": "SECTOR · NÁUTICA DE LUJO",
+        "eyebrow": "YACHT CHARTER · MALLORCA",
+        "headline": "Diseño web para empresas de yacht charter en Mallorca",
+        "subline": "Una presencia digital que captura la exclusividad del Mediterráneo. Flota presentada con cinematografía de nivel superyate, reservas sin fricción y visibilidad para el cliente internacional de alto poder adquisitivo.",
+        "ctaWhatsapp": "WhatsApp directo"
+      },
+      "challenge": {
+        "label": "EL RETO",
+        "title": "Cuando la web no refleja la exclusividad de tu flota",
+        "items": [
+          {
+            "stat": "41",
+            "title": "Mallorca tiene 41 marinas",
+            "description": "El mayor hub náutico del Mediterráneo occidental. La competencia es brutal y el cliente internacional elige por lo que ve online antes de llamar.",
+            "solution": "Presencia digital a la altura del puerto más exclusivo de Europa"
+          },
+          {
+            "stat": "150K€",
+            "title": "El cliente paga hasta 150.000€/semana",
+            "description": "Quien alquila un superyate a ese precio no acepta una web genérica. La calidad de tu presencia digital define si llamas o no llamas en su lista.",
+            "solution": "Diseño editorial de superyate que transmite exclusividad al instante"
+          },
+          {
+            "stat": "UK+DE",
+            "title": "El cliente es internacional",
+            "description": "Británicos, alemanes, nórdicos y americanos buscan en inglés desde Londres o Múnich. Sin multilingüe real y SEO por mercado, eres invisible para ellos.",
+            "solution": "Arquitectura multilingüe con SEO independiente por mercado"
+          },
+          {
+            "stat": "0 clics",
+            "title": "La flota no se muestra como merece",
+            "description": "Fotos pequeñas, sin ficha por embarcación, sin precios orientativos ni formulario de disponibilidad. El lead se va a la competencia que sí lo tiene.",
+            "solution": "Catálogo de flota visual con ficha técnica, galería y CTA por yate"
+          }
+        ]
+      },
+      "solution": {
+        "label": "LA SOLUCIÓN",
+        "title": "Qué incluye una web de yacht charter Umania",
+        "items": [
+          {
+            "title": "Catálogo de flota cinematográfico",
+            "description": "Cada embarcación con su ficha, galería de alta resolución, especificaciones, capacidad y precios orientativos. El cliente decide antes de llamar."
+          },
+          {
+            "title": "Vídeo hero nivel superyate",
+            "description": "Clip cinematográfico de la flota navegando en aguas turquesas de Mallorca. La primera impresión digital que merece tu negocio."
+          },
+          {
+            "title": "Consulta de disponibilidad sin fricción",
+            "description": "CTA visible en cada ficha de yate. El charter no se reserva como un hotel — se consulta. Tu web genera esa consulta."
+          },
+          {
+            "title": "Multilingüe real ES + EN",
+            "description": "URLs, metadatos y SEO independientes para captar el cliente UK, alemán y nórdico que busca desde su país."
+          },
+          {
+            "title": "SEO por puerto y zona",
+            "description": "Posicionamiento para Puerto Portals, Palma, Andratx, Sóller y zonas de navegación. Donde busca tu cliente, apareces tú."
+          },
+          {
+            "title": "GEO readiness para IA",
+            "description": "Schema náutico, contenido citeable por ChatGPT y Perplexity para búsquedas como 'best yacht charter web design Mallorca'."
+          }
+        ]
+      },
+      "gallery": {
+        "label": "GALERÍA",
+        "title": "La flota como argumento de venta",
+        "description": "En yacht charter, la imagen es la primera travesía. Así estructuramos catálogos visuales que elevan embarcación, experiencia y detalle de servicio a bordo.",
+        "alts": [
+          "Superyate navegando en aguas turquesas de Mallorca",
+          "Cubierta y líneas exteriores de yate de lujo",
+          "Interior de salon principal en yate charter premium",
+          "Detalle de cubierta con servicio a bordo",
+          "Vista aérea de yate en cala mediterránea",
+          "Experiencia charter al atardecer en Baleares"
+        ]
+      },
+      "audience": {
+        "label": "PARA QUIÉN",
+        "title": "Empresas náuticas que compiten por el cliente de mayor valor",
+        "marketLabel": "Perfil de empresa",
+        "brandLabel": "Posicionamiento Umania",
+        "ruleTitle": "Su web es el muelle de embarque digital",
+        "ruleDescription": "Para una empresa de yacht charter, la web debe generar la misma confianza que el primer vistazo a la embarcación. Invertir en diseño premium no es un gasto de marketing: es la infraestructura que atrae al cliente con presupuesto real antes de que llame a la competencia.",
+        "items": [
+          {
+            "name": "Day charter premium",
+            "marketRange": "Puerto Portals · Palma · Andratx",
+            "ourPrice": "Webs desde 15.000€",
+            "insight": "Clientes de alto poder que buscan experiencias de un día. Necesitan ver la embarcación, el capitán y los servicios antes de reservar."
+          },
+          {
+            "name": "Charter semanal / superyates",
+            "marketRange": "Flota 40-80m · Mediterráneo",
+            "ourPrice": "Proyectos 25.000–50.000€",
+            "insight": "El cliente internacional busca en inglés, compara 3-4 empresas y elige la que transmite más confianza y exclusividad online."
+          },
+          {
+            "name": "Broker náutico / gestión de flota",
+            "marketRange": "Mallorca · Baleares · Med",
+            "ourPrice": "Retainer + evolución continua",
+            "insight": "Necesitan catálogo de flota actualizable, múltiples idiomas y una web que funcione como herramienta de ventas para su equipo."
+          }
+        ]
+      },
+      "faq": {
+        "title": "Preguntas frecuentes",
+        "items": [
+          {
+            "question": "¿Hacéis webs para empresas de yacht charter y alquiler de yates?",
+            "answer": "Sí. Diseñamos webs para empresas de charter náutico en Mallorca: day charter, charter semanal, superyates y brokers de flota. Con catálogo visual, ficha por embarcación y arquitectura multilingüe real."
+          },
+          {
+            "question": "¿Podéis mostrar la flota con ficha técnica por yate?",
+            "answer": "Sí. Construimos catálogos de flota con página individual por embarcación: galería, especificaciones, capacidad, precios orientativos y CTA de consulta. El cliente decide antes de llamar."
+          },
+          {
+            "question": "¿La web es multilingüe para clientes internacionales?",
+            "answer": "Desarrollamos arquitecturas multilingües reales con URLs, metadatos y hreflang independientes para captar clientes en español, inglés y otros mercados clave del charter mediterráneo."
+          },
+          {
+            "question": "¿Integráis formulario de disponibilidad o reserva?",
+            "answer": "Integramos formularios de consulta de disponibilidad visibles en cada ficha de yate y en la home. El charter se gestiona por consulta, no por reserva automática — diseñamos el flujo para maximizar esas consultas."
+          },
+          {
+            "question": "¿Mejora la visibilidad en Google para búsquedas náuticas?",
+            "answer": "Combinamos SEO por puerto (Puerto Portals, Palma, Andratx), schema náutico, contenido optimizado para IA generativa y arquitectura técnica que posiciona para las búsquedas que hace tu cliente antes de contratar."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Hablemos de su flota",
+        "subtitle": "Una conversación para entender su cartera de embarcaciones, mercados objetivo y cómo debería sentirse su presencia digital.",
         "whatsapp": "WhatsApp"
       }
     }
