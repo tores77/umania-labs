@@ -25,6 +25,10 @@ export const routing = defineRouting({
       es: "/servicios/diseno-web-empresas-charter-yates-mallorca",
       en: "/services/yacht-charter-web-design-mallorca",
     },
+    "/services/boutique-hotels": {
+      es: "/servicios/diseno-web-agroturismos-hoteles-boutique-mallorca",
+      en: "/services/boutique-hotel-agroturismo-web-design-mallorca",
+    },
   },
 });
 

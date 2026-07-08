@@ -125,6 +125,10 @@
       {
         "label": "Yacht charter · Mallorca",
         "href": "/services/yacht-charter"
+      },
+      {
+        "label": "Agroturismos & hoteles boutique · Mallorca",
+        "href": "/services/boutique-hotels"
       }
     ]
   },
@@ -318,7 +322,8 @@
     "serviceLinks": {
       "luxuryVillas": "Villas de lujo · Mallorca",
       "fineDining": "Restaurantes alta gama · Mallorca",
-      "yachtCharter": "Yacht charter · Mallorca"
+      "yachtCharter": "Yacht charter · Mallorca",
+      "boutiqueHotels": "Agroturismos & hoteles boutique · Mallorca"
     }
   },
   "briefing": {
@@ -788,6 +793,148 @@
       "cta": {
         "title": "Hablemos de su flota",
         "subtitle": "Una conversación para entender su cartera de embarcaciones, mercados objetivo y cómo debería sentirse su presencia digital.",
+        "whatsapp": "WhatsApp"
+      }
+    },
+    "boutiqueHotels": {
+      "metaTitle": "Diseño web para agroturismos y hoteles boutique en Mallorca | Umania Labs",
+      "metaDescription": "Webs con motor de reserva directa para agroturismos, finca hotels y hoteles boutique en Mallorca. Recupera el margen que Booking se lleva: estética editorial, multilingüe, SEO y GEO.",
+      "hero": {
+        "label": "SECTOR · ALOJAMIENTO CON CARÁCTER",
+        "eyebrow": "AGROTURISMOS & HOTELES BOUTIQUE · MALLORCA",
+        "headline": "Diseño web para agroturismos y hoteles boutique en Mallorca",
+        "subline": "Tu finca merece más que una ficha en Booking. Webs con motor de reserva directa que devuelven el control — y el margen — a tu casa. La estética que tu propiedad merece, la independencia que tu negocio necesita.",
+        "ctaWhatsapp": "WhatsApp directo"
+      },
+      "challenge": {
+        "label": "EL RETO",
+        "title": "Cuando Booking se queda un tercio de cada noche",
+        "items": [
+          {
+            "stat": "18-30%",
+            "title": "La comisión real de Booking",
+            "description": "El 15% titular es solo la base. Con Genius y Visibility Booster, la comisión efectiva llega al 30%. En una habitación de 200€/noche, hasta 60€ de cada noche se van a Ámsterdam.",
+            "solution": "Web con motor de reserva directa: ese margen vuelve a tu casa"
+          },
+          {
+            "stat": "21,8%",
+            "title": "Las reservas OTA se cancelan el doble",
+            "description": "Las cancelaciones en OTAs alcanzan el 21,8%, más del doble que las reservas directas (10,6%). Ocupación fantasma que descuadra tu previsión cada temporada.",
+            "solution": "La reserva directa es más firme, más larga y con más extras"
+          },
+          {
+            "stat": "2.400",
+            "title": "Búsquedas al mes de 'agroturismo Mallorca'",
+            "description": "Solo en España, tu categoría recibe 2.400 búsquedas mensuales — y 1.300 más de 'hotel boutique Mallorca'. ¿Cuántas captura tu web frente a Booking y los portales?",
+            "solution": "SEO y GEO para que el huésped te encuentre a ti, no al intermediario"
+          },
+          {
+            "stat": "2024",
+            "title": "La paridad de tarifas ha caído",
+            "description": "Desde la sentencia del TJUE de 2024, puedes ofrecer legalmente mejor precio en tu web que en Booking. La mayoría de propiedades aún no lo aprovecha. Ventana abierta para quien mueva primero.",
+            "solution": "Estrategia de precio directo + web que convierte esa ventaja"
+          }
+        ]
+      },
+      "solution": {
+        "label": "LA SOLUCIÓN",
+        "title": "Qué incluye una web de alojamiento Umania",
+        "items": [
+          {
+            "title": "Motor de reservas para hotel integrado",
+            "description": "Reserva directa sin fricción, calendario en tiempo real y pago seguro. El huésped reserva en tu web al mejor precio — sin comisión de por medio."
+          },
+          {
+            "title": "Estética editorial de tu finca",
+            "description": "Fotografía cinematográfica, piedra, olivos y luz mediterránea. Una web a la altura de la propiedad que has restaurado con tanto cuidado."
+          },
+          {
+            "title": "Multilingüe real para tu huésped",
+            "description": "Alemán, británico, nórdico: arquitectura ES + EN (ampliable a DE) con SEO independiente por mercado. El 80% de tu huésped busca en su idioma."
+          },
+          {
+            "title": "SEO local + GEO para IA",
+            "description": "Posicionamiento para las búsquedas de tu categoría y contenido citeable por ChatGPT y Perplexity — donde tu huésped ya pregunta qué agroturismo elegir."
+          },
+          {
+            "title": "Experiencias que Booking no muestra",
+            "description": "Day pass, spa, ofertas residentes, catas, bodas: tu web vende todo lo que la ficha de Booking esconde. Ingresos extra sin intermediarios."
+          },
+          {
+            "title": "El ROI es matemática simple",
+            "description": "Con el ahorro de comisión de 5-8 reservas directas, la web está pagada. Todo lo que venga después es margen recuperado."
+          }
+        ]
+      },
+      "gallery": {
+        "label": "GALERÍA",
+        "title": "La finca como argumento de reserva",
+        "description": "En agroturismo y hotel boutique, la imagen es la primera noche. Así estructuramos webs editoriales que transmiten calma, autenticidad y el detalle que convierte visita en reserva directa.",
+        "alts": [
+          "Habitación boutique con luz natural en finca mallorquina",
+          "Patio interior con piedra y vegetación mediterránea",
+          "Desayuno artesanal en terraza de agroturismo",
+          "Piscina y olivos en finca hotel de interior de Mallorca",
+          "Suite con arquitectura tradicional restaurada",
+          "Atardecer sobre viñedos desde terraza de hotel rural"
+        ]
+      },
+      "audience": {
+        "label": "PARA QUIÉN",
+        "title": "Propiedades con alma que compiten contra gigantes",
+        "marketLabel": "Perfil de propiedad",
+        "brandLabel": "Posicionamiento Umania",
+        "ruleTitle": "Su web es la recepción digital de la finca",
+        "ruleDescription": "Para un agroturismo o un hotel boutique, la web debe transmitir lo mismo que cruzar el portón de la finca: autenticidad, calma y cuidado por el detalle. Invertir en ella no es marketing — es recuperar el control de tu canal de venta más rentable.",
+        "items": [
+          {
+            "name": "Agroturismos & finca hotels",
+            "marketRange": "5-30 habitaciones · interior de Mallorca",
+            "ourPrice": "Webs desde 1.500€",
+            "insight": "Gestión familiar, huésped internacional que busca autenticidad. La reserva directa marca la diferencia entre temporada buena y excelente."
+          },
+          {
+            "name": "Hoteles boutique urbanos",
+            "marketRange": "Palma · Sóller · Pollença",
+            "ourPrice": "Proyectos 3.000–15.000€",
+            "insight": "Compiten contra cadenas con presupuestos infinitos. Su arma es el carácter — la web tiene que transmitirlo en 3 segundos."
+          },
+          {
+            "name": "Pequeños grupos & colecciones",
+            "marketRange": "2-5 propiedades · Baleares",
+            "ourPrice": "Retainer + evolución continua",
+            "insight": "Necesitan marca paraguas, motor de reservas multi-propiedad y una estrategia digital que escale con la cartera."
+          }
+        ]
+      },
+      "faq": {
+        "title": "Preguntas frecuentes",
+        "items": [
+          {
+            "question": "¿Hacéis webs para agroturismos y hoteles boutique?",
+            "answer": "Sí. Es una de nuestras especialidades: agroturismos, finca hotels, hoteles rurales y boutique en Mallorca. Webs editoriales con motor de reserva directa, multilingüe y SEO local."
+          },
+          {
+            "question": "¿Puedo integrar un motor de reservas en mi web?",
+            "answer": "Sí. Integramos motores de reserva directa con calendario en tiempo real, pago seguro y sincronización con los principales channel managers. El objetivo: que la reserva más rentable entre por tu web."
+          },
+          {
+            "question": "¿Cómo reduzco mi dependencia de Booking.com?",
+            "answer": "Con una web que convierta: motor de reserva directa, mejor precio garantizado en tu canal (legal desde la sentencia del TJUE de 2024), SEO para tu categoría y experiencias exclusivas que las OTAs no muestran. Booking pasa de canal principal a escaparate."
+          },
+          {
+            "question": "¿La web estará en varios idiomas?",
+            "answer": "Sí. Arquitectura multilingüe real (ES + EN, ampliable a alemán) con URLs, metadatos y SEO independientes por mercado — pensada para el huésped internacional que llena tu temporada."
+          },
+          {
+            "question": "¿Cuánto tarda en amortizarse la web?",
+            "answer": "Haz la cuenta: si Booking se queda 40-60€ por noche en comisiones, con 5-8 reservas directas la web está pagada. Todo lo demás es margen que vuelve a tu casa, temporada tras temporada."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Hablemos de su finca",
+        "subtitle": "Una conversación para entender su propiedad, su huésped ideal y cuántas reservas directas está dejando escapar.",
         "whatsapp": "WhatsApp"
       }
     }

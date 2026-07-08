@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { gsap, registerGsap } from "@/lib/gsap";
 import {
+  HOTEL_GALLERY_IMAGES,
   RESTAURANT_GALLERY_IMAGES,
   YACHT_GALLERY_IMAGES,
 } from "@/lib/constants";
@@ -24,6 +25,8 @@ function getGalleryImages(messageKey: ServiceMessageKey) {
       return RESTAURANT_GALLERY_IMAGES;
     case "yachtCharter":
       return YACHT_GALLERY_IMAGES;
+    case "boutiqueHotels":
+      return HOTEL_GALLERY_IMAGES;
     default:
       return [];
   }
@@ -193,7 +196,8 @@ export default function ServiceGallery({ service }: ServiceGalleryProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const alts = t.raw("alts") as string[];
   const galleryImages = getGalleryImages(service.messageKey);
-  const isYachtGallery = service.messageKey === "yachtCharter";
+  const usesMarqueeGallery =
+    service.messageKey === "yachtCharter" || service.messageKey === "boutiqueHotels";
 
   useEffect(() => {
     registerGsap();
@@ -212,7 +216,7 @@ export default function ServiceGallery({ service }: ServiceGalleryProps) {
         },
       });
 
-      if (!isYachtGallery) {
+      if (!usesMarqueeGallery) {
         gsap.from(sectionRef.current!.querySelectorAll("[data-gallery-item]"), {
           opacity: 0,
           y: 36,
@@ -228,7 +232,7 @@ export default function ServiceGallery({ service }: ServiceGalleryProps) {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [isYachtGallery]);
+  }, [usesMarqueeGallery]);
 
   return (
     <section ref={sectionRef} className="section section-padding">
@@ -259,7 +263,7 @@ export default function ServiceGallery({ service }: ServiceGalleryProps) {
         {t("description")}
       </p>
 
-      {isYachtGallery ? (
+      {usesMarqueeGallery ? (
         <YachtMarqueeGallery images={galleryImages} alts={alts} />
       ) : (
         <StaticGalleryGrid images={galleryImages} alts={alts} />

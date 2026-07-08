@@ -125,6 +125,10 @@
       {
         "label": "Yacht charter · Mallorca",
         "href": "/services/yacht-charter"
+      },
+      {
+        "label": "Boutique hotels & agroturismo · Mallorca",
+        "href": "/services/boutique-hotels"
       }
     ]
   },
@@ -318,7 +322,8 @@
     "serviceLinks": {
       "luxuryVillas": "Luxury villas · Mallorca",
       "fineDining": "Fine dining · Mallorca",
-      "yachtCharter": "Yacht charter · Mallorca"
+      "yachtCharter": "Yacht charter · Mallorca",
+      "boutiqueHotels": "Boutique hotels & agroturismo · Mallorca"
     }
   },
   "briefing": {
@@ -788,6 +793,148 @@
       "cta": {
         "title": "Let's talk about your fleet",
         "subtitle": "A conversation to understand your vessel portfolio, target markets and how your digital presence should feel.",
+        "whatsapp": "WhatsApp"
+      }
+    },
+    "boutiqueHotels": {
+      "metaTitle": "Boutique Hotel & Agroturismo Web Design in Mallorca | Umania Labs",
+      "metaDescription": "Direct booking websites for boutique hotels, finca hotels and agroturismos in Mallorca. Editorial design, booking engine, multilingual SEO — take back the margin OTAs keep.",
+      "hero": {
+        "label": "SECTOR · CHARACTER STAYS",
+        "eyebrow": "AGROTURISMOS & BOUTIQUE HOTELS · MALLORCA",
+        "headline": "Boutique hotel & agroturismo web design in Mallorca",
+        "subline": "Your finca deserves more than a Booking.com listing. Direct booking websites that return control — and margin — to your property. The aesthetic your estate deserves, the independence your business needs.",
+        "ctaWhatsapp": "Direct WhatsApp"
+      },
+      "challenge": {
+        "label": "THE CHALLENGE",
+        "title": "When Booking keeps a third of every night",
+        "items": [
+          {
+            "stat": "18-30%",
+            "title": "Booking's real commission",
+            "description": "The headline 15% is just the base. With Genius and Visibility Booster, effective commission reaches 30%. On a €200/night room, up to €60 of every night goes to Amsterdam.",
+            "solution": "Direct booking website: that margin stays with you"
+          },
+          {
+            "stat": "21.8%",
+            "title": "OTA bookings cancel twice as often",
+            "description": "OTA cancellation rates hit 21.8% — more than double direct bookings (10.6%). Ghost occupancy that throws off your forecast every season.",
+            "solution": "Direct bookings are firmer, longer and carry more extras"
+          },
+          {
+            "stat": "2,400",
+            "title": "Monthly searches for 'agroturismo Mallorca'",
+            "description": "In Spain alone, your category gets 2,400 monthly searches — plus 1,300 more for 'hotel boutique Mallorca'. How many does your website capture versus Booking and the portals?",
+            "solution": "SEO and GEO so guests find you, not the intermediary"
+          },
+          {
+            "stat": "2024",
+            "title": "Rate parity has fallen",
+            "description": "Since the 2024 CJEU ruling, you can legally offer a better price on your website than on Booking. Most properties still haven't acted. A window open for whoever moves first.",
+            "solution": "Direct pricing strategy + a website that converts that advantage"
+          }
+        ]
+      },
+      "solution": {
+        "label": "THE SOLUTION",
+        "title": "What a Umania hospitality website includes",
+        "items": [
+          {
+            "title": "Integrated booking engine for small hotels",
+            "description": "Frictionless direct booking, real-time calendar and secure payment. Guests book on your site at the best price — no commission in between."
+          },
+          {
+            "title": "Editorial aesthetic for your finca",
+            "description": "Cinematic photography, stone, olive trees and Mediterranean light. A website worthy of the property you've restored with such care."
+          },
+          {
+            "title": "True multilingual for your guest",
+            "description": "German, British, Nordic markets: ES + EN architecture (expandable to DE) with independent SEO per market. 80% of your guests search in their own language."
+          },
+          {
+            "title": "Local SEO + GEO for AI",
+            "description": "Ranking for your category searches and citable content for ChatGPT and Perplexity — where your guest already asks which agroturismo to choose."
+          },
+          {
+            "title": "Experiences Booking doesn't show",
+            "description": "Day pass, spa, resident offers, tastings, weddings: your website sells everything a Booking listing hides. Extra revenue without intermediaries."
+          },
+          {
+            "title": "ROI is simple maths",
+            "description": "With commission savings from 5-8 direct bookings, the website pays for itself. Everything after is recovered margin."
+          }
+        ]
+      },
+      "gallery": {
+        "label": "GALLERY",
+        "title": "The finca as the booking argument",
+        "description": "In agroturismo and boutique hotels, the image is the first night. This is how we structure editorial websites that convey calm, authenticity and the detail that turns a visit into a direct booking.",
+        "alts": [
+          "Boutique room with natural light in a Mallorcan finca",
+          "Interior courtyard with stone and Mediterranean planting",
+          "Artisan breakfast on an agroturismo terrace",
+          "Pool and olive trees at an inland Mallorca finca hotel",
+          "Suite with restored traditional architecture",
+          "Sunset over vineyards from a rural hotel terrace"
+        ]
+      },
+      "audience": {
+        "label": "FOR WHOM",
+        "title": "Properties with soul competing against giants",
+        "marketLabel": "Property profile",
+        "brandLabel": "Umania positioning",
+        "ruleTitle": "Your website is the finca's digital reception",
+        "ruleDescription": "For an agroturismo or boutique hotel, the website must convey the same feeling as crossing the estate gate: authenticity, calm and attention to detail. Investing in it isn't marketing — it's reclaiming control of your most profitable sales channel.",
+        "items": [
+          {
+            "name": "Agroturismos & finca hotels",
+            "marketRange": "5-30 rooms · inland Mallorca",
+            "ourPrice": "Websites from €1,500",
+            "insight": "Family-run, international guests seeking authenticity. Direct booking makes the difference between a good season and an excellent one."
+          },
+          {
+            "name": "Urban boutique hotels",
+            "marketRange": "Palma · Sóller · Pollença",
+            "ourPrice": "Projects €3,000–15,000",
+            "insight": "They compete against chains with infinite budgets. Their weapon is character — the website must convey it in 3 seconds."
+          },
+          {
+            "name": "Small groups & collections",
+            "marketRange": "2-5 properties · Balearics",
+            "ourPrice": "Retainer + continuous evolution",
+            "insight": "They need an umbrella brand, multi-property booking engine and a digital strategy that scales with the portfolio."
+          }
+        ]
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "items": [
+          {
+            "question": "Do you build websites for agroturismos and boutique hotels?",
+            "answer": "Yes. It's one of our specialities: agroturismos, finca hotels, rural hotels and boutique properties in Mallorca. Editorial websites with direct booking engine, multilingual architecture and local SEO."
+          },
+          {
+            "question": "Can I integrate a booking engine on my website?",
+            "answer": "Yes. We integrate direct booking engines with real-time calendar, secure payment and sync with major channel managers. The goal: your most profitable bookings come through your site."
+          },
+          {
+            "question": "How do I reduce my dependence on Booking.com?",
+            "answer": "With a website that converts: direct booking engine, best price guaranteed on your channel (legal since the 2024 CJEU ruling), SEO for your category and exclusive experiences OTAs don't show. Booking becomes a showcase, not your main channel."
+          },
+          {
+            "question": "Will the website be in multiple languages?",
+            "answer": "Yes. True multilingual architecture (ES + EN, expandable to German) with independent URLs, metadata and SEO per market — built for the international guest who fills your season."
+          },
+          {
+            "question": "How long until the website pays for itself?",
+            "answer": "Do the maths: if Booking keeps €40-60 per night in commissions, 5-8 direct bookings cover the website. Everything else is margin back in your pocket, season after season."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Let's talk about your finca",
+        "subtitle": "A conversation to understand your property, your ideal guest and how many direct bookings you're leaving on the table.",
         "whatsapp": "WhatsApp"
       }
     }

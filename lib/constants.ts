@@ -90,3 +90,23 @@ export function whatsappYachtLink(locale: "es" | "en") {
     ? `https://wa.me/34676967465?text=${encodeURIComponent("Hola, vengo de la web de Umania Labs. Tengo una empresa de yacht charter en Mallorca y quiero mejorar mi presencia digital.")}`
     : `https://wa.me/34676967465?text=${encodeURIComponent("Hi, I'm coming from Umania Labs website. I run a yacht charter company in Mallorca and want to improve my digital presence.")}`;
 }
+
+export const HOTEL_HERO_IMAGE = "/hotel-1.jpg";
+export const HOTEL_HERO_VIDEO = "/hotel-hero.mp4";
+export const HOTEL_HERO_WIDTH = 1920;
+export const HOTEL_HERO_HEIGHT = 1080;
+
+export const HOTEL_GALLERY_IMAGES = [
+  "/hotel-2.jpg",
+  "/hotel-3.jpg",
+  "/hotel-5.jpg",
+  "/hotel-6.jpg",
+  "/hotel-9.jpg",
+  "/hotel-10.jpg",
+] as const;
+
+export function whatsappHotelLink(locale: "es" | "en") {
+  return locale === "es"
+    ? `https://wa.me/34676967465?text=${encodeURIComponent("Hola, vengo de la web de Umania Labs. Tengo un agroturismo/hotel boutique en Mallorca y quiero mejorar mi presencia digital y reservas directas.")}`
+    : `https://wa.me/34676967465?text=${encodeURIComponent("Hi, I'm coming from Umania Labs website. I run a boutique hotel/agroturismo in Mallorca and want to improve my digital presence and direct bookings.")}`;
+}

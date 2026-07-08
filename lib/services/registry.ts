@@ -16,9 +16,14 @@ import type { Locale } from "@/i18n/routing";
 export type ServicePathname =
   | "/services/luxury-villas"
   | "/services/fine-dining"
-  | "/services/yacht-charter";
+  | "/services/yacht-charter"
+  | "/services/boutique-hotels";
 
-export type ServiceMessageKey = "luxuryVillas" | "fineDining" | "yachtCharter";
+export type ServiceMessageKey =
+  | "luxuryVillas"
+  | "fineDining"
+  | "yachtCharter"
+  | "boutiqueHotels";
 
 export type ServiceDefinition = {
   id: string;
@@ -68,6 +73,19 @@ export const SERVICES: ServiceDefinition[] = [
     paths: {
       es: "/servicios/diseno-web-empresas-charter-yates-mallorca",
       en: "/services/yacht-charter-web-design-mallorca",
+    },
+    sitemap: {
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+  },
+  {
+    id: "boutique-hotels",
+    pathname: "/services/boutique-hotels",
+    messageKey: "boutiqueHotels",
+    paths: {
+      es: "/servicios/diseno-web-agroturismos-hoteles-boutique-mallorca",
+      en: "/services/boutique-hotel-agroturismo-web-design-mallorca",
     },
     sitemap: {
       changeFrequency: "monthly",
