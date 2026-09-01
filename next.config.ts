@@ -5,12 +5,12 @@ const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
 const contentSecurityPolicy = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://bzrcdn.openai.com",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: https:",
+  "img-src 'self' data: https: https://bzr.openai.com",
   "font-src 'self' data:",
   "media-src 'self'",
-  "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://*.supabase.co https://api.anthropic.com https://briefing.umanialabs.com",
+  "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://bzr.openai.com https://bzrcdn.openai.com https://*.supabase.co https://api.anthropic.com https://briefing.umanialabs.com",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",

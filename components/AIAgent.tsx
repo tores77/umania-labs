@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { AgentMessageContent } from "@/lib/agent-message";
-import { trackEvent } from "@/lib/analytics";
+import { trackEvent, trackOaiCustom, trackOaiLead } from "@/lib/analytics";
 import { gsap, registerGsap } from "@/lib/gsap";
 
 type Message = { role: "user" | "assistant"; content: string };
@@ -34,6 +34,7 @@ export default function AIAgent() {
     if (agentEngageTracked.current) return;
     agentEngageTracked.current = true;
     trackEvent("agent_engage", { location: "homepage_agent" });
+    trackOaiCustom("agent_engage");
   }, []);
 
   const trackGenerateLead = useCallback(() => {
@@ -42,6 +43,7 @@ export default function AIAgent() {
       value: 1500,
       currency: "EUR",
     });
+    trackOaiLead();
   }, []);
 
   const userMessageCount = messages.filter((m) => m.role === "user").length;
