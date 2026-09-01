@@ -227,7 +227,6 @@ export default function HeroSequence() {
               href="#agent"
               onClick={scrollToAgent}
               className="cta-btn"
-              data-cursor="GO"
             >
               {t("ctaPrimary")}
             </a>
@@ -236,7 +235,6 @@ export default function HeroSequence() {
               target="_blank"
               rel="noopener noreferrer"
               className="cta-btn-outline"
-              data-cursor="BOOK"
             >
               {t("ctaSecondary")}
             </a>

@@ -101,7 +101,6 @@ export default function Nav() {
       >
         <a
           href="#top"
-          data-cursor="HOME"
           className="text-label"
           style={{
             color: "var(--fg)",
@@ -127,7 +126,6 @@ export default function Nav() {
               <a
                 key={l.key}
                 href={l.href}
-                data-cursor="GO"
                 className="text-label"
                 style={{
                   color:
@@ -151,7 +149,6 @@ export default function Nav() {
             ))}
             <Link
               href="/blog"
-              data-cursor="GO"
               className="text-label"
               style={{
                 color: "var(--fg-muted)",
@@ -171,7 +168,6 @@ export default function Nav() {
           </div>
           <a
             href="#agent"
-            data-cursor="GO"
             className="cta-btn"
             style={{ padding: "10px 20px", fontSize: 9, display: "none" }}
             id="nav-cta-desktop"

@@ -184,7 +184,6 @@ export default function RoomNautical() {
             {/* Mockup */}
             <div
               ref={mockupRef}
-              data-cursor="VIEW"
               style={{
                 perspective: "1500px",
               }}
@@ -344,7 +343,6 @@ export default function RoomNautical() {
             </p>
             <a
               href="#"
-              data-cursor="OPEN CASE"
               style={{
                 fontFamily: "var(--font-space-grotesk)",
                 fontSize: 12,

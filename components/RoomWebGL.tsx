@@ -183,7 +183,6 @@ export default function RoomWebGL() {
           </p>
           <a
             href="#"
-            data-cursor="SOURCE"
             style={{
               marginTop: 36,
               fontFamily: "var(--font-space-grotesk)",

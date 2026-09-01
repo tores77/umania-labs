@@ -10,7 +10,6 @@ import "../globals.css";
 
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import { LocaleSwitchProvider } from "@/components/LocaleSwitchProvider";
-import Cursor from "@/components/Cursor";
 import Nav from "@/components/Nav";
 
 const cormorant = Cormorant_Garamond({
@@ -206,7 +205,6 @@ export default async function LocaleLayout({ children, params }: Props) {
             <Nav />
             <SmoothScrollProvider>{children}</SmoothScrollProvider>
           </LocaleSwitchProvider>
-          <Cursor />
         </NextIntlClientProvider>
       </body>
     </html>

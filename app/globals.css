@@ -52,19 +52,6 @@ body {
   color: var(--bg);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  html.has-custom-cursor,
-  html.has-custom-cursor * {
-    cursor: none;
-  }
-  html.has-custom-cursor input,
-  html.has-custom-cursor textarea,
-  html.has-custom-cursor select,
-  html.has-custom-cursor button {
-    cursor: none;
-  }
-}
-
 ::-webkit-scrollbar {
   width: 0;
   height: 0;
@@ -271,45 +258,6 @@ select:focus-visible {
   width: 100%;
 }
 
-.cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--accent);
-  pointer-events: none;
-  z-index: 2147483646;
-  transform: translate3d(-100px, -100px, 0);
-  will-change: transform;
-  transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    height 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.cursor[data-state="hover"] {
-  width: 36px;
-  height: 36px;
-  background: rgba(200, 169, 110, 0.6);
-}
-.cursor-label {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 2147483646;
-  font-family: var(--font-dm-mono), monospace;
-  font-size: 9px;
-  letter-spacing: 0.25em;
-  color: var(--fg);
-  text-transform: uppercase;
-  transform: translate3d(-100px, -100px, 0);
-  opacity: 0;
-  transition: opacity 0.25s ease-out;
-}
-.cursor-label[data-visible="true"] {
-  opacity: 1;
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -420,6 +368,7 @@ select:focus-visible {
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
+  cursor: pointer;
   transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
 

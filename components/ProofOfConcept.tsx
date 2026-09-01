@@ -256,7 +256,6 @@ export default function ProofOfConcept() {
                 <article
                   key={card.niche}
                   className="portfolio-card-item"
-                  data-cursor="VIEW"
                   tabIndex={0}
                   aria-label={`${card.category}: ${card.niche}`}
                   style={{

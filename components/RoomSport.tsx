@@ -256,7 +256,6 @@ export default function RoomSport() {
               {/* Mobile */}
               <div
                 data-device="mobile"
-                data-cursor="VIEW"
                 style={{
                   width: "min(180px, 18vw)",
                   transform:
@@ -291,7 +290,6 @@ export default function RoomSport() {
               {/* Desktop */}
               <div
                 data-device="desktop"
-                data-cursor="VIEW"
                 style={{
                   flex: 1,
                   maxWidth: 540,
@@ -416,7 +414,6 @@ export default function RoomSport() {
             </p>
             <a
               href="#"
-              data-cursor="OPEN CASE"
               style={{
                 fontFamily: "var(--font-space-grotesk)",
                 fontSize: 12,

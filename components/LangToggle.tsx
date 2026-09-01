@@ -46,7 +46,6 @@ export default function LangToggle({ variant = "dark" }: LangToggleProps) {
       onClick={switchLocale}
       aria-label={t("langAria")}
       title={t("langAria")}
-      data-cursor="SWITCH"
       className="text-label"
       style={{
         fontSize: 10,
