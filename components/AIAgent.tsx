@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import { useTranslations, useLocale } from "next-intl";
+import { usePathname } from "@/i18n/navigation";
 import { AgentMessageContent } from "@/lib/agent-message";
 import { trackEvent, trackOaiCustom, trackOaiLead } from "@/lib/analytics";
 import { gsap, registerGsap } from "@/lib/gsap";
@@ -11,9 +12,12 @@ type Message = { role: "user" | "assistant"; content: string };
 export default function AIAgent() {
   const t = useTranslations("agent");
   const locale = useLocale();
+  const pathname = usePathname();
+  const isGeoLanding = pathname.includes("/geo");
+  const trackingLocation = isGeoLanding ? "geo_landing" : "homepage_agent";
   const sectionRef = useRef<HTMLElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const welcome = t("welcome");
+  const welcome = isGeoLanding ? t("welcomeGeo") : t("welcome");
   const starterPrompts = t.raw("starterPrompts") as string[];
   const [messages, setMessages] = useState<Message[]>([
     { role: "assistant", content: welcome },
@@ -27,27 +31,33 @@ export default function AIAgent() {
   const trackAgentOpen = useCallback(() => {
     if (agentOpenTracked.current) return;
     agentOpenTracked.current = true;
-    trackEvent("agent_open", { location: "homepage_agent" });
-  }, []);
+    trackEvent("agent_open", { location: trackingLocation });
+  }, [trackingLocation]);
 
   const trackAgentEngage = useCallback(() => {
     if (agentEngageTracked.current) return;
     agentEngageTracked.current = true;
-    trackEvent("agent_engage", { location: "homepage_agent" });
+    trackEvent("agent_engage", { location: trackingLocation });
     trackOaiCustom("agent_engage");
-  }, []);
+  }, [trackingLocation]);
 
   const trackGenerateLead = useCallback(() => {
     trackEvent("generate_lead", {
       method: "whatsapp",
       value: 1500,
       currency: "EUR",
+      location: trackingLocation,
     });
     trackOaiLead();
-  }, []);
+  }, [trackingLocation]);
 
   const userMessageCount = messages.filter((m) => m.role === "user").length;
   const showPrompts = userMessageCount === 0 && !loading;
+
+  const agentContext = useMemo(
+    () => (isGeoLanding ? "geo" : undefined),
+    [isGeoLanding],
+  );
 
   useEffect(() => {
     registerGsap();
@@ -99,6 +109,7 @@ export default function AIAgent() {
           body: JSON.stringify({
             messages: updated.map((m) => ({ role: m.role, content: m.content })),
             locale,
+            context: agentContext,
           }),
         });
 
@@ -119,7 +130,7 @@ export default function AIAgent() {
         setLoading(false);
       }
     },
-    [loading, locale, messages, t, trackAgentOpen, trackAgentEngage]
+    [loading, locale, messages, t, trackAgentOpen, trackAgentEngage, agentContext]
   );
 
   const sendMessage = async (e: React.FormEvent) => {

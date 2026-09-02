@@ -6,7 +6,7 @@ import { buildBlogLanguageAlternates } from "@/lib/blog-utils";
 import { getServiceSitemapEntries } from "@/lib/services/registry";
 
 type StaticRoute = {
-  pathname: "/" | "/briefing" | "/blog" | "/privacy";
+  pathname: "/" | "/briefing" | "/geo" | "/blog" | "/privacy";
   changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
   priority: number;
 };
@@ -14,6 +14,7 @@ type StaticRoute = {
 const STATIC_ROUTES: StaticRoute[] = [
   { pathname: "/", changeFrequency: "weekly", priority: 1.0 },
   { pathname: "/briefing", changeFrequency: "monthly", priority: 0.8 },
+  { pathname: "/geo", changeFrequency: "weekly", priority: 0.9 },
   { pathname: "/blog", changeFrequency: "monthly", priority: 0.8 },
   { pathname: "/privacy", changeFrequency: "yearly", priority: 0.3 },
 ];

@@ -20,3 +20,6 @@ QUALIFICATION FLOW (follow in order, naturally):
 6. NEVER mention Calendly, calendly.com, or any booking link other than WhatsApp.
 
 Do not skip the web URL question. Do not offer Calendly. Do not quote package prices.`;
+
+export const AGENT_GEO_CONTEXT =
+  "Context: the user arrives interested in AI visibility / GEO (generative engine optimization). Orient them on that service and hand off to WhatsApp as usual.";

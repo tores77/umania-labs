@@ -67,49 +67,84 @@
         "name": "Diseño Web Premium",
         "tagline": "Webs que convierten y sorprenden",
         "description": "Experiencias cinematográficas con Three.js, GSAP y scroll-scrubbed video. Assets generados con IA. Entrega en 10-14 días.",
-        "includes": ["Three.js / WebGL", "GSAP + scroll-scrubbed video", "Assets con IA", "Entrega 10-14 días"],
+        "includes": [
+          "Three.js / WebGL",
+          "GSAP + scroll-scrubbed video",
+          "Assets con IA",
+          "Entrega 10-14 días"
+        ],
         "price": "5.000€ – 75.000€"
       },
       {
         "name": "SEO + GEO",
         "tagline": "Visibilidad en Google y motores de IA",
         "description": "SEO técnico implementado en código más optimización para ChatGPT, Perplexity y Gemini.",
-        "includes": ["Auditoría técnica", "Schema + Core Web Vitals", "Optimización GEO", "Retainer mensual"],
+        "includes": [
+          "Auditoría técnica",
+          "Schema + Core Web Vitals",
+          "Optimización GEO",
+          "Retainer mensual"
+        ],
         "price": "Auditoría 1.500–2.500€ · Retainer 1.200–2.500€/mes"
       },
       {
         "name": "Contenido con IA",
         "tagline": "Presencia constante sin esfuerzo",
         "description": "Blog SEO, newsletter y RRSS visual con Higgsfield. Contenido recurrente que posiciona.",
-        "includes": ["Blog SEO mensual", "Newsletter", "RRSS visual", "Higgsfield assets"],
+        "includes": [
+          "Blog SEO mensual",
+          "Newsletter",
+          "RRSS visual",
+          "Higgsfield assets"
+        ],
         "price": "Desde 1.200€/mes"
       },
       {
         "name": "Agente IA embebido",
         "tagline": "Cualificación de leads 24/7",
         "description": "Agente Claude integrado en tu web. Cualifica leads, responde FAQ y agenda llamadas.",
-        "includes": ["Claude API", "Cualificación leads", "Reservas automáticas", "FAQ personalizado"],
+        "includes": [
+          "Claude API",
+          "Cualificación leads",
+          "Reservas automáticas",
+          "FAQ personalizado"
+        ],
         "price": "3.500 – 8.000€"
       },
       {
         "name": "Newsletter + Email automation",
         "tagline": "Nutrición de leads automatizada",
         "description": "Setup en Beehiiv o Kit con secuencias automatizadas y lead magnets.",
-        "includes": ["Setup Beehiiv/Kit", "Secuencias email", "Lead magnets", "Automatización"],
+        "includes": [
+          "Setup Beehiiv/Kit",
+          "Secuencias email",
+          "Lead magnets",
+          "Automatización"
+        ],
         "price": "Setup 1.200–3.000€ · 600–1.200€/mes"
       },
       {
         "name": "Contenido visual RRSS",
         "tagline": "Presencia visual premium",
         "description": "6-12 piezas mensuales con Higgsfield. Vídeo cinematográfico para redes.",
-        "includes": ["Higgsfield", "6-12 piezas/mes", "Vídeo cinematográfico", "Adaptación formatos"],
+        "includes": [
+          "Higgsfield",
+          "6-12 piezas/mes",
+          "Vídeo cinematográfico",
+          "Adaptación formatos"
+        ],
         "price": "Desde 800€/mes"
       },
       {
         "name": "Campañas SEM",
         "tagline": "Google Ads + Meta Ads gestionado",
         "description": "Gestión con especialistas certificados. Transparencia total. Presupuesto publicitario directo al cliente.",
-        "includes": ["Google Ads", "Meta Ads", "Reporting mensual", "Optimización continua"],
+        "includes": [
+          "Google Ads",
+          "Meta Ads",
+          "Reporting mensual",
+          "Optimización continua"
+        ],
         "price": "Fee 1.000–2.500€/mes"
       }
     ],
@@ -204,12 +239,30 @@
       }
     ],
     "portfolioCards": [
-      { "category": "WEB PREMIUM", "niche": "Real Estate" },
-      { "category": "WEB PREMIUM", "niche": "Yacht Charter" },
-      { "category": "APP", "niche": "Club Deportivo" },
-      { "category": "WEB PREMIUM", "niche": "Arquitectura" },
-      { "category": "E-COMMERCE", "niche": "Moda Premium" },
-      { "category": "LANDING", "niche": "Restauración" }
+      {
+        "category": "WEB PREMIUM",
+        "niche": "Real Estate"
+      },
+      {
+        "category": "WEB PREMIUM",
+        "niche": "Yacht Charter"
+      },
+      {
+        "category": "APP",
+        "niche": "Club Deportivo"
+      },
+      {
+        "category": "WEB PREMIUM",
+        "niche": "Arquitectura"
+      },
+      {
+        "category": "E-COMMERCE",
+        "niche": "Moda Premium"
+      },
+      {
+        "category": "LANDING",
+        "niche": "Restauración"
+      }
     ]
   },
   "process": {
@@ -256,7 +309,8 @@
       "Tengo un negocio en Mallorca",
       "Tengo un restaurante o club premium en Mallorca",
       "Quiero vender más desde mi web"
-    ]
+    ],
+    "welcomeGeo": "Hola — vienes de preguntarle a una IA, así que vamos al grano: ¿de qué es tu negocio y en qué zona? Te digo si GEO puede darte visibilidad ahí."
   },
   "market": {
     "title": "Por qué cobramos lo que cobramos",
@@ -295,7 +349,15 @@
     "email": "Email",
     "message": "Mensaje",
     "sector": "Sector",
-    "sectorOptions": ["Real Estate", "Yacht & Náutica", "Restauración", "Moda", "Tech / Startup", "Consultoría", "Otro"],
+    "sectorOptions": [
+      "Real Estate",
+      "Yacht & Náutica",
+      "Restauración",
+      "Moda",
+      "Tech / Startup",
+      "Consultoría",
+      "Otro"
+    ],
     "submit": "Enviar mensaje",
     "success": "Mensaje enviado. Te respondemos en menos de 24h.",
     "error": "Error al enviar. Inténtalo de nuevo.",
@@ -946,5 +1008,98 @@
     "skipToContent": "Ir al contenido principal",
     "talkToAgent": "Habla con el agente",
     "bookCall": "Reservar llamada"
+  },
+  "geoLanding": {
+    "metaTitle": "GEO — Visibilidad en motores de IA | Umania Labs",
+    "metaDescription": "Tu cliente pregunta a ChatGPT y la IA responde con dos o tres nombres. GEO: contenido citable, datos estructurados y medición de citación para que tu negocio sea parte de la respuesta. Mallorca.",
+    "hero": {
+      "eyebrow": "GEO · VISIBILIDAD EN MOTORES DE IA",
+      "headline": "Tu cliente ya no busca en Google. Le pregunta a la IA.",
+      "subline": "Y la IA responde con dos o tres nombres. Si el tuyo no está en esa respuesta, no existes — no hay página 2 en ChatGPT. Trabajamos para que tu negocio sea parte de la respuesta: contenido citable, datos estructurados y medición real de citación.",
+      "cta": "Comprueba tu visibilidad con nuestro agente"
+    },
+    "mirror": {
+      "title": "Acabas de hacerlo",
+      "body": "Has llegado aquí desde ChatGPT. Le has preguntado algo a una IA y has actuado sobre su respuesta. Exactamente eso hacen tus clientes cada día con tu sector: preguntan, la IA recomienda, y alguien se lleva al cliente. La única pregunta es si ese alguien eres tú.",
+      "microCta": "Haz la prueba: pregúntale a ChatGPT por tu sector en tu zona. ¿Sales tú o sale tu competencia?"
+    },
+    "stats": {
+      "title": "Los datos",
+      "items": [
+        {
+          "stat": "48%",
+          "title": "de las búsquedas en Google ya muestran una respuesta de IA",
+          "description": "El AI Overview responde antes que los resultados clásicos. La conversación se ha movido a la respuesta única."
+        },
+        {
+          "stat": "-61%",
+          "title": "de clics orgánicos cuando aparece esa respuesta",
+          "description": "Rankear primero ya no garantiza la visita. El juego es ser la fuente que la IA cita, no el enlace azul."
+        },
+        {
+          "stat": "0",
+          "title": "páginas de resultados en ChatGPT",
+          "description": "No hay página 2. Hay respuesta, con dos o tres nombres citados. Dentro o fuera."
+        }
+      ]
+    },
+    "whatWeDo": {
+      "title": "GEO: que la IA te lea, te entienda y te cite",
+      "items": [
+        {
+          "title": "Contenido citable",
+          "description": "Afirmaciones concretas y verificables sobre tu negocio: qué haces, dónde, para quién, con qué resultados. Lo que un modelo puede citar."
+        },
+        {
+          "title": "Datos estructurados",
+          "description": "Schema completo, FAQ legible por máquinas, arquitectura semántica. Tu web como fuente de datos, no solo como escaparate."
+        },
+        {
+          "title": "Doble lectura",
+          "description": "Por fuera, una web premium que convierte al humano. Por dentro, una estructura que los modelos entienden. Ninguna capa sin la otra."
+        },
+        {
+          "title": "Medición de citación",
+          "description": "Cada 4-8 semanas repetimos las preguntas reales de tu sector en ChatGPT, Perplexity y Gemini, y te enseñamos si apareces y para qué."
+        }
+      ]
+    },
+    "honesty": {
+      "title": "Lo que no te vamos a prometer",
+      "body": "Nadie controla lo que responde ChatGPT — desconfía de quien te garantice aparecer. Lo que sí se puede hacer: construir las señales que los modelos leen y citan, y medirlo con método. Nuestro KPI no es una promesa: es tu tasa de citación, medida y enseñada."
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "items": [
+        {
+          "question": "¿Qué es GEO?",
+          "answer": "GEO (Generative Engine Optimization) es la optimización para motores generativos: trabajar el contenido, los datos estructurados y las señales de tu web para que modelos como ChatGPT, Perplexity o Gemini puedan leerla, entenderla y citarla cuando alguien pregunta por tu sector."
+        },
+        {
+          "question": "¿En qué se diferencia del SEO?",
+          "answer": "El SEO compite por salir en una lista de diez enlaces. El GEO compite por formar parte de una respuesta única. Se complementan: la autoridad SEO alimenta la citación, pero la IA lee distinto y exige señales distintas."
+        },
+        {
+          "question": "¿Podéis garantizar que mi negocio salga en ChatGPT?",
+          "answer": "No, y nadie puede. Los modelos deciden sus fuentes y cambian con frecuencia. Lo que hacemos es construir las señales correctas y medir tu citación cada 4-8 semanas para ver la evolución real."
+        },
+        {
+          "question": "¿Cuánto tarda en verse resultado?",
+          "answer": "La acumulación de señales tarda semanas o meses, no días. Por eso medimos con método y transparencia en vez de prometer plazos."
+        },
+        {
+          "question": "¿Para qué negocios tiene sentido?",
+          "answer": "Para negocios donde el cliente pregunta y compara antes de decidir: hospitality, restaurantes, servicios premium, marcas locales con competencia. Si tus clientes le preguntan a la IA, GEO es tu visibilidad."
+        }
+      ]
+    },
+    "finalCta": {
+      "title": "¿Te cita la IA, o cita a tu competencia?",
+      "subtitle": "Cuéntale tu caso a nuestro agente. Dos minutos, y te dice si GEO tiene sentido para tu negocio.",
+      "cta": "Hablar con el agente"
+    },
+    "midCta": "Habla con el agente",
+    "serviceName": "GEO — Generative Engine Optimization",
+    "serviceDescription": "Optimización para motores de IA: contenido citable, datos estructurados y medición de citación para que tu negocio aparezca en respuestas de ChatGPT, Perplexity y Gemini."
   }
 }
